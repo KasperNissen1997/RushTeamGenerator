@@ -6,69 +6,81 @@ namespace TeamGenerator.MVVM.Models
 {
     public class Player
     {
+        private static int identifierCount = 0;
+        public int Identifier;
+
         public string Name { get; set; }
         public string Nickname { get; set; }
-        public List<Language> KnownLanguages { get; set; }
+        public List<Language> Languages { get; set; }
         public int Rating { get; set; }
 
-        Relation inclusions { get; set; }
-        Relation exclusions { get; set; }
+        public List<Player> Inclusions { get; set; }
+        public List<Player> Exclusions { get; set; }
 
-        public Player(string name, string nickname, List<Language> knownLanguages, int rating)
+        /// <summary>
+        /// TODO: Add summary, and code documentation in general
+        /// </summary>
+        /// <param name="name">The name of the player.</param>
+        /// <param name="nickname">The nickname of the player. This is what is used in game.</param>
+        /// <param name="languages">A collection of the languages spoken by the player.</param>
+        /// <param name="rating">A number based evaluation of the players skill, ranging from 1 as the lowest, up to 12 as the highest.</param>
+        public Player(string name, string nickname, List<Language> languages, int rating)
         {
+            Identifier = identifierCount++;
+
             Name = name;
             Nickname = nickname;
-            KnownLanguages = knownLanguages;
+            Languages = languages;
             Rating = rating;
 
-            inclusions = new Relation(RelationType.Inclusion);
-            exclusions = new Relation(RelationType.Exclusion);
+            Inclusions = new List<Player>();
+            Exclusions = new List<Player>();
         }
 
         public void AddInclusion(Player player)
         {
-            if (inclusions.Participants.Contains(player))
+            if (Inclusions.Contains(player))
                 return; // can't add two of the same player to inclusions
 
-            if (exclusions.Participants.Contains(player))
+            if (Exclusions.Contains(player))
                 throw new InvalidOperationException(); // can't add a player in exclusion to inclusion
 
-            if (player.exclusions.Participants.Contains(this))
+            if (player.Exclusions.Contains(this))
                 throw new InvalidOperationException(); // can't add a player who excludes "this" to inclusions
 
-            inclusions.Participants.Add(player);
+            Inclusions.Add(player);
             player.AddInclusion(this);
         }
 
         public void RemoveInclusion(Player player)
         {
-            if (!inclusions.Participants.Contains(player))
+            if (!Inclusions.Contains(player))
                 throw new ArgumentException(); // the player is not in the inclusions of "this"
 
-            inclusions.Participants.Remove(player);
+            Inclusions.Remove(player);
             player.RemoveInclusion(this);
         }
 
         public void AddExclusion(Player player)
         {
-            if (exclusions.Participants.Contains(player))
+            if (Exclusions.Contains(player))
                 return; // can't add two of the same player to exclusions
 
-            if (inclusions.Participants.Contains(player))
+            if (Inclusions.Contains(player))
                 throw new InvalidOperationException(); // can't add a player in inclusion to exclusion
 
-            if (player.inclusions.Participants.Contains(this))
+            if (player.Inclusions.Contains(this))
                 throw new InvalidOperationException(); // can't add a player who includes "this" to exclusions
 
-            exclusions.Participants.Add(player);
+            Exclusions.Add(player);
         }
 
         public void RemoveExclusion(Player player)
         {
-            if (!exclusions.Participants.Contains(player))
+            if (!Exclusions.Contains(player))
                 throw new ArgumentException(); // the player is not in the exclusions of "this"
 
-            exclusions.Participants.Remove(player);
+            Exclusions.Remove(player);
         }
     }
 }

@@ -6,12 +6,17 @@ namespace TeamGenerator.MVVM.Models
 {
     public class Team
     {
+        private static int identifierCount = 0;
+        public int Identifier;
+
         public List<Player> Players { get; private set; }
         public List<Language> Languages { get; private set; }
         public float Rating { get; private set; }
 
         public Team()
         {
+            Identifier = identifierCount++;
+
             Players = new List<Player>();
             Languages = new List<Language>();
             Rating = 0f;
@@ -50,7 +55,7 @@ namespace TeamGenerator.MVVM.Models
             {
                 foreach (Language language in allLanguages)
                 {
-                    if (!player.KnownLanguages.Contains(language) && availableLanguages.Contains(language))
+                    if (!player.Languages.Contains(language) && availableLanguages.Contains(language))
                         availableLanguages.Remove(language);
                 }
             }

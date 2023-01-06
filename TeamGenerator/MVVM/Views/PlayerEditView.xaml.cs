@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TeamGenerator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PlayerEditView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PlayerEditView : Window
     {
-        public MainWindow()
+        public PlayerEditView()
         {
             InitializeComponent();
         }
