@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Players>
+  <Player>
+    <Name>Kasper</Name>
+    <Nickname>KN</Nickname>
+    <Languages>
+      <Language>Danish</Language>
+      <Language>English</Language>
+    </Languages>
+    <Rating>1</Rating>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Casper</Name>
+    <Nickname>Stokn9x</Nickname>
+    <Languages>
+      <Language>Danish</Language>
+      <Language>English</Language>
+    </Languages>
+    <Rating>12</Rating>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+</Players>

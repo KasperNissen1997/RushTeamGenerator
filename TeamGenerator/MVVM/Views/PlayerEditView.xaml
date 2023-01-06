@@ -19,15 +19,15 @@
             </Grid.RowDefinitions>
             
             <Label Content="Registrerede spillere:"/>
-            <ListBox Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=30}">
+            <ListBox Grid.Row="1" ItemsSource="{Binding RegistreredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
-                                <Label Content="Navn" FontSize="10"/>
-                                <Label Content="Nickname" FontSize="10"/>
+                                <Label Content="{Binding Name}" FontSize="10"/>
+                                <Label Content="{Binding Nickname}" FontSize="10"/>
                             </StackPanel>
-                            <Label Content="Niveau" VerticalAlignment="Center"/>
+                            <Label Content="{Binding Rating}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -61,11 +61,11 @@
                 
                 <!-- Name -->
                 <Label Grid.Row="1" Content="Navn:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="" FontSize="18" VerticalAlignment="center"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedPlayer.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
                 
                 <!-- Nickname -->
                 <Label Grid.Row="3" Content="Nickname:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Text="" FontSize="18" VerticalAlignment="center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedPlayer.Nickname, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
                 
                 <!-- Known languages -->
                 <Label Grid.Row="5" Content="Kendte sprog:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
@@ -78,10 +78,10 @@
                     </Grid.ColumnDefinitions>
                     
                     <Label Content="Dansk:" FontSize="18" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="1" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <CheckBox Grid.Column="1" IsChecked="{Binding Danish}" VerticalAlignment="Center" Margin="0,0,10,0" Checked="CheckBox_Checked"/>
                     
                     <Label Grid.Column="2" Content="Engelsk:" FontSize="18" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="3" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Column="3" VerticalAlignment="Center" IsChecked="{Binding English}"/>
                 </Grid>
 
                     <!-- Rating -->
@@ -91,9 +91,9 @@
                         <ColumnDefinition Width="5*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    
-                    <Slider Minimum="1" Maximum="12" IsSnapToTickEnabled="True" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0"/>
+
+                    <Slider Minimum="1" Maximum="12" IsSnapToTickEnabled="True" Value="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" FontSize="18" Text="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </Grid>
             </Grid>
 
@@ -113,7 +113,7 @@
                 <!-- Inklusioner -->
                 <Label Content="Inklusioner:"/>
                 
-                <ListBox Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=30}">
+                <ListBox Grid.Row="1" ItemsSource="{Binding SelectedPlayer.Inclusions}" d:ItemsSource="{d:SampleData ItemCount=30}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
@@ -131,8 +131,8 @@
 
                 <!-- Eksklusioner -->
                 <Label Grid.Column="2" Content="Eksklusioner:"/>
-                
-                <ListBox Grid.Row="1" Grid.Column="2" d:ItemsSource="{d:SampleData ItemCount=30}">
+
+                <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding SelectedPlayer.Exclusions}" d:ItemsSource="{d:SampleData ItemCount=30}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using TeamGenerator.Enums;
 using TeamGenerator.MVVM.Models;
+using TeamGenerator.MVVM.Models.Repositories;
 
 namespace TeamGenerator.MVVM.ViewModels
 {
@@ -15,7 +11,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
         public string Name { get; set; }
         public string Nickname { get; set; }
-        public ObservableCollection<Language> KnownLanguages { get; set; }
+        public ObservableCollection<Language> Languages { get; set; }
         public int Rating { get; set; }
 
         public ObservableCollection<PlayerViewModel> Inclusions { get; }
@@ -27,7 +23,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
             Name = source.Name;
             Nickname = source.Nickname;
-            KnownLanguages = new ObservableCollection<Language>(source.Languages);
+            Languages = new ObservableCollection<Language>(source.Languages);
             Rating = source.Rating;
 
             Inclusions = new ObservableCollection<PlayerViewModel>();
@@ -39,6 +35,11 @@ namespace TeamGenerator.MVVM.ViewModels
 
             foreach (Player player in source.Inclusions)
                 Exclusions.Add(new PlayerViewModel(player));
+        }
+
+        public void Delete ()
+        {
+            PlayerRepository.Instance.Delete(source.Identifier);
         }
     }
 }

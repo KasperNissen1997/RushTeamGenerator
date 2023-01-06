@@ -113,7 +113,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                     List<Language> languages = new List<Language>(); // Language preparation
                     XmlReader subtreeReader = reader.ReadSubtree();
 
-                    subtreeReader.ReadToFollowing("Languages");
+                    subtreeReader.ReadToFollowing("Language");
                     do
                     {
                         try
@@ -145,15 +145,17 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
             using (XmlReader reader = XmlReader.Create(filePath, settings)) // second read of the data - focus on relations
             {
-                int playerCount = 1;
+                int playerCount = 0;
 
                 reader.ReadToFollowing("Player");
                 do
                 {
-                    List<Player> inclusions = new List<Player>(); // Inclusion preparation
+                    reader.ReadToFollowing("Inclusions"); // Inclusion preparation
+
+                    List<Player> inclusions = new List<Player>();
                     XmlReader subtreeReader = reader.ReadSubtree();
 
-                    reader.ReadToFollowing("Inclusions");
+                    subtreeReader.ReadToFollowing("PlayerIdentifier");
                     do
                     {
                         try
@@ -167,10 +169,12 @@ namespace TeamGenerator.MVVM.Models.Repositories
                         }
                     } while (!subtreeReader.EOF);
 
-                    List<Player> exclusions = new List<Player>(); // Exclusion preparation
+                    reader.ReadToFollowing("Exclusions"); // Exclusion preparation
+
+                    List<Player> exclusions = new List<Player>();
                     subtreeReader = reader.ReadSubtree();
 
-                    reader.ReadToFollowing("Exclusions");
+                    subtreeReader.ReadToFollowing("PlayerIdentifier");
                     do
                     {
                         try
