@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TeamGenerator.Enums;
+using System.Security.Cryptography.X509Certificates;
 using TeamGenerator.MVVM.Models;
 
 namespace TeamGenerator.MVVM.ViewModels
@@ -14,16 +11,23 @@ namespace TeamGenerator.MVVM.ViewModels
         private Team source;
 
         public ObservableCollection<PlayerViewModel> Players { get; set; }
-        public ObservableCollection<Language> Languages { get; set; }
+        public bool SpeaksDanish { get; set; }
+        public bool SpeaksEnglish { get; set; }
         public float Rating { get; set; }
 
         public TeamViewModel (Team source)
         {
             this.source = source;
 
-            //Players = source.Players;
-            //Languages = source.Languages;
-            //Rating = source.Rating;
+            Players = new ObservableCollection<PlayerViewModel>();
+
+            foreach (Player player in source.Players)
+                Players.Add(new PlayerViewModel(player));
+
+            Rating = source.Rating;
+
+            SpeaksDanish = source.SpeaksDanish;
+            SpeaksEnglish = source.SpeaksEnglish;
         }
     }
 }

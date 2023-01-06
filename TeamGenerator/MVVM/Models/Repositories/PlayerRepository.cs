@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
-using TeamGenerator.Enums;
 
 namespace TeamGenerator.MVVM.Models.Repositories
 {
@@ -61,15 +60,9 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
                     writer.WriteElementString("Name", player.Name); // Name
                     writer.WriteElementString("Nickname", player.Nickname); // Nickname
-
-                    writer.WriteStartElement("Languages"); // Languages
-                    foreach (Language language in player.Languages)
-                    {
-                        writer.WriteElementString("Language", language.ToString());
-                    }
-                    writer.WriteEndElement();
-
                     writer.WriteElementString("Rating", player.Rating.ToString()); // Rating
+                    writer.WriteElementString("SpeaksDanish", player.SpeaksDanish.ToString().ToLower()); // SpeaksDanish
+                    writer.WriteElementString("SpeaksEnglish", player.SpeaksDanish.ToString().ToLower()); // SpeaksEnglish
 
                     writer.WriteStartElement("Inclusions"); // Inclusions
                     foreach (Player includedPlayer in player.Inclusions)
@@ -94,6 +87,10 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
         public void Load()
         {
+            //Create("Kasper Nissen", "KN", 2, true, true);
+            //Create("Casper Jensen", "Stokn9x", 11, true, true);
+            //Save();
+
             XmlReaderSettings settings = new()
             {
                 IgnoreWhitespace = true,
@@ -108,28 +105,10 @@ namespace TeamGenerator.MVVM.Models.Repositories
                     reader.ReadToFollowing("Name");
 
                     string name = reader.ReadElementContentAsString(); // Name
-                    string nickname = reader.ReadElementContentAsString(); // Nickname
-
-                    List<Language> languages = new List<Language>(); // Language preparation
-                    XmlReader subtreeReader = reader.ReadSubtree();
-
-                    subtreeReader.ReadToFollowing("Language");
-                    do
-                    {
-                        try
-                        {
-                            languages.Add((Language) Enum.Parse(typeof(Language), subtreeReader.ReadElementContentAsString())); // Language
-                        }
-                        catch (InvalidOperationException) // catch this exception which occurs whenever we have finished reading all out languages
-                        {
-                            subtreeReader.Close();
-                            break;
-                        }
-                    } while (!subtreeReader.EOF);
-
-                    reader.ReadToFollowing("Rating"); // Rating preparation
-
+                    string nickname = reader.ReadElementContentAsString(); // Nickname                   
                     int rating = reader.ReadElementContentAsInt(); // Rating
+                    bool speaksDanish = reader.ReadElementContentAsBoolean(); // SpeaksDanish
+                    bool speaksEnglish = reader.ReadElementContentAsBoolean(); // SpeaksEnglish
 
                     /*  
                      *  Here we add a player with the limited information we have read so far.
@@ -138,7 +117,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                      *  we must once again read through the data, but this time we only focus on the relations.
                      */
 
-                    players.Add(new Player(name, nickname, languages, rating));
+                    players.Add(new Player(name, nickname, rating, speaksDanish, speaksEnglish));
                 }
                 while (reader.ReadToFollowing("Player"));
             }
@@ -201,9 +180,9 @@ namespace TeamGenerator.MVVM.Models.Repositories
         #endregion
 
         #region CRUD
-        public Player Create(string name, string nickname, List<Language> languages, int rating)
+        public Player Create(string name, string nickname, int rating, bool speaksDanish, bool speaksEnglish)
         {
-            Player player = new Player(name, nickname, languages, rating);
+            Player player = new Player(name, nickname, rating, speaksDanish, speaksEnglish);
 
             players.Add(player);
 
@@ -254,13 +233,14 @@ namespace TeamGenerator.MVVM.Models.Repositories
             throw new ArgumentException($"No player with identifier {identifier} found.");
         }
 
-        public void UpdateLanguages(int identifier, List<Language> languages)
+        public void UpdateLanguages(int identifier, bool speaksDanish, bool speaksEnglish)
         {
             foreach (Player player in players)
             {
                 if (player.Identifier == identifier)
                 {
-                    player.Languages = languages;
+                    player.SpeaksDanish = speaksDanish;
+                    player.SpeaksEnglish = speaksEnglish;
                     return;
                 }
             }

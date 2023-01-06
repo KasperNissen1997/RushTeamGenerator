@@ -1,24 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Players>
   <Player>
-    <Name>Kasper</Name>
+    <Name>Kasper Nissen</Name>
     <Nickname>KN</Nickname>
-    <Languages>
-      <Language>Danish</Language>
-      <Language>English</Language>
-    </Languages>
-    <Rating>1</Rating>
+    <Rating>2</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
   </Player>
   <Player>
-    <Name>Casper</Name>
+    <Name>Casper Jensen</Name>
     <Nickname>Stokn9x</Nickname>
-    <Languages>
-      <Language>Danish</Language>
-      <Language>English</Language>
-    </Languages>
-    <Rating>12</Rating>
+    <Rating>11</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
   </Player>

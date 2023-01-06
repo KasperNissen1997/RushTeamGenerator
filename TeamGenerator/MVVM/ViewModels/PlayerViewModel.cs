@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using TeamGenerator.Enums;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 
@@ -11,8 +10,10 @@ namespace TeamGenerator.MVVM.ViewModels
 
         public string Name { get; set; }
         public string Nickname { get; set; }
-        public ObservableCollection<Language> Languages { get; set; }
         public int Rating { get; set; }
+
+        public bool SpeaksDanish { get; set; }
+        public bool SpeaksEnglish { get; set; }
 
         public ObservableCollection<PlayerViewModel> Inclusions { get; }
         public ObservableCollection<PlayerViewModel> Exclusions { get; }
@@ -23,8 +24,10 @@ namespace TeamGenerator.MVVM.ViewModels
 
             Name = source.Name;
             Nickname = source.Nickname;
-            Languages = new ObservableCollection<Language>(source.Languages);
             Rating = source.Rating;
+
+            SpeaksDanish = source.SpeaksDanish;
+            SpeaksEnglish = source.SpeaksEnglish;
 
             Inclusions = new ObservableCollection<PlayerViewModel>();
 

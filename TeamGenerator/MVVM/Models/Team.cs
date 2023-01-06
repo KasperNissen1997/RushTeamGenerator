@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TeamGenerator.Enums;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -10,16 +9,20 @@ namespace TeamGenerator.MVVM.Models
         public int Identifier;
 
         public List<Player> Players { get; private set; }
-        public List<Language> Languages { get; private set; }
         public float Rating { get; private set; }
+
+        public bool SpeaksDanish { get; private set; }
+        public bool SpeaksEnglish { get; private set; }
 
         public Team()
         {
             Identifier = identifierCount++;
 
             Players = new List<Player>();
-            Languages = new List<Language>();
             Rating = 0f;
+
+            SpeaksDanish = true;
+            SpeaksEnglish = true;
         }
 
         public bool TryAddPlayer(Player player)
@@ -27,40 +30,37 @@ namespace TeamGenerator.MVVM.Models
             if (Players.Count == 5)
                 throw new InvalidOperationException(); // adding another player will exceed the maximum of 5 players
 
-            if (TryGetAvailableLanguages(player, out List<Language> availableLanguages)) // attempt to get the available languages
+            if (TryGetAvailableLanguages(player, out bool speaksDanish, out bool speaksEnglish)) // attempt to get the available languages
                 throw new ArgumentException(); // adding this player will result in no available language
 
             Players.Add(player); // add the player
 
-            Languages = availableLanguages; // update language
             UpdateRating(); // update rating
+
+            SpeaksDanish = speaksDanish; // does all members of the team still speak danish?
+            SpeaksEnglish = SpeaksEnglish; // how about english?
 
             return true;
         }
 
-        bool TryGetAvailableLanguages(Player possiblePlayer, out List<Language> availableLanguages)
+        bool TryGetAvailableLanguages(Player possiblePlayer, out bool danish, out bool english)
         {
             List<Player> possiblePlayers = Players;
             possiblePlayers.Add(possiblePlayer);
 
-            List<Language> allLanguages = new()
-            {
-                Language.Danish,
-                Language.English
-            };
-
-            availableLanguages = allLanguages;
+            danish = true; 
+            english = true;
 
             foreach (Player player in possiblePlayers)
             {
-                foreach (Language language in allLanguages)
-                {
-                    if (!player.Languages.Contains(language) && availableLanguages.Contains(language))
-                        availableLanguages.Remove(language);
-                }
+                if (!player.SpeaksDanish && danish)
+                    danish = false;
+
+                if (!player.SpeaksEnglish && english)
+                    english = false;
             }
 
-            if (availableLanguages.Count == 0)
+            if (!danish && !english)
                 return false;
 
             return true;
