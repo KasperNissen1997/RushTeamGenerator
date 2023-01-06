@@ -1,25 +1,27 @@
-﻿<Window x:Class="TeamGenerator.PlayerEditView"
+﻿<Window x:Class="TeamGenerator.MVVM.Views.PlayerEditView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamGenerator"
         mc:Ignorable="d"
-        Title="Spiller oversigt" Width="1080" Height="720" MinWidth="800" MinHeight="450">
+        Title="Spiller oversigt" Width="1080" Height="720" MinWidth="600" MinHeight="450" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" MinWidth="200"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Margin="10">
+        <Grid Margin="10,10,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             
             <Label Content="Registrerede spillere:"/>
-            <ListBox Grid.Row="1" ItemsSource="{Binding RegistreredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
+            <ListBox x:Name="RegisteredPlayersListBox" Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -32,6 +34,11 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+
+            <Grid Grid.Row="3">
+                <Button Content="Tilføj" Command="{Binding CreatePlayerCommand}" CommandParameter="{Binding}" Padding="25,0,25,0" HorizontalAlignment="Left"/>
+                <Button Content="Fjern" Command="{Binding RemovePlayerCommand}" CommandParameter="{Binding}" Padding="25,0,25,0" Margin="100,0,0,0" HorizontalAlignment="Left"/>
+            </Grid>
         </Grid>
         
         <Grid Grid.Column="1" Margin="10">
@@ -61,11 +68,33 @@
                 
                 <!-- Name -->
                 <Label Grid.Row="1" Content="Navn:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedPlayer.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
-                
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedPlayer.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
                 <!-- Nickname -->
                 <Label Grid.Row="3" Content="Nickname:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedPlayer.Nickname, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding SelectedPlayer.Nickname, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
                 
                 <!-- Known languages -->
                 <Label Grid.Row="5" Content="Kendte sprog:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
@@ -78,10 +107,32 @@
                     </Grid.ColumnDefinitions>
                     
                     <Label Content="Dansk:" FontSize="18" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="1" IsChecked="{Binding SelectedPlayer.SpeaksDanish}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <CheckBox Grid.Column="1" IsChecked="{Binding SelectedPlayer.SpeaksDanish}" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <CheckBox.Style>
+                            <Style TargetType="{x:Type CheckBox}">
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
                     
                     <Label Grid.Column="2" Content="Engelsk:" FontSize="18" VerticalAlignment="Center"/>
-                    <CheckBox Grid.Column="3" IsChecked="{Binding SelectedPlayer.SpeaksEnglish}" VerticalAlignment="Center"/>
+                    <CheckBox Grid.Column="3" IsChecked="{Binding SelectedPlayer.SpeaksEnglish}" VerticalAlignment="Center">
+                        <CheckBox.Style>
+                            <Style TargetType="{x:Type CheckBox}">
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
                 </Grid>
 
                     <!-- Rating -->
@@ -92,8 +143,30 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Slider Minimum="1" Maximum="12" IsSnapToTickEnabled="True" Value="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Column="1" FontSize="18" Text="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <Slider Minimum="1" Maximum="12" IsSnapToTickEnabled="True" Value="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center">
+                        <Slider.Style>
+                            <Style TargetType="{x:Type Slider}">
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Slider.Style>
+                    </Slider>
+                    <TextBox Grid.Column="1" FontSize="18" Text="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="IsEnabled" Value="True" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                        <Setter Property="IsEnabled" Value="False" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                 </Grid>
             </Grid>
 

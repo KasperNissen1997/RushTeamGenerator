@@ -7,9 +7,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
-    <Exclusions>
-      <PlayerIdentifier>2</PlayerIdentifier>
-    </Exclusions>
+    <Exclusions />
   </Player>
   <Player>
     <Name>Casper Jensen</Name>
@@ -20,13 +18,24 @@
     <Inclusions>
       <PlayerIdentifier>2</PlayerIdentifier>
     </Inclusions>
-    <Exclusions />
+    <Exclusions>
+      <PlayerIdentifier>2</PlayerIdentifier>
+    </Exclusions>
   </Player>
   <Player>
     <Name>Retard</Name>
     <Nickname>Botn9x</Nickname>
     <Rating>1</Rating>
     <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Newly Created</Name>
+    <Nickname>Player</Nickname>
+    <Rating>9</Rating>
+    <SpeaksDanish>false</SpeaksDanish>
     <SpeaksEnglish>false</SpeaksEnglish>
     <Inclusions />
     <Exclusions />

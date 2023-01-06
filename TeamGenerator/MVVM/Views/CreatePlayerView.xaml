@@ -1,0 +1,70 @@
+﻿<Window x:Class="TeamGenerator.MVVM.Views.CreatePlayerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
+        mc:Ignorable="d"
+        Title="Create Player" Height="330" Width="550" ResizeMode="NoResize">
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Spiller detaljer:"/>
+
+        <!-- Name -->
+        <Label Grid.Row="1" Content="Navn:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
+
+        <!-- Nickname -->
+        <Label Grid.Row="3" Content="Nickname:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
+
+        <!-- Known languages -->
+        <Label Grid.Row="5" Content="Kendte sprog:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Dansk:" FontSize="18" VerticalAlignment="Center"/>
+            <CheckBox Grid.Column="1" IsChecked="{Binding SpeaksDanish}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+            <Label Grid.Column="2" Content="Engelsk:" FontSize="18" VerticalAlignment="Center"/>
+            <CheckBox Grid.Column="3" IsChecked="{Binding SpeaksEnglish}" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Rating -->
+        <Label Grid.Row="7" Content="Niveau:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <Grid Grid.Row="7" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Slider Minimum="1" Maximum="12" IsSnapToTickEnabled="True" Value="{Binding Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" FontSize="18" Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        </Grid>
+
+        <Button x:Name="CreatePlayerButton" Grid.Row="9" Grid.Column="1" Content="Create player" Padding="25,0,25,0" HorizontalAlignment="Center" Click="CreatePlayerButton_Click"/>
+
+    </Grid>
+</Window>

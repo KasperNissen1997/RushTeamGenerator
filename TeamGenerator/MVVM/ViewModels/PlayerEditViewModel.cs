@@ -9,16 +9,19 @@ namespace TeamGenerator.MVVM.ViewModels
 {
     public class PlayerEditViewModel
     {
-        public ObservableCollection<PlayerViewModel> RegistreredPlayers { get; set; } = new ObservableCollection<PlayerViewModel>();
+        public ObservableCollection<PlayerViewModel> RegisteredPlayers { get; set; } = new ObservableCollection<PlayerViewModel>();
 
         public PlayerViewModel SelectedPlayer { get; set; }
 
         #region Commands
-        public AddExclusionCommand AddExclusionCommand = new AddExclusionCommand();
-        public RemoveExclusionCommand RemoveExclusionCommand = new RemoveExclusionCommand();
+        public CreatePlayerCommand CreatePlayerCommand { get; set; } = new();
+        public RemovePlayerCommand RemovePlayerCommand { get; set; } = new();
 
-        public AddInclusionCommand AddInclusionCommand = new AddInclusionCommand();
-        public RemoveInclusionCommand RemoveInclusionCommand = new RemoveInclusionCommand();
+        public AddExclusionCommand AddExclusionCommand { get; set; } = new();
+        public RemoveExclusionCommand RemoveExclusionCommand { get; set; } = new();
+
+        public AddInclusionCommand AddInclusionCommand { get; set; } = new();
+        public RemoveInclusionCommand RemoveInclusionCommand { get; set; } = new();
         #endregion
 
         public PlayerEditViewModel ()
@@ -26,7 +29,7 @@ namespace TeamGenerator.MVVM.ViewModels
             foreach (Player player in PlayerRepository.Instance.RetrieveAll())
             {
                 PlayerViewModel playerVM = new PlayerViewModel(player);
-                RegistreredPlayers.Add(playerVM);
+                RegisteredPlayers.Add(playerVM);
             }
         }
     }
