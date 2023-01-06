@@ -31,13 +31,4 @@
     <Inclusions />
     <Exclusions />
   </Player>
-  <Player>
-    <Name>Newly Created</Name>
-    <Nickname>Player</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>false</SpeaksDanish>
-    <SpeaksEnglish>false</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-  </Player>
 </Players>

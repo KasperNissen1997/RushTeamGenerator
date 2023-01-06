@@ -32,8 +32,9 @@ namespace TeamGenerator.Commands
         {
             if (parameter is EditPlayersViewModel vm)
             {
+                vm.SelectedPlayer.Delete();
+
                 vm.RegisteredPlayers.Remove(vm.SelectedPlayer);
-                vm.SelectedPlayer = null;
                 return;
             }
 
