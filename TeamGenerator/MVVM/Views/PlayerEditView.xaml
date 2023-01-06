@@ -117,8 +117,8 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <Label Content="Navn" FontSize="10"/>
-                                <Label Content="Nickname" FontSize="10"/>
+                                <Label Content="{Binding Name}" FontSize="10"/>
+                                <Label Content="{Binding Nickname}" FontSize="10"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -136,8 +136,8 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <Label Content="Navn" FontSize="10"/>
-                                <Label Content="Nickname" FontSize="10"/>
+                                <Label Content="{Binding Name}" FontSize="10"/>
+                                <Label Content="{Binding Nickname}" FontSize="10"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

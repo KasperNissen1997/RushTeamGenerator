@@ -36,7 +36,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
             Exclusions = new ObservableCollection<PlayerViewModel>();
 
-            foreach (Player player in source.Inclusions)
+            foreach (Player player in source.Exclusions)
                 Exclusions.Add(new PlayerViewModel(player));
         }
 
