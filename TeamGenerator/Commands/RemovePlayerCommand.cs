@@ -14,7 +14,7 @@ namespace TeamGenerator.Commands
 
         public bool CanExecute(object? parameter)
         {
-            if (parameter is PlayerEditViewModel vm)
+            if (parameter is EditPlayersViewModel vm)
             {
                 if (vm.SelectedPlayer is not null)
                     return true;
@@ -30,7 +30,7 @@ namespace TeamGenerator.Commands
 
         public void Execute(object? parameter)
         {
-            if (parameter is PlayerEditViewModel vm)
+            if (parameter is EditPlayersViewModel vm)
             {
                 vm.RegisteredPlayers.Remove(vm.SelectedPlayer);
                 vm.SelectedPlayer = null;

@@ -23,7 +23,7 @@ namespace TeamGenerator.Commands
 
         public void Execute(object? parameter)
         {
-            if (parameter is PlayerEditViewModel vm)
+            if (parameter is EditPlayersViewModel vm)
             {
                 CreatePlayerView createPlayerView = new CreatePlayerView();
                 if (createPlayerView.ShowDialog() == true)

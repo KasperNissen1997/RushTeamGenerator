@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 namespace TeamGenerator.MVVM.ViewModels
 {
-    public class PlayerEditViewModel
+    public class EditPlayersViewModel
     {
         public ObservableCollection<PlayerViewModel> RegisteredPlayers { get; set; } = new ObservableCollection<PlayerViewModel>();
 
@@ -24,13 +24,19 @@ namespace TeamGenerator.MVVM.ViewModels
         public RemoveInclusionCommand RemoveInclusionCommand { get; set; } = new();
         #endregion
 
-        public PlayerEditViewModel ()
+        public EditPlayersViewModel()
         {
             foreach (Player player in PlayerRepository.Instance.RetrieveAll())
             {
                 PlayerViewModel playerVM = new PlayerViewModel(player);
                 RegisteredPlayers.Add(playerVM);
             }
+        }
+
+        public void UpdatePlayerViewModelSources()
+        {
+            foreach (PlayerViewModel registeredPlayer in RegisteredPlayers)
+                registeredPlayer.Update();
         }
     }
 }

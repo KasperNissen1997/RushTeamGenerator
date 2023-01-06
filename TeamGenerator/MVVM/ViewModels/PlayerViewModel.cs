@@ -40,6 +40,21 @@ namespace TeamGenerator.MVVM.ViewModels
                 Exclusions.Add(new PlayerViewModel(player));
         }
 
+        public void Update ()
+        {
+            if (!Name.Equals(source.Name))
+                PlayerRepository.Instance.UpdateName(source.Identifier, Name);
+            
+            if (!Nickname.Equals(source.Nickname))
+                PlayerRepository.Instance.UpdateNickname(source.Identifier, Nickname);
+            
+            if (Rating != source.Rating)
+                PlayerRepository.Instance.UpdateRating(source.Identifier, Rating);
+            
+            if (SpeaksDanish != source.SpeaksDanish || SpeaksEnglish != source.SpeaksEnglish)
+                PlayerRepository.Instance.UpdateLanguages(source.Identifier, SpeaksDanish, SpeaksEnglish);
+        }
+
         public void Delete ()
         {
             PlayerRepository.Instance.Delete(source.Identifier);
