@@ -72,7 +72,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                     writer.WriteEndElement();
 
                     writer.WriteStartElement("Exclusions"); // Exclusions
-                    foreach (Player excludedPlayer in player.Inclusions)
+                    foreach (Player excludedPlayer in player.Exclusions)
                     {
                         writer.WriteElementString("PlayerIdentifier", excludedPlayer.Identifier.ToString());
                     }
@@ -87,10 +87,6 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
         public void Load()
         {
-            //Create("Kasper Nissen", "KN", 2, true, true);
-            //Create("Casper Jensen", "Stokn9x", 11, true, true);
-            //Save();
-
             XmlReaderSettings settings = new()
             {
                 IgnoreWhitespace = true,

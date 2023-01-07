@@ -6,7 +6,9 @@
     <Rating>2</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
+    <Inclusions>
+      <PlayerIdentifier>2</PlayerIdentifier>
+    </Inclusions>
     <Exclusions />
   </Player>
   <Player>
@@ -15,17 +17,24 @@
     <Rating>11</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>2</PlayerIdentifier>
-    </Inclusions>
+    <Inclusions />
     <Exclusions>
       <PlayerIdentifier>2</PlayerIdentifier>
     </Exclusions>
   </Player>
   <Player>
-    <Name>Retard</Name>
-    <Nickname>Botn9x</Nickname>
-    <Rating>1</Rating>
+    <Name>Camilla Damsted</Name>
+    <Nickname>Bebski</Nickname>
+    <Rating>12</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Mikkel Mus</Name>
+    <Nickname>Mussefar</Nickname>
+    <Rating>4</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
