@@ -102,6 +102,22 @@ namespace TeamGenerator.MVVM.ViewModels
                 OnPropertyChanged(nameof(IsSelectedPlayer));
             }
         }
+
+        private bool _isRelationOfSelectedPlayer;
+        public bool IsRelationOfSelectedPlayer
+        {
+            get
+            {
+                return _isRelationOfSelectedPlayer;
+            }
+
+            set
+            {
+                _isRelationOfSelectedPlayer = value;
+                OnPropertyChanged(nameof(IsRelationOfSelectedPlayer));
+            }
+        }
+
         private bool _isInclusionOfSelectedPlayer;
         public bool IsInclusionOfSelectedPlayer
         {

@@ -35,10 +35,16 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Grid Grid.Row="3">
-                <Button Content="Create player" Command="{Binding CreatePlayerCommand}" CommandParameter="{Binding}" Padding="25,0,25,0" HorizontalAlignment="Left"/>
-                <Button Content="Remove" Command="{Binding RemovePlayerCommand}" CommandParameter="{Binding}" Padding="25,0,25,0" Margin="150,0,0,0" HorizontalAlignment="Left"/>
-            </Grid>
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                        <Setter Property="Padding" Value="10,0,10,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Content="Create player" Command="{Binding CreatePlayerCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left"/>
+                <Button Content="Remove" Command="{Binding RemovePlayerCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left"/>
+            </StackPanel>
         </Grid>
         
         <Grid Grid.Column="1" Margin="10">
@@ -177,15 +183,10 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
 
-                <!-- Inklusioner -->
-                <Label Content="Inclusions:"/>
-                
+                <!-- Relations -->
+                <Label Content="Relations:"/>
+
                 <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" d:ItemsSource="{d:SampleData ItemCount=30}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -201,11 +202,14 @@
                                 <DataTrigger Binding="{Binding IsInclusionOfSelectedPlayer, UpdateSourceTrigger=PropertyChanged}" Value="True">
                                     <Setter Property="Background" Value="LightGreen"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding IsInclusionOfSelectedPlayer, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                <DataTrigger Binding="{Binding IsExclusionOfSelectedPlayer, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                    <Setter Property="Background" Value="IndianRed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsRelationOfSelectedPlayer, UpdateSourceTrigger=PropertyChanged}" Value="False">
                                     <!-- Set the background back to the default color -->
                                     <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
                                 </DataTrigger>
-                                
+
                                 <DataTrigger Binding="{Binding IsSelectedPlayer}" Value="True">
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
@@ -217,29 +221,18 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
 
-                <Grid Grid.Row="3">
-                    <Button Content="Add" Padding="25,0,25,0" HorizontalAlignment="Left"/>
-                    <Button Content="Remove" Padding="25,0,25,0" Margin="100,0,0,0" HorizontalAlignment="Left"/>
-                </Grid>
-
-                <!-- Eksklusioner -->
-                <Label Grid.Column="2" Content="Exclusions:"/>
-
-                <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding SelectedPlayer.Exclusions}" d:ItemsSource="{d:SampleData ItemCount=30}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Vertical">
-                                <Label Content="{Binding Name}" FontSize="10"/>
-                                <Label Content="{Binding Nickname}" FontSize="10"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-
-                <Grid Grid.Row="3" Grid.Column="2">
-                    <Button Content="Add" Padding="25,0,25,0" HorizontalAlignment="Left"/>
-                    <Button Content="Remove" Padding="25,0,25,0" Margin="100,0,0,0" HorizontalAlignment="Left"/>
-                </Grid>
+                <StackPanel Grid.Row="3"  Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Margin" Value="0,0,10,0"/>
+                            <Setter Property="Padding" Value="10,0,10,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Content="Add Inclusion"/>
+                    <Button Content="Remove Inclusion"/>
+                    <Button Content="Add Exclusion"/>
+                    <Button Content="Remove Inclusion"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

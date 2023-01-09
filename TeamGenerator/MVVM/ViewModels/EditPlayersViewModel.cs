@@ -46,14 +46,21 @@ namespace TeamGenerator.MVVM.ViewModels
 
                     foreach (PlayerViewModel registeredPlayer in RegisteredPlayers)
                     {
+                        registeredPlayer.IsRelationOfSelectedPlayer = false;
                         registeredPlayer.IsInclusionOfSelectedPlayer = false;
                         registeredPlayer.IsExclusionOfSelectedPlayer = false;
 
                         if (SelectedPlayer.Inclusions.Contains(registeredPlayer))
+                        {
+                            registeredPlayer.IsRelationOfSelectedPlayer = true;
                             registeredPlayer.IsInclusionOfSelectedPlayer = true;
+                        }
 
                         if (SelectedPlayer.Exclusions.Contains(registeredPlayer))
+                        {
+                            registeredPlayer.IsRelationOfSelectedPlayer = true;
                             registeredPlayer.IsExclusionOfSelectedPlayer = true;
+                        }
                     }
                 }
             }
