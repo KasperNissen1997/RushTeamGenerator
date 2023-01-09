@@ -25,11 +25,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <StackPanel Orientation="Vertical">
-                                <Label Content="{Binding Name}" FontSize="10"/>
-                                <Label Content="{Binding Nickname}" FontSize="10"/>
-                            </StackPanel>
-                            <Label Content="{Binding Rating}" VerticalAlignment="Center"/>
+                            <Label Content="{Binding Name}" FontSize="10"/>
+                            <Label Content="{Binding Nickname}" FontSize="10"/>
+                            <Label Content="{Binding Rating}" FontSize="10" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

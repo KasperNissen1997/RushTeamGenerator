@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using TeamGenerator.MVVM.ViewModels;
 
@@ -32,6 +33,9 @@ namespace TeamGenerator.Commands
         {
             if (parameter is EditPlayersViewModel vm)
             {
+                foreach (PlayerViewModel includedPlayerVM in vm.RegisteredPlayers) // remove relations before deletion
+                    vm.SelectedPlayer.TryRemoveRelation(includedPlayerVM);
+
                 vm.SelectedPlayer.Delete();
 
                 vm.RegisteredPlayers.Remove(vm.SelectedPlayer);

@@ -31,7 +31,9 @@
     <Inclusions>
       <PlayerIdentifier>0</PlayerIdentifier>
     </Inclusions>
-    <Exclusions />
+    <Exclusions>
+      <PlayerIdentifier>1</PlayerIdentifier>
+    </Exclusions>
   </Player>
   <Player>
     <Name>Mikkel Mus</Name>

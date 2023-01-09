@@ -82,6 +82,9 @@ namespace TeamGenerator.MVVM.Models
                 throw new InvalidOperationException(); // can't add a player who includes "this" to exclusions
 
             Exclusions.Add(player);
+
+            if (player.Exclusions.Contains(this))
+                player.AddExclusion(this);
         }
 
         public void RemoveExclusion(Player player)
@@ -90,6 +93,9 @@ namespace TeamGenerator.MVVM.Models
                 throw new ArgumentException(); // the player is not in the exclusions of "this"
 
             Exclusions.Remove(player);
+
+            if (player.Exclusions.Contains(this))
+                player.RemoveExclusion(this);
         }
         #endregion
     }

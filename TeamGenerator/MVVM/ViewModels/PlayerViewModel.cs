@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Numerics;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 
@@ -186,7 +187,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
         #region Relation logic
         /// <summary>
-        /// Tries to create exisiting relations to <paramref name="playerVM"/>. Nothing happens if there are no relations to create.
+        /// Tries to create an exisiting relations to <paramref name="playerVM"/>. Nothing happens if there are no relations to create.
         /// </summary>
         /// <param name="playerVM">The <see cref="PlayerViewModel"/> to create relations to.</param>
         public void TryCreateRelation(PlayerViewModel playerVM)
@@ -198,7 +199,20 @@ namespace TeamGenerator.MVVM.ViewModels
                 AddExclusion(playerVM);
         }
 
-        public void AddInclusion(PlayerViewModel playerVM)
+        /// <summary>
+        /// Tries to remove an existing relation to <paramref name="playerVM"/>. Nothing happens if there are no relations to remove.
+        /// </summary>
+        /// <param name="playerVM">The <see cref="PlayerViewModel"/> to remove relations to.</param>
+        public void TryRemoveRelation(PlayerViewModel playerVM)
+        {
+            if (Inclusions.Contains(playerVM))
+                RemoveInclusion(playerVM);
+
+            if (Exclusions.Contains(playerVM))
+                RemoveExclusion(playerVM);
+        }
+
+        private void AddInclusion(PlayerViewModel playerVM)
         {
             if (Inclusions.Contains(playerVM))
                 return; // can't add two of the same player to inclusions
@@ -210,19 +224,23 @@ namespace TeamGenerator.MVVM.ViewModels
                 throw new InvalidOperationException(); // can't add a player who excludes "this" to inclusions
 
             Inclusions.Add(playerVM);
-            playerVM.AddInclusion(this);
+
+            if (!playerVM.Inclusions.Contains(this))
+                playerVM.AddInclusion(this);
         }
 
-        public void RemoveInclusion(PlayerViewModel playerVM)
+        private void RemoveInclusion(PlayerViewModel playerVM)
         {
             if (!Inclusions.Contains(playerVM))
                 throw new ArgumentException(); // the player is not in the inclusions of "this"
 
             Inclusions.Remove(playerVM);
-            playerVM.RemoveInclusion(this);
+
+            if (playerVM.Inclusions.Contains(this))
+                playerVM.RemoveInclusion(this);
         }
 
-        public void AddExclusion(PlayerViewModel playerVM)
+        private void AddExclusion(PlayerViewModel playerVM)
         {
             if (Exclusions.Contains(playerVM))
                 return; // can't add two of the same player to exclusions
@@ -234,14 +252,20 @@ namespace TeamGenerator.MVVM.ViewModels
                 throw new InvalidOperationException(); // can't add a player who includes "this" to exclusions
 
             Exclusions.Add(playerVM);
+
+            if (!playerVM.Exclusions.Contains(this))
+                playerVM.AddExclusion(this);
         }
 
-        public void RemoveExclusion(PlayerViewModel playerVM)
+        private void RemoveExclusion(PlayerViewModel playerVM)
         {
             if (!Exclusions.Contains(playerVM))
                 throw new ArgumentException(); // the player is not in the exclusions of "this"
 
             Exclusions.Remove(playerVM);
+
+            if (playerVM.Exclusions.Contains(this))
+                playerVM.RemoveExclusion(this);
         }
         #endregion
 
