@@ -40,26 +40,29 @@ namespace TeamGenerator.MVVM.ViewModels
                 _selectedPlayer = value;
                 OnPropertyChanged(nameof(SelectedPlayer));
 
+                foreach (PlayerViewModel registeredPlayerVM in RegisteredPlayers)
+                {
+                    registeredPlayerVM.IsRelationOfSelectedPlayer = false;
+                    registeredPlayerVM.IsInclusionOfSelectedPlayer = false;
+                    registeredPlayerVM.IsExclusionOfSelectedPlayer = false;
+                }
+
                 if (SelectedPlayer is not null)
                 {
                     SelectedPlayer.IsSelectedPlayer = true;
 
-                    foreach (PlayerViewModel registeredPlayer in RegisteredPlayers)
+                    foreach (PlayerViewModel registeredPlayerVM in RegisteredPlayers)
                     {
-                        registeredPlayer.IsRelationOfSelectedPlayer = false;
-                        registeredPlayer.IsInclusionOfSelectedPlayer = false;
-                        registeredPlayer.IsExclusionOfSelectedPlayer = false;
-
-                        if (SelectedPlayer.Inclusions.Contains(registeredPlayer))
+                        if (SelectedPlayer.Inclusions.Contains(registeredPlayerVM))
                         {
-                            registeredPlayer.IsRelationOfSelectedPlayer = true;
-                            registeredPlayer.IsInclusionOfSelectedPlayer = true;
+                            registeredPlayerVM.IsRelationOfSelectedPlayer = true;
+                            registeredPlayerVM.IsInclusionOfSelectedPlayer = true;
                         }
 
-                        if (SelectedPlayer.Exclusions.Contains(registeredPlayer))
+                        if (SelectedPlayer.Exclusions.Contains(registeredPlayerVM))
                         {
-                            registeredPlayer.IsRelationOfSelectedPlayer = true;
-                            registeredPlayer.IsExclusionOfSelectedPlayer = true;
+                            registeredPlayerVM.IsRelationOfSelectedPlayer = true;
+                            registeredPlayerVM.IsExclusionOfSelectedPlayer = true;
                         }
                     }
                 }

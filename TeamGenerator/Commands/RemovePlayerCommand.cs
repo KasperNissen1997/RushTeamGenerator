@@ -39,6 +39,8 @@ namespace TeamGenerator.Commands
                 vm.SelectedPlayer.Delete();
 
                 vm.RegisteredPlayers.Remove(vm.SelectedPlayer);
+                vm.SelectedPlayer = null;
+
                 return;
             }
 
