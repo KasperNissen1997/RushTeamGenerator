@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Numerics;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 

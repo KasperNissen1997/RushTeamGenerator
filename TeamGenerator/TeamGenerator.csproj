@@ -11,8 +11,4 @@
     <Page Include="App.xaml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MVVM\ViewModels\Repositories\" />
-  </ItemGroup>
-
 </Project>

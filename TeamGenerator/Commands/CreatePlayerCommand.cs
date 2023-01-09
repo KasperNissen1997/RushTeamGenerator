@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.Models;
+using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.ViewModels;
 using TeamGenerator.MVVM.Views;
 

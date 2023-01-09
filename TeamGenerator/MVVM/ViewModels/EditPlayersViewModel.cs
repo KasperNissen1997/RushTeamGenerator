@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using TeamGenerator.Commands;
-using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.Models;
+using TeamGenerator.MVVM.Models.Repositories;
 using System.ComponentModel;
 
 namespace TeamGenerator.MVVM.ViewModels
