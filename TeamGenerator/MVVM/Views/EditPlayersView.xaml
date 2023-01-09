@@ -186,15 +186,35 @@
                 <!-- Inklusioner -->
                 <Label Content="Inclusions:"/>
                 
-                <ListBox Grid.Row="1" ItemsSource="{Binding SelectedPlayer.Inclusions}" d:ItemsSource="{d:SampleData ItemCount=30}">
+                <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" d:ItemsSource="{d:SampleData ItemCount=30}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding Name}" FontSize="10"/>
                                 <Label Content="{Binding Nickname}" FontSize="10"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsInclusionOfSelectedPlayer, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsInclusionOfSelectedPlayer, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                    <!-- Set the background back to the default color -->
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                                </DataTrigger>
+                                
+                                <DataTrigger Binding="{Binding IsSelectedPlayer}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSelectedPlayer}" Value="False">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
 
                 <Grid Grid.Row="3">

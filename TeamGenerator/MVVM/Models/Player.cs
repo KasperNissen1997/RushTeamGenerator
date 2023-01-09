@@ -41,6 +41,7 @@ namespace TeamGenerator.MVVM.Models
             Exclusions = new List<Player>();
         }
 
+        #region Relation logic
         public void AddInclusion(Player player)
         {
             if (Inclusions.Contains(player))
@@ -53,7 +54,9 @@ namespace TeamGenerator.MVVM.Models
                 throw new InvalidOperationException(); // can't add a player who excludes "this" to inclusions
 
             Inclusions.Add(player);
-            player.AddInclusion(this);
+
+            if (!player.Inclusions.Contains(this))
+                player.AddInclusion(this);
         }
 
         public void RemoveInclusion(Player player)
@@ -62,7 +65,9 @@ namespace TeamGenerator.MVVM.Models
                 throw new ArgumentException(); // the player is not in the inclusions of "this"
 
             Inclusions.Remove(player);
-            player.RemoveInclusion(this);
+
+            if (player.Inclusions.Contains(this))
+                player.RemoveInclusion(this);
         }
 
         public void AddExclusion(Player player)
@@ -86,5 +91,6 @@ namespace TeamGenerator.MVVM.Models
 
             Exclusions.Remove(player);
         }
+        #endregion
     }
 }

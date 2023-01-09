@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
+using TeamGenerator.MVVM.ViewModels;
 
 namespace TeamGenerator.MVVM.Models.Repositories
 {
@@ -120,7 +121,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
             using (XmlReader reader = XmlReader.Create(filePath, settings)) // second read of the data - focus on relations
             {
-                int playerCount = 0;
+                int playerIdentifier = 0;
 
                 reader.ReadToFollowing("Player");
                 do
@@ -163,10 +164,21 @@ namespace TeamGenerator.MVVM.Models.Repositories
                         }
                     } while (!subtreeReader.EOF);
 
-                    Retrieve(playerCount).Inclusions = inclusions;
-                    Retrieve(playerCount).Exclusions = exclusions;
+                    /*  
+                     *  Here we establish the relations of the player with the current identifier.
+                     *  
+                     *  Due to the complicated logic of creating the relations, this functionality is extracted to other methods.
+                     */
 
-                    playerCount++;
+                    Player currentPlayer = Retrieve(playerIdentifier);
+
+                    foreach (Player includedPlayer in inclusions)
+                        currentPlayer.AddInclusion(includedPlayer);
+
+                    foreach (Player excludedPlayer in exclusions)
+                        currentPlayer.AddExclusion(excludedPlayer);
+
+                    playerIdentifier++;
                 }
                 while (reader.ReadToFollowing("Player"));
             }
