@@ -236,10 +236,10 @@
                             <Setter Property="Padding" Value="10,0,10,0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button Content="Add Inclusion" Command="{Binding AddInclusionCommand}" CommandParameter="{Binding}"/>
-                    <Button Content="Remove Inclusion" Command="{Binding RemoveInclusionCommand}" CommandParameter="{Binding}"/>
-                    <Button Content="Add Exclusion" Command="{Binding AddExclusionCommand}" CommandParameter="{Binding}"/>
-                    <Button Content="Remove Inclusion" Command="{Binding RemoveExclusionCommand}" CommandParameter="{Binding}"/>
+                    <Button Content="Add Inclusion" Command="{Binding AddInclusionCommand}" CommandParameter="{Binding}" Background="LightGreen"/>
+                    <Button Content="Remove Inclusion" Command="{Binding RemoveInclusionCommand}" CommandParameter="{Binding}" Background="IndianRed"/>
+                    <Button Content="Add Exclusion" Command="{Binding AddExclusionCommand}" CommandParameter="{Binding}" Background="LightGreen"/>
+                    <Button Content="Remove Inclusion" Command="{Binding RemoveExclusionCommand}" CommandParameter="{Binding}" Background="IndianRed"/>
                 </StackPanel>
             </Grid>
         </Grid>
