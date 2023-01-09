@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TeamGenerator.MVVM.Models
 {
-    public class Player
+    public class Player : IComparable<Player>
     {
         private static int identifierCount = 0;
         public int Identifier;
@@ -98,5 +98,16 @@ namespace TeamGenerator.MVVM.Models
                 player.RemoveExclusion(this);
         }
         #endregion
+
+        public int CompareTo(Player? other)
+        {
+            if (other is null)
+                return 1;
+
+            if (other is Player)
+                return Identifier.CompareTo(other.Identifier);
+
+            throw new NotImplementedException();
+        }
     }
 }

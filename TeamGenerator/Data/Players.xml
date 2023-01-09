@@ -8,6 +8,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
       <PlayerIdentifier>2</PlayerIdentifier>
+      <PlayerIdentifier>3</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -20,7 +21,6 @@
     <Inclusions />
     <Exclusions>
       <PlayerIdentifier>2</PlayerIdentifier>
-      <PlayerIdentifier>3</PlayerIdentifier>
     </Exclusions>
   </Player>
   <Player>
@@ -31,51 +31,22 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
       <PlayerIdentifier>0</PlayerIdentifier>
-      <PlayerIdentifier>4</PlayerIdentifier>
+      <PlayerIdentifier>3</PlayerIdentifier>
     </Inclusions>
     <Exclusions>
       <PlayerIdentifier>1</PlayerIdentifier>
     </Exclusions>
   </Player>
   <Player>
-    <Name>Mikkel Mus</Name>
-    <Nickname>Mussefar</Nickname>
-    <Rating>4</Rating>
+    <Name>Didi Damsted</Name>
+    <Nickname>DIDsen</Nickname>
+    <Rating>10</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>4</PlayerIdentifier>
-      <PlayerIdentifier>5</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions>
-      <PlayerIdentifier>1</PlayerIdentifier>
-    </Exclusions>
-  </Player>
-  <Player>
-    <Name>Myggen Magnus</Name>
-    <Nickname>Mygge-man</Nickname>
-    <Rating>7</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
+      <PlayerIdentifier>0</PlayerIdentifier>
       <PlayerIdentifier>2</PlayerIdentifier>
-      <PlayerIdentifier>3</PlayerIdentifier>
     </Inclusions>
-    <Exclusions>
-      <PlayerIdentifier>5</PlayerIdentifier>
-    </Exclusions>
-  </Player>
-  <Player>
-    <Name>Uglen Ulf</Name>
-    <Nickname>zZzniper</Nickname>
-    <Rating>11</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>3</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions>
-      <PlayerIdentifier>4</PlayerIdentifier>
-    </Exclusions>
+    <Exclusions />
   </Player>
 </Players>

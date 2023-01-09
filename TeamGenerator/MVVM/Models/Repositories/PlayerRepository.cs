@@ -51,6 +51,11 @@ namespace TeamGenerator.MVVM.Models.Repositories
                 Indent = true
             };
 
+            players.Sort();
+
+            for (int i = 0; i < players.Count; i++)
+                players[i].Identifier = i;
+
             using (XmlWriter writer = XmlWriter.Create(filePath, settings))
             {
                 writer.WriteStartDocument();
