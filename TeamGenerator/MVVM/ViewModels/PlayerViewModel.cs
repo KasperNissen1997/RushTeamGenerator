@@ -210,7 +210,7 @@ namespace TeamGenerator.MVVM.ViewModels
                 RemoveExclusion(playerVM);
         }
 
-        private void AddInclusion(PlayerViewModel playerVM)
+        public void AddInclusion(PlayerViewModel playerVM)
         {
             if (Inclusions.Contains(playerVM))
                 return; // can't add two of the same player to inclusions
@@ -227,7 +227,7 @@ namespace TeamGenerator.MVVM.ViewModels
                 playerVM.AddInclusion(this);
         }
 
-        private void RemoveInclusion(PlayerViewModel playerVM)
+        public void RemoveInclusion(PlayerViewModel playerVM)
         {
             if (!Inclusions.Contains(playerVM))
                 throw new ArgumentException(); // the player is not in the inclusions of "this"
@@ -238,7 +238,7 @@ namespace TeamGenerator.MVVM.ViewModels
                 playerVM.RemoveInclusion(this);
         }
 
-        private void AddExclusion(PlayerViewModel playerVM)
+        public void AddExclusion(PlayerViewModel playerVM)
         {
             if (Exclusions.Contains(playerVM))
                 return; // can't add two of the same player to exclusions
@@ -255,7 +255,7 @@ namespace TeamGenerator.MVVM.ViewModels
                 playerVM.AddExclusion(this);
         }
 
-        private void RemoveExclusion(PlayerViewModel playerVM)
+        public void RemoveExclusion(PlayerViewModel playerVM)
         {
             if (!Exclusions.Contains(playerVM))
                 throw new ArgumentException(); // the player is not in the exclusions of "this"

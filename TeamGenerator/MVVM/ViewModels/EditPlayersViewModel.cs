@@ -67,19 +67,29 @@ namespace TeamGenerator.MVVM.ViewModels
                 }
             }
         }
+        private PlayerViewModel _selectedRelatedPlayer;
+        public PlayerViewModel SelectedRelatedPlayer
+        {
+            get
+            {
+                return _selectedRelatedPlayer;
+            }
 
-        public ObservableCollection<PlayerViewModel> InclusionsPlayerList { get; set; }
-        public ObservableCollection<PlayerViewModel> ExclusionsPlayerList { get; set; }
+            set
+            {
+                _selectedRelatedPlayer = value;
+                OnPropertyChanged(nameof(SelectedRelatedPlayer));
+            }
+        }
 
         #region Commands
         public CreatePlayerCommand CreatePlayerCommand { get; set; } = new();
         public RemovePlayerCommand RemovePlayerCommand { get; set; } = new();
 
-        public AddExclusionCommand AddExclusionCommand { get; set; } = new();
-        public RemoveExclusionCommand RemoveExclusionCommand { get; set; } = new();
-
         public AddInclusionCommand AddInclusionCommand { get; set; } = new();
         public RemoveInclusionCommand RemoveInclusionCommand { get; set; } = new();
+        public AddExclusionCommand AddExclusionCommand { get; set; } = new();
+        public RemoveExclusionCommand RemoveExclusionCommand { get; set; } = new();
         #endregion
 
         #region Interface

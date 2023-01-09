@@ -13,7 +13,7 @@ namespace TeamGenerator.Commands
 
         public bool CanExecute(object? parameter)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void Execute(object? parameter)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamGenerator"
         mc:Ignorable="d"
-        Title="Edit players" Width="1080" Height="720" MinWidth="600" MinHeight="450" Closed="Window_Closed">
+        Title="Edit players" Width="1080" Height="720" MinWidth="800" MinHeight="450" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -25,9 +25,9 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Name}" FontSize="10"/>
-                            <Label Content="{Binding Nickname}" FontSize="10"/>
-                            <Label Content="{Binding Rating}" FontSize="10" VerticalAlignment="Center"/>
+                            <Label Content="{Binding Name}"/>
+                            <Label Content="{Binding Nickname}"/>
+                            <Label Content="{Binding Rating}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -185,12 +185,12 @@
                 <!-- Relations -->
                 <Label Content="Relations:"/>
 
-                <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" d:ItemsSource="{d:SampleData ItemCount=30}">
+                <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedRelatedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding Name}" FontSize="10"/>
-                                <Label Content="{Binding Nickname}" FontSize="10"/>
+                                <Label Content="{Binding Name}"/>
+                                <Label Content="{Binding Nickname}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -226,10 +226,10 @@
                             <Setter Property="Padding" Value="10,0,10,0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button Content="Add Inclusion"/>
-                    <Button Content="Remove Inclusion"/>
-                    <Button Content="Add Exclusion"/>
-                    <Button Content="Remove Inclusion"/>
+                    <Button Content="Add Inclusion" Command="{Binding AddInclusionCommand}" CommandParameter="{Binding}"/>
+                    <Button Content="Remove Inclusion" Command="{Binding RemoveInclusionCommand}" CommandParameter="{Binding}"/>
+                    <Button Content="Add Exclusion" Command="{Binding AddExclusionCommand}" CommandParameter="{Binding}"/>
+                    <Button Content="Remove Inclusion" Command="{Binding RemoveExclusionCommand}" CommandParameter="{Binding}"/>
                 </StackPanel>
             </Grid>
         </Grid>
