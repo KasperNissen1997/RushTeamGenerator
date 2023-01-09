@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TeamGenerator"
+        xmlns:local="clr-namespace:TeamGenerator" xmlns:viewmodels="clr-namespace:TeamGenerator.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EditPlayersViewModel}"
         mc:Ignorable="d"
-        Title="Edit players" Width="1080" Height="720" MinWidth="800" MinHeight="450" Closed="Window_Closed">
+        Title="Edit players" Width="1080" Height="720" MinWidth="1080" MinHeight="500" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Margin="10,10,0,10">
@@ -143,8 +143,8 @@
                 <Label Grid.Row="7" Content="Rating:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
                 <Grid Grid.Row="7" Grid.Column="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
 
                     <Slider Minimum="1" Maximum="12" IsSnapToTickEnabled="True" Value="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center">
@@ -159,18 +159,7 @@
                             </Style>
                         </Slider.Style>
                     </Slider>
-                    <TextBox Grid.Column="1" FontSize="18" Text="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="10,0,0,0">
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="IsEnabled" Value="True" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
-                                        <Setter Property="IsEnabled" Value="False" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                    <Label Grid.Column="1" FontSize="18" Content="{Binding SelectedPlayer.Rating, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" d:Content="1"/>
                 </Grid>
             </Grid>
 
