@@ -3,6 +3,8 @@ using TeamGenerator.Commands;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 using System.ComponentModel;
+using System.Windows.Controls;
+using System;
 
 namespace TeamGenerator.MVVM.ViewModels
 {
@@ -91,6 +93,21 @@ namespace TeamGenerator.MVVM.ViewModels
         public AddExclusionCommand AddExclusionCommand { get; set; } = new();
         public RemoveExclusionCommand RemoveExclusionCommand { get; set; } = new();
         #endregion
+
+        private string _relationActionLog = "Performed actions are logged here.";
+        public string RelationActionLog
+        {
+            get
+            {
+                return _relationActionLog;
+            }
+
+            set
+            {
+                _relationActionLog = value;
+                OnPropertyChanged(nameof(RelationActionLog));
+            }
+        }
 
         #region Interface
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -9,9 +9,9 @@ namespace TeamGenerator.MVVM.Views
     {
         public EditPlayersView()
         {
-            DataContext = new EditPlayersViewModel();
-
             InitializeComponent();
+
+            DataContext = new EditPlayersViewModel();
         }
 
         private void Window_Closed(object sender, EventArgs e)

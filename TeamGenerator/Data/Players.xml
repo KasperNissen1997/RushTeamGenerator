@@ -20,6 +20,7 @@
     <Inclusions />
     <Exclusions>
       <PlayerIdentifier>2</PlayerIdentifier>
+      <PlayerIdentifier>3</PlayerIdentifier>
     </Exclusions>
   </Player>
   <Player>
@@ -30,6 +31,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
       <PlayerIdentifier>0</PlayerIdentifier>
+      <PlayerIdentifier>4</PlayerIdentifier>
     </Inclusions>
     <Exclusions>
       <PlayerIdentifier>1</PlayerIdentifier>
@@ -44,7 +46,9 @@
     <Inclusions>
       <PlayerIdentifier>4</PlayerIdentifier>
     </Inclusions>
-    <Exclusions />
+    <Exclusions>
+      <PlayerIdentifier>1</PlayerIdentifier>
+    </Exclusions>
   </Player>
   <Player>
     <Name>Myggen Magnus</Name>
@@ -53,6 +57,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
+      <PlayerIdentifier>2</PlayerIdentifier>
       <PlayerIdentifier>3</PlayerIdentifier>
     </Inclusions>
     <Exclusions />

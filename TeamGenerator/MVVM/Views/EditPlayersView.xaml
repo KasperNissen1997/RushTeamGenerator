@@ -188,10 +188,10 @@
                 <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedRelatedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                     <ListBox.Style>
                         <Style TargetType="{x:Type ListBox}">
-                            <Setter Property="IsEnabled" Value="True" />
+                            <Setter Property="IsEnabled" Value="True"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
-                                    <Setter Property="IsEnabled" Value="False" />
+                                    <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -240,6 +240,7 @@
                     <Button Content="Remove Inclusion" Command="{Binding RemoveInclusionCommand}" CommandParameter="{Binding}" Background="IndianRed"/>
                     <Button Content="Add Exclusion" Command="{Binding AddExclusionCommand}" CommandParameter="{Binding}" Background="LightGreen"/>
                     <Button Content="Remove Inclusion" Command="{Binding RemoveExclusionCommand}" CommandParameter="{Binding}" Background="IndianRed"/>
+                    <Label Content="{Binding RelationActionLog}" VerticalAlignment="Center" d:Content="Performed actions are logged here."/>
                 </StackPanel>
             </Grid>
         </Grid>

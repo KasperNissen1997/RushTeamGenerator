@@ -40,6 +40,8 @@ namespace TeamGenerator.Commands
                 vm.SelectedRelatedPlayer.IsRelationOfSelectedPlayer = true;
                 vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer = true;
 
+                vm.RelationActionLog = "Inclusion created succesfully.";
+
                 return;
             }
 

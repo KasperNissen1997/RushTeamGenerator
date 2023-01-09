@@ -40,6 +40,8 @@ namespace TeamGenerator.Commands
                 vm.SelectedRelatedPlayer.IsRelationOfSelectedPlayer = false;
                 vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer = false;
 
+                vm.RelationActionLog = "Exclusion removed succesfully.";
+
                 return;
             }
 
