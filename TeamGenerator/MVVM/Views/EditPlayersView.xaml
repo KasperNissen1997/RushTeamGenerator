@@ -186,6 +186,16 @@
                 <Label Content="Relations:"/>
 
                 <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedRelatedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
+                    <ListBox.Style>
+                        <Style TargetType="{x:Type ListBox}">
+                            <Setter Property="IsEnabled" Value="True" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=RegisteredPlayersListBox, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.Style>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

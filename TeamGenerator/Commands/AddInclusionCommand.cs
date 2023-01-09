@@ -21,7 +21,9 @@ namespace TeamGenerator.Commands
             if (parameter is EditPlayersViewModel vm)
             {
                 if (vm.SelectedRelatedPlayer is not null)
-                    if (!vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer && !vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer)
+                    if (!vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer 
+                        && !vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer
+                        && !vm.SelectedPlayer.Equals(vm.SelectedRelatedPlayer))
                         return true;
 
                 return false;
