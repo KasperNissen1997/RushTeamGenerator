@@ -1,51 +1,278 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Players>
   <Player>
-    <Name>Kasper Nissen</Name>
-    <Nickname>KN</Nickname>
-    <Rating>2</Rating>
+    <Name>Andreas Dyrbjerg</Name>
+    <Nickname>RuDdy</Nickname>
+    <Rating>11</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>2</PlayerIdentifier>
-      <PlayerIdentifier>3</PlayerIdentifier>
-    </Inclusions>
+    <Inclusions />
     <Exclusions />
   </Player>
   <Player>
-    <Name>Casper Jensen</Name>
-    <Nickname>Stokn9x</Nickname>
+    <Name>Ryan Bass</Name>
+    <Nickname>hectic</Nickname>
+    <Rating>10</Rating>
+    <SpeaksDanish>false</SpeaksDanish>
+    <SpeaksEnglish>false</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Matthias Grundt Simonsen</Name>
+    <Nickname>Grunk</Nickname>
+    <Rating>10</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Laurits Frimann</Name>
+    <Nickname>Lalle</Nickname>
+    <Rating>10</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Placeholder</Name>
+    <Nickname>Placeholder</Nickname>
+    <Rating>10</Rating>
+    <SpeaksDanish>false</SpeaksDanish>
+    <SpeaksEnglish>false</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Peter Haslund</Name>
+    <Nickname>Fr4nksito</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Alexander Egidius</Name>
+    <Nickname>Zee</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Theis Simonsen</Name>
+    <Nickname>Timeout</Nickname>
     <Rating>7</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
-    <Exclusions>
-      <PlayerIdentifier>2</PlayerIdentifier>
-    </Exclusions>
+    <Exclusions />
   </Player>
   <Player>
-    <Name>Camilla Damsted</Name>
-    <Nickname>Bebski</Nickname>
-    <Rating>12</Rating>
+    <Name>Rune Holm</Name>
+    <Nickname>Mloh</Nickname>
+    <Rating>7</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Niki Tamjidi</Name>
+    <Nickname>nikiodoz</Nickname>
+    <Rating>7</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Niclas Finscet Hansen</Name>
+    <Nickname>Hovedklikkeren</Nickname>
+    <Rating>7</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Niclas Ejlsborg</Name>
+    <Nickname>Bamsfar</Nickname>
+    <Rating>7</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Philip Kroer Færch</Name>
+    <Nickname>Tucan</Nickname>
+    <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>0</PlayerIdentifier>
-      <PlayerIdentifier>3</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
-    <Exclusions>
-      <PlayerIdentifier>1</PlayerIdentifier>
-    </Exclusions>
+    <Exclusions />
   </Player>
   <Player>
-    <Name>Didi Damsted</Name>
-    <Nickname>DIDsen</Nickname>
-    <Rating>10</Rating>
+    <Name>Robert Venningbo</Name>
+    <Nickname>Rob</Nickname>
+    <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>0</PlayerIdentifier>
-      <PlayerIdentifier>2</PlayerIdentifier>
+      <PlayerIdentifier>25</PlayerIdentifier>
+      <PlayerIdentifier>27</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Asger Ravn Nissen</Name>
+    <Nickname>Ravne</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>12</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Sebastoam Niclasen</Name>
+    <Nickname>SebNic</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Theis Hollensberg Svendsen</Name>
+    <Nickname>Sprout</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Mikkel Meldhedegaard</Name>
+    <Nickname>Meldhede</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Jonas pedersen</Name>
+    <Nickname>Junz</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Daniel Roald Andersen</Name>
+    <Nickname>Daniqq</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Alex Sychou</Name>
+    <Nickname>Maestrobaiter</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Steffen Andersen</Name>
+    <Nickname>Frank5</Nickname>
+    <Rating>4</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Philip Jacobsen</Name>
+    <Nickname>PhilministereN</Nickname>
+    <Rating>4</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Nemanja Duric</Name>
+    <Nickname>Nem_Dur</Nickname>
+    <Rating>4</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Nicolai A.V. Højlund</Name>
+    <Nickname>A1mbassador</Nickname>
+    <Rating>3</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>28</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Michael Groth</Name>
+    <Nickname>888Dichael</Nickname>
+    <Rating>3</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>13</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Marc Kruuse</Name>
+    <Nickname>Kruuze</Nickname>
+    <Rating>3</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Mads Løbner Rude</Name>
+    <Nickname>Mr. Trol</Nickname>
+    <Rating>3</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>13</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+  </Player>
+  <Player>
+    <Name>Sofus Bynge</Name>
+    <Nickname>Vankelmod</Nickname>
+    <Rating>1</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>24</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>

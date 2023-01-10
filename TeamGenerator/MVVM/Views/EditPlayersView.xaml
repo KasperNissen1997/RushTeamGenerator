@@ -21,13 +21,13 @@
             </Grid.RowDefinitions>
             
             <Label Content="Registered players:"/>
-            <ListBox x:Name="RegisteredPlayersListBox" Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
+            <ListBox Grid.Row="1" x:Name="RegisteredPlayersListBox" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Name}"/>
+                            <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
                             <Label Content="{Binding Nickname}"/>
-                            <Label Content="{Binding Rating}" VerticalAlignment="Center"/>
+                            <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -188,8 +188,8 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding Name}"/>
                                 <Label Content="{Binding Nickname}"/>
+                                <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
