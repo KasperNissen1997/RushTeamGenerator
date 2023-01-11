@@ -14,7 +14,7 @@
     <Nickname>hectic</Nickname>
     <Rating>8</Rating>
     <SpeaksDanish>false</SpeaksDanish>
-    <SpeaksEnglish>false</SpeaksEnglish>
+    <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
   </Player>
@@ -124,7 +124,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -135,8 +135,8 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>25</PlayerIdentifier>
-      <PlayerIdentifier>27</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>28</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -147,7 +147,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>12</PlayerIdentifier>
+      <PlayerIdentifier>13</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -239,7 +239,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>28</PlayerIdentifier>
+      <PlayerIdentifier>29</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -250,7 +250,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -270,7 +270,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>
@@ -281,7 +281,7 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>24</PlayerIdentifier>
+      <PlayerIdentifier>25</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
   </Player>

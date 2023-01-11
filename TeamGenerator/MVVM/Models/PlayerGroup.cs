@@ -53,13 +53,18 @@ namespace TeamGenerator.MVVM.Models
             }
         }
 
+        public PlayerGroup()
+        {
+            Players = new List<Player>();
+        }
+
         public int CompareTo(PlayerGroup? other)
         {
             if (other is null)
                 return 1;
 
-            if (other is Player)
-                return Rating.CompareTo(other.Rating);
+            if (other is PlayerGroup playerGroup)
+                return (Rating.CompareTo(playerGroup.Rating)) * -1;
 
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -99,13 +100,40 @@ namespace TeamGenerator.MVVM.Models
         }
         #endregion
 
+        public List<Player> GetPlayerInclusions()
+        {
+            List<Player> inclusions = new(Inclusions);
+
+            foreach (Player includedPlayer in Inclusions)
+                inclusions.Union(includedPlayer.GetInclusionsRecursive(this));
+
+            inclusions.Remove(this);
+            return inclusions;
+        }
+
+        private List<Player> GetInclusionsRecursive(Player sender)
+        {
+            List<Player> inclusions = new(Inclusions);
+
+            foreach (Player includedPlayer in Inclusions)
+                if (!includedPlayer.Equals(sender))
+                    inclusions.Union(includedPlayer.GetInclusionsRecursive(this));
+
+            return inclusions;
+        }
+
         public int CompareTo(Player? other)
         {
-            if (other is null)
-                return 1;
+            if (other is Player player)
+                return Identifier.CompareTo(player.Identifier);
 
-            if (other is Player)
-                return Identifier.CompareTo(other.Identifier);
+            throw new NotImplementedException();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Player player)
+                return Identifier.Equals(player.Identifier);
 
             throw new NotImplementedException();
         }

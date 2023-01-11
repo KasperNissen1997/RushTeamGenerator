@@ -18,7 +18,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
             Players = new ObservableCollection<PlayerViewModel>();
 
-            foreach (Player player in source.PlayerGroups)
+            foreach (Player player in source.Players)
                 Players.Add(new PlayerViewModel(player));
 
             Rating = source.Rating;
