@@ -27,21 +27,23 @@ namespace TeamGenerator.MVVM.Models
             int loopCount = 0;
             while (playerGroups.Count > 0)
             {
-                int teamIteration = loopCount / teamCount + 1; // how many times have we looped the teams, starting from 1?
-                int currentIdealRating = idealRating * (1 / teamIteration);
+                int teamLoopCount = loopCount / teamCount + 1; // the amount of times we have looped over each team, starting from 1
+                int currentIdealRating = (int) (idealRating * ((float) teamCount / teamLoopCount)); // the rating we would expect a team to have at this point
 
                 Team currentTeam = teams[loopCount % teamCount];
                 PlayerGroup currentPlayerGroup = playerGroups[loopCount % playerGroups.Count];
 
-                if (teamIteration == 0) // first iteration only
+
+
+                if (teamLoopCount == 0) // first iteration only
                 {
-                    if (TryAddPlayerGroup(currentTeam, currentPlayerGroup)) // can we add the currentPlayerGroup to the currentTeam
+                    if (TryAddPlayerGroup(currentTeam, currentPlayerGroup)) // can we add the currentPlayerGroup to the currentTeam?
                         playerGroups.Remove(currentPlayerGroup); // if yes, then remove the currentPlayerGroup
                     
                     continue;
                 }
 
-                if (currentTeam.Size >= teamIteration && currentTeam.Rating < currentIdealRating)
+                if (currentTeam.Size >= teamLoopCount && currentTeam.Rating < currentIdealRating)
                 {
                     if (TryAddPlayerGroup(currentTeam, playerGroups[loopCount]))
                         playerGroups.Remove(currentPlayerGroup);
@@ -49,7 +51,7 @@ namespace TeamGenerator.MVVM.Models
                     continue;
                 }
 
-                if (currentTeam.Size < teamIteration)
+                if (currentTeam.Size < teamLoopCount)
                 {
                     if (TryAddPlayerGroup(currentTeam, playerGroups[loopCount]))
                         playerGroups.Remove(currentPlayerGroup);
@@ -58,6 +60,22 @@ namespace TeamGenerator.MVVM.Models
                 }
 
                 loopCount++;
+            }
+
+            for (int i = 0; playerGroups.Count > 0; i++)
+            {
+                int teamLoopCount = i / teamCount; // the amount of times we have looped over each team
+
+                // assign first playerGroups
+
+                int currentIdealRating = (int) (idealRating * ((float) teamLoopCount / teamCapacity)); // the rating we would expect a team to have at this point in the loop
+
+                foreach (Team team in teams)
+                {
+                    foreach (PlayerGroup playerGroup in playerGroups)
+                        if (TryAddPlayerGroup(team, playerGroup))
+
+                }
             }
 
             throw new NotImplementedException();
