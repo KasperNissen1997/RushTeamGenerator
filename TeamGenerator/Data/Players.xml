@@ -12,7 +12,7 @@
   <Player>
     <Name>Ryan Bass</Name>
     <Nickname>hectic</Nickname>
-    <Rating>10</Rating>
+    <Rating>8</Rating>
     <SpeaksDanish>false</SpeaksDanish>
     <SpeaksEnglish>false</SpeaksEnglish>
     <Inclusions />
@@ -41,7 +41,7 @@
     <Nickname>Placeholder</Nickname>
     <Rating>10</Rating>
     <SpeaksDanish>false</SpeaksDanish>
-    <SpeaksEnglish>false</SpeaksEnglish>
+    <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
   </Player>
@@ -104,7 +104,7 @@
     <Nickname>Bamsfar</Nickname>
     <Rating>7</Rating>
     <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
+    <SpeaksEnglish>false</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
   </Player>
