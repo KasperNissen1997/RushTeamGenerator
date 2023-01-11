@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -55,7 +56,7 @@ namespace TeamGenerator.MVVM.Models
                         playerGroups.Remove(eligiblePlayerGroup);
                     }
 
-                if (i >= 1000)
+                if (i >= teamCapacity + 3) // change 3 to a higher number to continue searching
                     return false;
             }
 
