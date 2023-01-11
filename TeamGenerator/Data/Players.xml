@@ -55,6 +55,15 @@
     <Exclusions />
   </Player>
   <Player>
+    <Name>Casper Jensen</Name>
+    <Nickname>Stokn9x</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+  </Player>
+  <Player>
     <Name>Alexander Egidius</Name>
     <Nickname>Zee</Nickname>
     <Rating>8</Rating>

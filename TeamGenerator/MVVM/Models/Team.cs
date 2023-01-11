@@ -8,32 +8,46 @@ namespace TeamGenerator.MVVM.Models
         private static int identifierCount = 0;
         public int Identifier;
 
-        public List<Player> Players { get; private set; }
+        public List<PlayerGroup> PlayerGroups { get; private set; }
+        public int Capacity { get; private set; }
+        public int Size
+        {
+            get
+            {
+                int size = 0;
+
+                foreach (PlayerGroup playerGroup in PlayerGroups)
+                    size += playerGroup.Size;
+
+                return size;
+            }
+        }
         public float Rating { get; private set; }
 
         public bool SpeaksDanish { get; private set; }
         public bool SpeaksEnglish { get; private set; }
 
-        public Team()
+        public Team(int capacity)
         {
             Identifier = identifierCount++;
 
-            Players = new List<Player>();
+            PlayerGroups = new List<Player>();
             Rating = 0f;
 
             SpeaksDanish = true;
             SpeaksEnglish = true;
+            Capacity = capacity;
         }
 
         public bool TryAddPlayer(Player player)
         {
-            if (Players.Count == 5)
+            if (PlayerGroups.Count == 5)
                 throw new InvalidOperationException(); // adding another player will exceed the maximum of 5 players
 
             if (TryGetAvailableLanguages(player, out bool speaksDanish, out bool speaksEnglish)) // attempt to get the available languages
                 throw new ArgumentException(); // adding this player will result in no available language
 
-            Players.Add(player); // add the player
+            PlayerGroups.Add(player); // add the player
 
             UpdateRating(); // update rating
 
@@ -45,7 +59,7 @@ namespace TeamGenerator.MVVM.Models
 
         bool TryGetAvailableLanguages(Player possiblePlayer, out bool danish, out bool english)
         {
-            List<Player> possiblePlayers = Players;
+            List<Player> possiblePlayers = PlayerGroups;
             possiblePlayers.Add(possiblePlayer);
 
             danish = true; 
@@ -70,12 +84,12 @@ namespace TeamGenerator.MVVM.Models
         {
             int sum = 0;
 
-            foreach (Player player in Players)
+            foreach (Player player in PlayerGroups)
             {
                 sum += player.Rating;
             }
 
-            Rating = sum / Players.Count;
+            Rating = sum / PlayerGroups.Count;
         }
     }
 }
