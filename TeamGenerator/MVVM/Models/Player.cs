@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace TeamGenerator.MVVM.Models
 {
+    /// <summary>
+    /// A <see cref="Player"/> represents a person.
+    /// </summary>
     public class Player : IComparable<Player>
     {
         private static int identifierCount = 0;
@@ -44,7 +47,7 @@ namespace TeamGenerator.MVVM.Models
         public List<Player> Exclusions { get; set; }
 
         /// <summary>
-        /// A player.
+        /// Creates a new instance of <see cref="Player"/>.
         /// </summary>
         /// <param name="name">The name of the player.</param>
         /// <param name="nickname">The nickname of the player. This is what is used in game.</param>
@@ -144,8 +147,11 @@ namespace TeamGenerator.MVVM.Models
             if (player.Exclusions.Contains(this)) // does the player have "this" as an exclusion?
                 player.RemoveExclusion(this);
         }
-        #endregion
 
+        /// <summary>
+        /// Recursively traverses the inclusions of the players in <see cref="Inclusions"/>, and then returns them all.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of <see cref="Player"/> instances, which are all in <see cref="Inclusions"/>.</returns>
         public List<Player> GetPlayerInclusions()
         {
             List<Player> inclusions = new(Inclusions);
@@ -167,6 +173,7 @@ namespace TeamGenerator.MVVM.Models
 
             return inclusions;
         }
+        #endregion
 
         /// <summary>
         /// Compares two <see cref="Player"/> instances with each other based on <see cref="Rating"/>.
