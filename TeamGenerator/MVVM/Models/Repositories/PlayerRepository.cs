@@ -68,7 +68,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                     writer.WriteElementString("Nickname", player.Nickname); // Nickname
                     writer.WriteElementString("Rating", player.Rating.ToString()); // Rating
                     writer.WriteElementString("SpeaksDanish", player.SpeaksDanish.ToString().ToLower()); // SpeaksDanish
-                    writer.WriteElementString("SpeaksEnglish", player.SpeaksDanish.ToString().ToLower()); // SpeaksEnglish
+                    writer.WriteElementString("SpeaksEnglish", player.SpeaksEnglish.ToString().ToLower()); // SpeaksEnglish
 
                     writer.WriteStartElement("Inclusions"); // Inclusions
                     foreach (Player includedPlayer in player.Inclusions)

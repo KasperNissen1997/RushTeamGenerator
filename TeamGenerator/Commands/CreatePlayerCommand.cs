@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
@@ -18,8 +19,15 @@ namespace TeamGenerator.Commands
 
         public void Execute(object? parameter)
         {
+
             if (parameter is EditPlayersViewModel vm)
             {
+                #region Testing
+                Generator generator = new Generator();
+                generator.TryGenerateTeams(PlayerRepository.Instance.RetrieveAll(), 5, 5, out List<Team> teams);
+                teams.Clear();
+                #endregion
+
                 CreatePlayerView createPlayerView = new CreatePlayerView();
                 if (createPlayerView.ShowDialog() == true)
                 {
