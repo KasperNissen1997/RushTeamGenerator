@@ -11,7 +11,7 @@ namespace TeamGenerator.MVVM.Models
     {
         private static int identifierCount = 0;
         /// <summary>
-        /// A unique integer that is used to differentiate between different instances of <see cref="Player"/>.
+        /// A unique integer that is used to differentiate between different instances of <see cref="Player"/>s.
         /// </summary>
         public int Identifier;
 

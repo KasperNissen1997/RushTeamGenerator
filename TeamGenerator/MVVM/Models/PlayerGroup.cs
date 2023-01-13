@@ -24,7 +24,7 @@ namespace TeamGenerator.MVVM.Models
             }
         }
         /// <summary>
-        /// The sum of all the <see cref="Player"/>s in <see cref="Players"/>.
+        /// The cumulative rating of all the <see cref="Player"/>s in the group.
         /// </summary>
         public int Rating
         {
@@ -38,24 +38,9 @@ namespace TeamGenerator.MVVM.Models
                 return rating;
             }
         }
-        /// <summary>
-        /// If all the <see cref="Player"/>s in <see cref="Players"/> speaks english.
-        /// </summary>
-        public bool SpeaksEnglish
-        {
-            get
-            {
-                bool speaksEnglish = true;
 
-                foreach (Player player in Players)
-                    if (!player.SpeaksEnglish)
-                        speaksEnglish = false;
-
-                return speaksEnglish;
-            }
-        }
         /// <summary>
-        /// If all the <see cref="Player"/>s in <see cref="Players"/> speaks danish.
+        /// If all the <see cref="Player"/>s in the group speak danish.
         /// </summary>
         public bool SpeaksDanish
         {
@@ -68,6 +53,22 @@ namespace TeamGenerator.MVVM.Models
                         speaksDanish = false;
 
                 return speaksDanish;
+            }
+        }
+        /// <summary>
+        /// If all the <see cref="Player"/>s in the group speak english.
+        /// </summary>
+        public bool SpeaksEnglish
+        {
+            get
+            {
+                bool speaksEnglish = true;
+
+                foreach (Player player in Players)
+                    if (!player.SpeaksEnglish)
+                        speaksEnglish = false;
+
+                return speaksEnglish;
             }
         }
 
