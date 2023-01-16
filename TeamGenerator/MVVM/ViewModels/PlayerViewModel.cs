@@ -169,7 +169,7 @@ namespace TeamGenerator.MVVM.ViewModels
             SpeaksEnglish = source.SpeaksEnglish;
 
             /*
-             *  Initialize, but don't populate, relations, as this will create a circular dependency.
+             *  Initialize, but don't populate relations, as this will create a circular dependency.
              *  
              *  The relations are populated in the EditPlayersViewModel, as it has all PlayerViewModels instantiated 
              *  in its RegisteredPlayers property.
@@ -270,17 +270,21 @@ namespace TeamGenerator.MVVM.ViewModels
         public void Update ()
         {
             if (!Name.Equals(source.Name))
-                PlayerRepository.Instance.UpdateName(source.Identifier, Name);
+                source.Name = Name;
             
             if (!Nickname.Equals(source.Nickname))
-                PlayerRepository.Instance.UpdateNickname(source.Identifier, Nickname);
+                source.Nickname = Nickname;
             
             if (Rating != source.Rating)
-                PlayerRepository.Instance.UpdateRating(source.Identifier, Rating);
-            
-            if (SpeaksDanish != source.SpeaksDanish || SpeaksEnglish != source.SpeaksEnglish)
-                PlayerRepository.Instance.UpdateLanguages(source.Identifier, SpeaksDanish, SpeaksEnglish);
+                source.Rating = Rating;
 
+            if (SpeaksDanish != source.SpeaksDanish)
+                source.SpeaksDanish = SpeaksDanish;
+
+            if (SpeaksEnglish != source.SpeaksEnglish)
+                source.SpeaksEnglish = SpeaksEnglish;
+
+            #region Update relations
             foreach (Player includedPlayer in new List<Player>(source.Inclusions)) // remove all of the sources inclusions
                 source.RemoveInclusion(includedPlayer);
 
@@ -292,6 +296,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
             foreach (PlayerViewModel excludedPlayerVM in Exclusions) // add all the new exclusions
                 source.AddExclusion(excludedPlayerVM.source);
+            #endregion
         }
 
         public void Delete ()

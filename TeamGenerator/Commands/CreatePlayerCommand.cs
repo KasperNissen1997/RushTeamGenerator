@@ -24,7 +24,7 @@ namespace TeamGenerator.Commands
             {
                 #region Testing
                 Generator generator = new Generator();
-                generator.TryGenerateTeams(PlayerRepository.Instance.RetrieveAll(), 5, 5, out List<Team> teams);
+                generator.TryGenerateTeams(PlayerRepository.Instance.RetrieveAll(), 5, 4, out List<Team> teams);
                 teams.Clear();
                 #endregion
 

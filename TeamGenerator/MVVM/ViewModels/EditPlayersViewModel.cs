@@ -135,7 +135,7 @@ namespace TeamGenerator.MVVM.ViewModels
         }
 
         /// <summary>
-        /// This method updates all the source referenes in each PlayerViewModel, so that the sources reflect the state of the ViewModels.
+        /// This method updates all the source references in each PlayerViewModel, so that the sources reflect the state of the ViewModels.
         /// This should be called before the repository saves the player data, to ensure the correct data is saved.
         /// </summary>
         public void UpdatePlayerViewModelSources()
