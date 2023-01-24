@@ -169,7 +169,7 @@ namespace TeamGenerator.MVVM.Models
 
             foreach (Player includedPlayer in Inclusions)
                 if (!includedPlayer.Equals(sender))
-                    inclusions.Union(includedPlayer.GetInclusionsRecursive(this));
+                    inclusions = (List<Player>) inclusions.Union(includedPlayer.GetInclusionsRecursive(this));
 
             return inclusions;
         }
