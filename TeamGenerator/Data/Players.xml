@@ -8,6 +8,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Ryan Bass</Name>
@@ -17,6 +18,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Matthias Grundt Simonsen</Name>
@@ -26,6 +28,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Laurits Frimann</Name>
@@ -35,6 +38,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Placeholder</Name>
@@ -44,6 +48,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Peter Haslund</Name>
@@ -53,6 +58,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Casper Jensen</Name>
@@ -62,6 +68,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Alexander Egidius</Name>
@@ -71,6 +78,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Theis Simonsen</Name>
@@ -80,6 +88,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Rune Holm</Name>
@@ -89,6 +98,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Niki Tamjidi</Name>
@@ -98,6 +108,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Niclas Finscet Hansen</Name>
@@ -107,6 +118,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Niclas Ejlsborg</Name>
@@ -116,6 +128,7 @@
     <SpeaksEnglish>false</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Philip Kroer Færch</Name>
@@ -127,6 +140,7 @@
       <PlayerIdentifier>15</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Robert Venningbo</Name>
@@ -139,6 +153,7 @@
       <PlayerIdentifier>28</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Asger Ravn Nissen</Name>
@@ -150,6 +165,7 @@
       <PlayerIdentifier>13</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Sebastoam Niclasen</Name>
@@ -159,6 +175,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Theis Hollensberg Svendsen</Name>
@@ -168,6 +185,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Mikkel Meldhedegaard</Name>
@@ -177,6 +195,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Jonas pedersen</Name>
@@ -186,6 +205,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Daniel Roald Andersen</Name>
@@ -195,6 +215,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Alex Sychou</Name>
@@ -204,6 +225,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Steffen Andersen</Name>
@@ -213,6 +235,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Philip Jacobsen</Name>
@@ -222,6 +245,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Nemanja Duric</Name>
@@ -231,6 +255,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Nicolai A.V. Højlund</Name>
@@ -242,6 +267,7 @@
       <PlayerIdentifier>29</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Michael Groth</Name>
@@ -253,6 +279,7 @@
       <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Marc Kruuse</Name>
@@ -262,6 +289,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Mads Løbner Rude</Name>
@@ -273,6 +301,7 @@
       <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Sofus Bynge</Name>
@@ -284,5 +313,6 @@
       <PlayerIdentifier>25</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
+    <Acquaintences />
   </Player>
 </Players>
