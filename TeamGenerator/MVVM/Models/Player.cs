@@ -196,13 +196,5 @@ namespace TeamGenerator.MVVM.Models
 
             throw new NotImplementedException();
         }
-
-        public override bool Equals(object? obj)
-        {
-            if (obj is Player player)
-                return Identifier.Equals(player.Identifier);
-
-            throw new NotImplementedException();
-        }
     }
 }
