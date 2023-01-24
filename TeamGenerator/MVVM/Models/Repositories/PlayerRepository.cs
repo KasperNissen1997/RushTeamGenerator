@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml;
-using TeamGenerator.MVVM.ViewModels;
 
 namespace TeamGenerator.MVVM.Models.Repositories
 {
@@ -84,6 +83,13 @@ namespace TeamGenerator.MVVM.Models.Repositories
                     }
                     writer.WriteEndElement();
 
+                    writer.WriteStartElement("Acquaintences"); // Acquaintences
+                    foreach (Player acquaintedPlayer in player.Acquaintences)
+                    {
+                        writer.WriteElementString("PlayerIdentifier", acquaintedPlayer.Identifier.ToString());
+                    }
+                    writer.WriteEndElement();
+
                     writer.WriteEndElement();
                 }
                 writer.WriteEndElement();
@@ -133,7 +139,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                 {
                     reader.ReadToFollowing("Inclusions"); // Inclusion preparation
 
-                    List<Player> inclusions = new List<Player>();
+                    List<Player> inclusions = new();
                     XmlReader subtreeReader = reader.ReadSubtree();
 
                     subtreeReader.ReadToFollowing("PlayerIdentifier");
@@ -152,7 +158,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
                     reader.ReadToFollowing("Exclusions"); // Exclusion preparation
 
-                    List<Player> exclusions = new List<Player>();
+                    List<Player> exclusions = new();
                     subtreeReader = reader.ReadSubtree();
 
                     subtreeReader.ReadToFollowing("PlayerIdentifier");
@@ -161,6 +167,25 @@ namespace TeamGenerator.MVVM.Models.Repositories
                         try
                         {
                             exclusions.Add(Retrieve(subtreeReader.ReadElementContentAsInt())); // Exclusion
+                        }
+                        catch (InvalidOperationException)
+                        {
+                            subtreeReader.Close();
+                            break;
+                        }
+                    } while (!subtreeReader.EOF);
+
+                    reader.ReadToFollowing("Acquaintences"); // Acquaintence preparation
+
+                    List<Player> acquaintences = new();
+                    subtreeReader = reader.ReadSubtree();
+
+                    subtreeReader.ReadToFollowing("PlayerIdentifier");
+                    do
+                    {
+                        try
+                        {
+                            acquaintences.Add(Retrieve(subtreeReader.ReadElementContentAsInt())); // Acquaintence
                         }
                         catch (InvalidOperationException)
                         {
@@ -182,6 +207,9 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
                     foreach (Player excludedPlayer in exclusions)
                         currentPlayer.AddExclusion(excludedPlayer);
+
+                    foreach (Player acquaintedPlayer in acquaintences)
+                        currentPlayer.AddAcquaintence(acquaintedPlayer);
 
                     playerIdentifier++;
                 }

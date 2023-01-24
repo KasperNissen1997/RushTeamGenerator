@@ -46,6 +46,7 @@ namespace TeamGenerator.MVVM.ViewModels
                     registeredPlayerVM.IsRelationOfSelectedPlayer = false;
                     registeredPlayerVM.IsInclusionOfSelectedPlayer = false;
                     registeredPlayerVM.IsExclusionOfSelectedPlayer = false;
+                    registeredPlayerVM.IsAcquaintenceOfSelectedPlayer = false;
                 }
 
                 if (SelectedPlayer is not null)
@@ -64,6 +65,12 @@ namespace TeamGenerator.MVVM.ViewModels
                         {
                             registeredPlayerVM.IsRelationOfSelectedPlayer = true;
                             registeredPlayerVM.IsExclusionOfSelectedPlayer = true;
+                        }
+
+                        if (SelectedPlayer.Acquaintences.Contains(registeredPlayerVM))
+                        {
+                            registeredPlayerVM.IsRelationOfSelectedPlayer = true;
+                            registeredPlayerVM.IsAcquaintenceOfSelectedPlayer = true;
                         }
                     }
                 }
@@ -121,7 +128,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
         public EditPlayersViewModel()
         {
-            RegisteredPlayers = new ObservableCollection<PlayerViewModel>();
+            RegisteredPlayers = new();
 
             foreach (Player player in PlayerRepository.Instance.RetrieveAll())
             {

@@ -45,6 +45,12 @@ namespace TeamGenerator.MVVM.Models
         /// A collection of all the other players that should not be part of teams this player is part of.
         /// </summary>
         public List<Player> Exclusions { get; set; }
+        /// <summary>
+        /// A collection of all other players that are acquaintences of this player. 
+        /// Acquaintences will be prioritized when generating teams containing this player.<br/>
+        /// All players in <see cref="Inclusions"/> are automatically part of <see cref="Acquaintences"/>.
+        /// </summary>
+        public List<Player> Acquaintences { get; set; }
 
         /// <summary>
         /// Creates a new instance of <see cref="Player"/>.
@@ -65,8 +71,9 @@ namespace TeamGenerator.MVVM.Models
             SpeaksDanish = speaksDanish;
             SpeaksEnglish = speaksEnglish;
 
-            Inclusions = new List<Player>();
-            Exclusions = new List<Player>();
+            Inclusions = new();
+            Exclusions = new();
+            Acquaintences = new();
         }
 
         #region Relation logic
@@ -91,6 +98,8 @@ namespace TeamGenerator.MVVM.Models
 
             if (!player.Inclusions.Contains(this)) // does the player have "this" as an inclusion?
                 player.AddInclusion(this);
+            
+            AddAcquaintence(player);
         }
 
         /// <summary>
@@ -130,6 +139,9 @@ namespace TeamGenerator.MVVM.Models
 
             if (player.Exclusions.Contains(this)) // does the player have "this" as an exclusion?
                 player.AddExclusion(this);
+
+            if (Acquaintences.Contains(player))
+                RemoveAcquaintence(player);
         }
 
         /// <summary>
@@ -146,6 +158,34 @@ namespace TeamGenerator.MVVM.Models
 
             if (player.Exclusions.Contains(this)) // does the player have "this" as an exclusion?
                 player.RemoveExclusion(this);
+        }
+
+        public void AddAcquaintence(Player player)
+        {
+            if (Acquaintences.Contains(player)) // is the player already an acquaintence?
+                return;
+
+            if (Exclusions.Contains(player)) // is the player an exclusion?
+                throw new InvalidOperationException();
+
+            if (player.Exclusions.Contains(this)) // does the player exclude "this"?
+                throw new InvalidOperationException();
+
+            Acquaintences.Add(player);
+
+            if (!player.Acquaintences.Contains(this)) // does the player have "this" as an acquaintence?
+                player.AddAcquaintence(this);
+        }
+
+        public void RemoveAcquaintence(Player player)
+        {
+            if (!Acquaintences.Contains(player)) // is the player an acquaintence?
+                throw new ArgumentException();
+
+            Acquaintences.Remove(player);
+
+            if (player.Acquaintences.Contains(this)) // does the player have "this" as an acquaintence?
+                player.RemoveInclusion(this);
         }
 
         /// <summary>

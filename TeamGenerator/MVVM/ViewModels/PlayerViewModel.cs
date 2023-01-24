@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 
@@ -85,6 +86,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
         public ObservableCollection<PlayerViewModel> Inclusions { get; }
         public ObservableCollection<PlayerViewModel> Exclusions { get; }
+        public ObservableCollection<PlayerViewModel> Acquaintences { get; }
 
         #region View related properties
         private bool _isSelectedPlayer;
@@ -145,8 +147,22 @@ namespace TeamGenerator.MVVM.ViewModels
                 OnPropertyChanged(nameof(IsExclusionOfSelectedPlayer));
             }
         }
+        private bool _isAcquaintenceOfSelectedPlayer;
+        public bool IsAcquaintenceOfSelectedPlayer
+        {
+            get
+            {
+                return _isAcquaintenceOfSelectedPlayer;
+            }
+
+            set
+            {
+                _isAcquaintenceOfSelectedPlayer = value;
+                OnPropertyChanged(nameof(IsAcquaintenceOfSelectedPlayer));
+            }
+        }
         #endregion
-        
+
         #region Interface
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -175,12 +191,14 @@ namespace TeamGenerator.MVVM.ViewModels
              *  in its RegisteredPlayers property.
              */
 
-            Inclusions = new ObservableCollection<PlayerViewModel>();
-            Exclusions = new ObservableCollection<PlayerViewModel>();
+            Inclusions = new();
+            Exclusions = new();
+            Acquaintences = new();
 
             IsSelectedPlayer = false;
             IsInclusionOfSelectedPlayer = false;
             IsExclusionOfSelectedPlayer = false;
+            IsAcquaintenceOfSelectedPlayer = false;
         }
 
         #region Relation logic
@@ -195,6 +213,9 @@ namespace TeamGenerator.MVVM.ViewModels
 
             if (source.Exclusions.Contains(playerVM.source))
                 AddExclusion(playerVM);
+
+            if (source.Acquaintences.Contains(playerVM.source))
+                AddAcquaintence(playerVM);
         }
 
         /// <summary>
@@ -208,6 +229,9 @@ namespace TeamGenerator.MVVM.ViewModels
 
             if (Exclusions.Contains(playerVM))
                 RemoveExclusion(playerVM);
+
+            if (Acquaintences.Contains(playerVM))
+                RemoveAcquaintence(playerVM);
         }
 
         public void AddInclusion(PlayerViewModel playerVM)
@@ -225,6 +249,8 @@ namespace TeamGenerator.MVVM.ViewModels
 
             if (!playerVM.Inclusions.Contains(this))
                 playerVM.AddInclusion(this);
+
+            AddAcquaintence(playerVM);
         }
 
         public void RemoveInclusion(PlayerViewModel playerVM)
@@ -253,6 +279,9 @@ namespace TeamGenerator.MVVM.ViewModels
 
             if (!playerVM.Exclusions.Contains(this))
                 playerVM.AddExclusion(this);
+
+            if (Acquaintences.Contains(playerVM))
+                RemoveAcquaintence(playerVM);
         }
 
         public void RemoveExclusion(PlayerViewModel playerVM)
@@ -264,6 +293,34 @@ namespace TeamGenerator.MVVM.ViewModels
 
             if (playerVM.Exclusions.Contains(this))
                 playerVM.RemoveExclusion(this);
+        }
+
+        public void AddAcquaintence(PlayerViewModel playerVM)
+        {
+            if (Acquaintences.Contains(playerVM)) // is the player already an acquaintence?
+                return;
+
+            if (Exclusions.Contains(playerVM)) // is the player an exclusion?
+                throw new InvalidOperationException();
+
+            if (playerVM.Exclusions.Contains(this)) // does the player exclude "this"?
+                throw new InvalidOperationException();
+
+            Acquaintences.Add(playerVM);
+
+            if (!playerVM.Acquaintences.Contains(this)) // does the player have "this" as an acquaintence?
+                playerVM.AddAcquaintence(this);
+        }
+
+        public void RemoveAcquaintence(PlayerViewModel playerVM)
+        {
+            if (!Acquaintences.Contains(playerVM)) // is the player an acquaintence?
+                throw new ArgumentException();
+
+            Acquaintences.Remove(playerVM);
+
+            if (playerVM.Acquaintences.Contains(this)) // does the player have "this" as an acquaintence?
+                playerVM.RemoveInclusion(this);
         }
         #endregion
 
@@ -291,11 +348,17 @@ namespace TeamGenerator.MVVM.ViewModels
             foreach (Player excludedPlayer in new List<Player>(source.Exclusions)) // remove all of the sources exclusions
                 source.RemoveExclusion(excludedPlayer);
 
+            foreach (Player acquaintedPlayer in new List<Player>(source.Acquaintences)) // remove all of the sources acquaintences
+                source.RemoveAcquaintence(acquaintedPlayer);
+
             foreach (PlayerViewModel includedPlayerVM in Inclusions) // add all the new inclutions
                 source.AddInclusion(includedPlayerVM.source);
 
             foreach (PlayerViewModel excludedPlayerVM in Exclusions) // add all the new exclusions
                 source.AddExclusion(excludedPlayerVM.source);
+
+            foreach (PlayerViewModel acquaintedPlayer in Acquaintences) // add all of the new acquaintences
+                source.AddAcquaintence(acquaintedPlayer.source);
             #endregion
         }
 
