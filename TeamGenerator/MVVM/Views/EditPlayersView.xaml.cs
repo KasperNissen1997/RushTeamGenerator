@@ -12,7 +12,7 @@ namespace TeamGenerator.MVVM.Views
         {
             InitializeComponent();
 
-            
+            DataContext = new EditPlayersViewModel();
         }
 
         private void Window_Closed(object sender, EventArgs e, EditPlayersViewModel DataContext)
@@ -25,6 +25,15 @@ namespace TeamGenerator.MVVM.Views
             }
 
             throw new InvalidOperationException("NO DATA CAN BE SAVED!");
+        }
+
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Menu menu = Application.Current.MainWindow as Menu;
+            menu.Visibility = Visibility.Visible;
+            Window win = (Window)this.Parent;
+            win.Close();
+
         }
     }
 }

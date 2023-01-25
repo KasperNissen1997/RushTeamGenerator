@@ -12,24 +12,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TeamGenerator.MVVM.Models;
 
 namespace TeamGenerator.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for GeneratorPage.xaml
+    /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class GeneratorPage : Page
+    public partial class MainMenu : Page
     {
-        public GeneratorPage()
+        public MainMenu()
         {
             InitializeComponent();
         }
 
-        private void Gen_Team_Click(object sender, RoutedEventArgs e)
+        private void Bnt1_Click(object sender, RoutedEventArgs e)
         {
-            ChoosePlayers choosePlayers = new ChoosePlayers();
-            choosePlayers.Show();
+
+        }
+
+        private void Bnt2_Click(object sender, RoutedEventArgs e)
+        {
+            var mainwindow = (MainMenu)Application.Current.MainWindow;
+
         }
     }
 }

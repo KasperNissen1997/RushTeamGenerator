@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TeamGenerator.MVVM.Views
@@ -22,34 +23,18 @@ namespace TeamGenerator.MVVM.Views
         public Menu()
         {
             InitializeComponent();
+            Application.Current.MainWindow = this;
+            Loaded += OnMainWindowLoaded;
         }
 
-        private void Bnt1_Click(object sender, RoutedEventArgs e)
+        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
         {
-            Main.Content = new GeneratorPage();
-            Hide();
-        }
-        public void Hide()
-        {
-            Bnt1.Visibility = Visibility.Hidden;
-            Bnt2.Visibility = Visibility.Hidden;
-            Logo.Visibility = Visibility.Hidden;
-            Title.Visibility = Visibility.Hidden;
-        }
-        public void Show()
-        {
-            Bnt1.Visibility = Visibility.Visible;
-            Bnt2.Visibility = Visibility.Visible;
-            Logo.Visibility = Visibility.Visible;
-            Title.Visibility = Visibility.Visible;
+            ChangeView(new MainMenu());
         }
 
-        private void Bnt2_Click(object sender, RoutedEventArgs e)
+        public void ChangeView(Page view)
         {
-
-            Main.Content = new EditPlayersView();
-            Hide();
-            
+            Main
         }
     }
-}
+}   

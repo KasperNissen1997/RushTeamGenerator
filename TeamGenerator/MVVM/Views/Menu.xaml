@@ -5,13 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
         mc:Ignorable="d"
-        Title="Menu" Height="450" Width="800">
+        Title="Menu" Height="500" Width="850" Loaded="Window_Loaded">
     <Grid>
-        <Frame x:Name="Main" Margin="0,0,0,0" NavigationUIVisibility="Hidden" />
-        <Button x:Name="Bnt1" Content="TeamGen" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" Background="#FFED966D" Height="50" Width="124" Click="Bnt1_Click"/>
-        <Button x:Name="Bnt2" Content="Players" HorizontalAlignment="Center" Margin="0,247,0,0" VerticalAlignment="Top" Background="#FFED966D" Height="50" Width="124" Click="Bnt2_Click"/>
-        <Label x:Name="Title" Content="Rush Copenhagen" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Foreground="#FFF1914D" FontSize="36" FontWeight="Bold"/>
-        <Image x:Name="Logo" Margin="10,11,662,295" Source="/RushLogo.ico" Stretch="Fill"/>
+        <Frame x:Name="MainFrame" Content="" NavigationUIVisibility="Hidden"/>
+
 
     </Grid>
 </Window>
