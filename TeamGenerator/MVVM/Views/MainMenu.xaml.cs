@@ -27,13 +27,20 @@ namespace TeamGenerator.MVVM.Views
 
         private void Bnt1_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Content = new GeneratorPage();
+            Hide();
         }
-
         private void Bnt2_Click(object sender, RoutedEventArgs e)
         {
-            var mainwindow = (MainMenu)Application.Current.MainWindow;
-
+            MainFrame.Content = new EditPlayersView();
+            Hide();
+        }
+        public void Hide()
+        {
+            Bnt1.Visibility = Visibility.Hidden;
+            Bnt2.Visibility = Visibility.Hidden;
+            Logo.Visibility = Visibility.Hidden;
+            Title.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -31,5 +31,11 @@ namespace TeamGenerator.MVVM.Views
             ChoosePlayers choosePlayers = new ChoosePlayers();
             choosePlayers.Show();
         }
+
+        private void Bnt_Gen_Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new MainMenu();
+            GenPage.Visibility = Visibility.Hidden;
+        }
     }
 }

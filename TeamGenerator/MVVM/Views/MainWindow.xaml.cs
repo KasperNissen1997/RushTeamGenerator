@@ -16,25 +16,19 @@ using System.Windows.Shapes;
 namespace TeamGenerator.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for Menu.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Menu : Window
+    public partial class MainWindow : Window
     {
-        public Menu()
+        public MainWindow()
         {
             InitializeComponent();
-            Application.Current.MainWindow = this;
-            Loaded += OnMainWindowLoaded;
         }
 
-        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ChangeView(new MainMenu());
-        }
+            Main.Content = new MainMenu();
 
-        public void ChangeView(Page view)
-        {
-            Main
         }
     }
-}   
+}

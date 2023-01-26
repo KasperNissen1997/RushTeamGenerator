@@ -29,11 +29,8 @@ namespace TeamGenerator.MVVM.Views
 
         private void Back_Button_Click(object sender, RoutedEventArgs e)
         {
-            Menu menu = Application.Current.MainWindow as Menu;
-            menu.Visibility = Visibility.Visible;
-            Window win = (Window)this.Parent;
-            win.Close();
-
+            MainFrame.Content = new MainMenu();
+            MasterGrid.Visibility = Visibility.Hidden;
         }
     }
 }
