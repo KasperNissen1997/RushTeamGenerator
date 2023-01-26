@@ -17,7 +17,7 @@ namespace TeamGenerator.MVVM.Models
         /// </summary>
         /// <param name="players">The <see cref="Player"/>s the <see cref="Team"/>s should be made up of.</param>
         /// <param name="teamCapacity">The capacity, aka maximum size, of each <see cref="Team"/>.</param>
-        /// <param name="allowedRatingDeviance">How much the rating can deviate from the calcualted targeted rating.</param>
+        /// <param name="allowedRatingDeviance">How much difference in rating the lowest rated generated team is allowed to deviate from the highest rated generated team.</param>
         /// <param name="teams">The generated <see cref="Team"/>s if generation was succesfull; otherwise an incomplete list of <see cref="Team"/>s.</param>
         /// <returns><see langword="true"/> if the generation of teams succeeded; otherwise <see langword="false"/>.</returns>
         public bool TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams)
@@ -156,6 +156,9 @@ namespace TeamGenerator.MVVM.Models
                 $"Average team rating: {averageTeamRating}\n" +
                 $"Highest team rating: {highestTeamRating}");
             #endregion
+
+            if (lowestTeamRating + allowedRatingDeviance < highestTeamRating)
+                return false;
 
             return true;
         }
