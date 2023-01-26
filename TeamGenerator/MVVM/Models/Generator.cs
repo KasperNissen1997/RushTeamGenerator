@@ -22,6 +22,7 @@ namespace TeamGenerator.MVVM.Models
         /// <returns><see langword="true"/> if the generation of teams succeeded; otherwise <see langword="false"/>.</returns>
         public bool TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams)
         {
+            // Initialize the playerGroups
             List<PlayerGroup> singlePlayerGroups = CreatePlayerGroups(players);
             singlePlayerGroups.Sort(); // sort players by rating, low to high
 
@@ -35,26 +36,28 @@ namespace TeamGenerator.MVVM.Models
                     singlePlayerGroups.Remove(playerGroup);
                 }
 
-            int teamCount = players.Count / teamCapacity; // the amount of teams that can be made
+            // Initialize the teams
+            int teamCount = players.Count / teamCapacity;
 
             teams = new List<Team>();
 
             for (int i = 0; i < teamCount; i++)
                 teams.Add(new Team(teamCapacity));
 
-            List<Team> finalTeams = new(teams); // TODO: CHECK UP
-
-            int ratingSum = 0; // the cumulative sum of all players that are going to be part of teams
-
-            for (int i = 0; i < teamCount * teamCapacity; i++) // use for-loop to only count the amount of players that are going to be part of teams
-                ratingSum += players[i].Rating;
-
-            int targetRating = ratingSum / teamCount; // the targeted rating that each team will want to have
-
-            int currentTargetSize = 1; // the expected starting size of teams at this stage
-            int currentTargetRating = targetRating / teamCapacity; // the expected starting rating of teams at this stage
+            List<Team> finalTeams = new(teams); // Save a copy of the teams list
 
             #region Old Algorithm
+            //// Calculate the targeted rating
+            //int ratingSum = 0;
+
+            //for (int i = 0; i < teamCount * teamCapacity; i++) // use a for-loop to only count the amount of players that are going to be part of teams
+            //    ratingSum += players[i].Rating;
+
+            //int targetRating = ratingSum / teamCount; // the targeted rating that each team will want to have
+
+            //int currentTargetSize = 1; // the expected starting size of teams at this stage
+            //int currentTargetRating = targetRating / teamCapacity; // the expected starting rating of teams at this stage
+
             //for (int i = 1; playerGroups.Count > 0; i++) // start with i = 1, and increment it for each loop, untill all playerGroups have been assigned a team
             //{
             //    if (i == teamCapacity + 3) // change 3 to a higher number to continue searching
@@ -101,10 +104,16 @@ namespace TeamGenerator.MVVM.Models
             //}
             #endregion
 
-            // TODO: Fool-proof this loop baby boi <3
-            for (int i = 0; i < multiplePlayerGroups.Count; i++)
+            // TODO: Check to see if multiple bad playerGroups are teamed together
+            foreach (PlayerGroup multiplePlayerGroup in multiplePlayerGroups)
             {
-                teams[i % teamCapacity].AddPlayerGroup(multiplePlayerGroups[i]);
+                // get worst team
+                teams.Sort();
+
+                if (teams[0].Size + multiplePlayerGroup.Size <= teamCapacity)
+                    teams[0].AddPlayerGroup(multiplePlayerGroup);
+                else
+                    Trace.WriteLine("SEE MEEEEEEEEEE");
             }
 
             foreach (Team team in teams)
@@ -121,9 +130,14 @@ namespace TeamGenerator.MVVM.Models
 
             while (singlePlayerGroups.Count != 0)
             {
+                if (teams.Count == 0)
+                {
+                    break;
+                }
+
                 // get team with lowest average
                 teams.Sort();
-
+                
                 Team lowestAverageRatedTeam = teams[0];
 
                 if (TryFindEligiblePlayerGroup(lowestAverageRatedTeam, singlePlayerGroups, out PlayerGroup eligiblePlayerGroup))
@@ -135,14 +149,14 @@ namespace TeamGenerator.MVVM.Models
                     if (lowestAverageRatedTeam.Size == teamCapacity)
                         teams.Remove(lowestAverageRatedTeam);
                 }
-                else if (lowestAverageRatedTeam.Size != lowestAverageRatedTeam.Capacity)
-                    throw new ArgumentException();
             }
+
+            teams = finalTeams;
 
             #region Analytics
             List<int> teamRatings = new List<int>();
 
-            foreach (Team team in finalTeams)
+            foreach (Team team in teams)
                 teamRatings.Add(team.Rating);
 
             int lowestTeamRating = teamRatings.Min();
@@ -196,99 +210,6 @@ namespace TeamGenerator.MVVM.Models
             return playerGroups;
         }
 
-        /// <summary>
-        /// Attempts to find an eligible <see cref="PlayerGroup"/> to add to <paramref name="team"/>.
-        /// </summary>
-        /// <param name="team">The <see cref="Team"/> the <see cref="PlayerGroup"/>s should be checked for eligibility against.</param>
-        /// <param name="playerGroups">The <see cref="PlayerGroup"/>s that will be checked for eligibility.</param>
-        /// <param name="targetRating">The targeted rating of <paramref name="team"/>.</param>
-        /// <param name="allowedRatingDeviance">The maximum allowed deviation from <paramref name="targetRating"/>.</param>
-        /// <param name="targetSize">The targeted size of <paramref name="team"/>.</param>
-        /// <param name="eligiblePlayerGroup">If an eligible <see cref="PlayerGroup"/> is found, then this will be it; otherwise, it will hold an invalid <see cref="PlayerGroup"/>.</param>
-        /// <returns><see langword="true"/> if an eligible <see cref="PlayerGroup"/> was found; otherwise <see langword="false"/>.</returns>
-        private bool TryFindEligiblePlayerGroup(Team team, List<PlayerGroup> playerGroups, int targetRating, int allowedRatingDeviance, int targetSize, out PlayerGroup eligiblePlayerGroup)
-        {
-            eligiblePlayerGroup = null;
-
-            List<PlayerGroup> eligiblePlayerGroups = new();
-
-            foreach (PlayerGroup playerGroup in new List<PlayerGroup>(playerGroups))
-            {
-                // if they satisfy all the requirements ...
-                if (CheckPlayerGroupEligibility(team, playerGroup, targetRating, allowedRatingDeviance, targetSize))
-                {
-                    // ... then add them to our possiblePlayerGroups
-                    eligiblePlayerGroups.Add(playerGroup);
-                }
-            }
-
-            if (eligiblePlayerGroups.Count != 0)
-            {
-                int highestAcquaintenceCount = 0;
-
-                foreach (PlayerGroup playerGroup in eligiblePlayerGroups)
-                {
-                    int acquaintenceCount = GetAcquaintenceCount(team, playerGroup);
-
-                    if (acquaintenceCount > highestAcquaintenceCount || highestAcquaintenceCount == 0)
-                    {
-                        eligiblePlayerGroup = playerGroup;
-                        highestAcquaintenceCount = acquaintenceCount;
-                    }
-                }
-
-                return true;
-            }
-
-            // no eligible playerGroup found
-            return false;
-        }
-
-        /// <summary>
-        /// Checks if <paramref name="playerGroup"/> can join <paramref name="team"/> without any conflicts.
-        /// </summary>
-        /// <param name="team">The <see cref="Team"/> that <paramref name="playerGroup"/> should be checked for eligibility against.</param>
-        /// <param name="playerGroup">The <see cref="PlayerGroup"/> that will be checked for eligibility.</param>
-        /// <param name="targetRating">The targeted rating of <paramref name="team"/>.</param>
-        /// <param name="allowedRatingDeviance">The maximum allowed deviation from <paramref name="targetRating"/>.</param>
-        /// <param name="targetSize">The targeted size of <paramref name="team"/>.</param>
-        /// <returns><see langword="true"/> if <paramref name="playerGroup"/> is eligible; otherwise <see langword="false"/>.</returns>
-        private bool CheckPlayerGroupEligibility(Team team, PlayerGroup playerGroup, int targetRating, int allowedRatingDeviance, int targetSize)
-        {
-            if (team.Size >= targetSize)
-                return false;
-
-            // is there room for any more players?
-            if (team.Size >= team.Capacity)
-                return false;
-
-            // is there room for the playerGroup?
-            if (team.Size + playerGroup.Size > team.Capacity)
-                return false;
-
-            if (team.Size + playerGroup.Size > targetSize)
-                return false;
-
-            // can they communicate?
-            if ((!team.SpeaksDanish && !playerGroup.SpeaksEnglish) 
-                || (!team.SpeaksEnglish && !playerGroup.SpeaksDanish))
-                return false;
-
-            // are any of the groupPlayers excluded by any of the teamPlayers?
-            foreach (Player teamPlayer in team.Players)
-                foreach (Player groupPlayer in playerGroup.Players)
-                    if (teamPlayer.Exclusions.Contains(groupPlayer))
-                        return false;
-
-            // is the groups added rating within the allowed range of deviation?
-            if (team.Rating + playerGroup.Rating < targetRating - allowedRatingDeviance 
-                || team.Rating + playerGroup.Rating > targetRating + allowedRatingDeviance)
-                return false;
-
-            // all requirements are satisfied!
-            return true;
-        }
-
         private int GetAcquaintenceCount(Team team, PlayerGroup playerGroup)
         {
             int acquaintenceCount = 0;
@@ -301,22 +222,51 @@ namespace TeamGenerator.MVVM.Models
             return acquaintenceCount;
         }
 
+        /// <summary>
+        /// Attempts to find an eligible <see cref="PlayerGroup"/> to add to <paramref name="team"/>.
+        /// </summary>
+        /// <param name="team">The <see cref="Team"/> the <see cref="PlayerGroup"/>s should be checked for eligibility against.</param>
+        /// <param name="playerGroups">The <see cref="PlayerGroup"/>s that will be checked for eligibility.</param>
+        /// <param name="eligiblePlayerGroup">If an eligible <see cref="PlayerGroup"/> is found, then this will be it; otherwise, it will hold an invalid <see cref="PlayerGroup"/>.</param>
+        /// <returns><see langword="true"/> if an eligible <see cref="PlayerGroup"/> was found; otherwise <see langword="false"/>.</returns>
         private bool TryFindEligiblePlayerGroup(Team team, List<PlayerGroup> playerGroups, out PlayerGroup eligiblePlayerGroup)
         {
+            List<PlayerGroup> eligiblePlayerGroups = new List<PlayerGroup>();
+
             eligiblePlayerGroup = null;
 
             foreach (PlayerGroup playerGroup in playerGroups)
             {
                 if (CheckPlayerGroupEligibility(team, playerGroup))
                 {
-                    eligiblePlayerGroup = playerGroup;
-                    return true;
+                    eligiblePlayerGroups.Add(playerGroup);
                 }
+            }
+
+            if (eligiblePlayerGroups.Count > 0)
+            {
+                eligiblePlayerGroup = eligiblePlayerGroups.First();
+                int highestAcquaintenceCount = GetAcquaintenceCount(team, eligiblePlayerGroup);
+
+                foreach (PlayerGroup playerGroup in eligiblePlayerGroups)
+                    if (GetAcquaintenceCount(team, playerGroup) > highestAcquaintenceCount)
+                    {
+                        eligiblePlayerGroup = playerGroup;
+                        highestAcquaintenceCount = GetAcquaintenceCount(team, eligiblePlayerGroup);
+                    }
+
+                return true;
             }
 
             return false;
         }
 
+        /// <summary>
+        /// Checks if <paramref name="playerGroup"/> can join <paramref name="team"/> without any conflicts.
+        /// </summary>
+        /// <param name="team">The <see cref="Team"/> that <paramref name="playerGroup"/> should be checked for eligibility against.</param>
+        /// <param name="playerGroup">The <see cref="PlayerGroup"/> that will be checked for eligibility.</param>
+        /// <returns><see langword="true"/> if <paramref name="playerGroup"/> is eligible; otherwise <see langword="false"/>.</returns>
         private bool CheckPlayerGroupEligibility(Team team, PlayerGroup playerGroup)
         {
             // is there room for any more players?

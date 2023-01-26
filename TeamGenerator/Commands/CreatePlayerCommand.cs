@@ -23,7 +23,7 @@ namespace TeamGenerator.Commands
             {
                 #region Testing
                 Generator teamGen = new();
-                teamGen.TryGenerateTeams(PlayerRepository.Instance.RetrieveAll(), 5, 1, out List<Team> teams);
+                teamGen.TryGenerateTeams(PlayerRepository.Instance.RetrieveAll(), 5, 5, out List<Team> teams);
                 #endregion
 
                 CreatePlayerView createPlayerView = new CreatePlayerView();
