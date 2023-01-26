@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -91,8 +92,27 @@ namespace TeamGenerator.MVVM.Models
             if (other is null)
                 return 1;
 
-            if (other is PlayerGroup playerGroup)
-                return (Rating.CompareTo(playerGroup.Rating)) * -1; // inverse this so it it sorts in descending order via List.Sort()
+            if (other is PlayerGroup otherPlayerGroup)
+            {
+                if (Size != otherPlayerGroup.Size)
+                    return Size.CompareTo(otherPlayerGroup.Size) * -1;
+
+                double averagePlayerRating = 0;
+
+                foreach (Player player in Players)
+                    averagePlayerRating += player.Rating;
+
+                averagePlayerRating /= Players.Count;
+
+                double averageOtherPlayerRating = 0;
+
+                foreach (Player player in otherPlayerGroup.Players)
+                    averageOtherPlayerRating += player.Rating;
+
+                averageOtherPlayerRating /= otherPlayerGroup.Players.Count;
+
+                return averagePlayerRating.CompareTo(averageOtherPlayerRating) * -1; // inverse this so it it sorts in descending order via List.Sort()
+            }
 
             throw new NotImplementedException();
         }

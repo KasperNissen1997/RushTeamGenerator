@@ -6,7 +6,7 @@ namespace TeamGenerator.MVVM.Models
     /// <summary>
     /// A team represents a group of Players, often limited in size.
     /// </summary>
-    public class Team
+    public class Team : IComparable<Team>
     {
         private static int identifierCount = 0;
         /// <summary>
@@ -45,6 +45,18 @@ namespace TeamGenerator.MVVM.Models
                     rating += player.Rating;
 
                 return rating;
+            }
+        }
+        public double AveragePlayerRating
+        {
+            get
+            {
+                double ratingSum = 0;
+
+                foreach (Player player in Players)
+                    ratingSum += player.Rating;
+
+                return ratingSum / Players.Count;
             }
         }
 
@@ -101,6 +113,19 @@ namespace TeamGenerator.MVVM.Models
         {
             foreach (Player player in playerGroup.Players)
                 Players.Add(player);
+        }
+
+        public int CompareTo(Team? other)
+        {
+            if (other is null)
+                return 1;
+
+            if (other is Team otherTeam)
+            {
+                return AveragePlayerRating.CompareTo(otherTeam.AveragePlayerRating); // inverse this so it it sorts in descending order via List.Sort()
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

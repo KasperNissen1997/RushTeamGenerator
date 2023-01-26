@@ -140,7 +140,9 @@
       <PlayerIdentifier>15</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>15</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Robert Venningbo</Name>
@@ -153,7 +155,10 @@
       <PlayerIdentifier>28</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>28</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Asger Ravn Nissen</Name>
@@ -165,7 +170,9 @@
       <PlayerIdentifier>13</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>13</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Sebastoam Niclasen</Name>
@@ -267,7 +274,9 @@
       <PlayerIdentifier>29</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>29</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Michael Groth</Name>
@@ -279,7 +288,9 @@
       <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>14</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Marc Kruuse</Name>
@@ -301,7 +312,9 @@
       <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>14</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Sofus Bynge</Name>
@@ -313,6 +326,8 @@
       <PlayerIdentifier>25</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>25</PlayerIdentifier>
+    </Acquaintences>
   </Player>
 </Players>

@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System;
+using TeamGenerator.MVVM.ViewModels;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -15,13 +17,23 @@ namespace TeamGenerator.MVVM.Models
         /// </summary>
         /// <param name="players">The <see cref="Player"/>s the <see cref="Team"/>s should be made up of.</param>
         /// <param name="teamCapacity">The capacity, aka maximum size, of each <see cref="Team"/>.</param>
-        /// <param name="allowedRatingDeviance">How much the rating can deviate from the lowest rated <see cref="Team"/>, to the highest rated <see cref="Team"/>.</param>
+        /// <param name="allowedRatingDeviance">How much the rating can deviate from the calcualted targeted rating.</param>
         /// <param name="teams">The generated <see cref="Team"/>s if generation was succesfull; otherwise an incomplete list of <see cref="Team"/>s.</param>
         /// <returns><see langword="true"/> if the generation of teams succeeded; otherwise <see langword="false"/>.</returns>
         public bool TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams)
         {
-            List<PlayerGroup> playerGroups = CreatePlayerGroups(players);
-            playerGroups.Sort(); // sort players by rating, low to high
+            List<PlayerGroup> singlePlayerGroups = CreatePlayerGroups(players);
+            singlePlayerGroups.Sort(); // sort players by rating, low to high
+
+            List<PlayerGroup> multiplePlayerGroups = new();
+
+            foreach (PlayerGroup playerGroup in new List<PlayerGroup>(singlePlayerGroups))
+                if (playerGroup.Size > 1)
+                {
+                    multiplePlayerGroups.Add(playerGroup);
+
+                    singlePlayerGroups.Remove(playerGroup);
+                }
 
             int teamCount = players.Count / teamCapacity; // the amount of teams that can be made
 
@@ -29,6 +41,8 @@ namespace TeamGenerator.MVVM.Models
 
             for (int i = 0; i < teamCount; i++)
                 teams.Add(new Team(teamCapacity));
+
+            List<Team> finalTeams = new(teams); // TODO: CHECK UP
 
             int ratingSum = 0; // the cumulative sum of all players that are going to be part of teams
 
@@ -40,43 +54,95 @@ namespace TeamGenerator.MVVM.Models
             int currentTargetSize = 1; // the expected starting size of teams at this stage
             int currentTargetRating = targetRating / teamCapacity; // the expected starting rating of teams at this stage
 
-            for (int i = 1; playerGroups.Count > 0; i++) // start with i = 1, and increment it for each loop, untill all playerGroups have been assigned a team
+            #region Old Algorithm
+            //for (int i = 1; playerGroups.Count > 0; i++) // start with i = 1, and increment it for each loop, untill all playerGroups have been assigned a team
+            //{
+            //    if (i == teamCapacity + 3) // change 3 to a higher number to continue searching
+            //        return false;
+
+            //    if (i == 1) // for the first iteration of the loop...
+            //    {
+            //        foreach (Team team in teams) // ... naively assign the largest playerGroups to the teams
+            //        {
+            //            team.AddPlayerGroup(playerGroups[0]);
+
+            //            playerGroups.RemoveAt(0);
+            //        }
+
+            //        continue; // start second iteration
+            //    }
+
+            //    if (i <= teamCapacity) // if we are still limiting the amount of players assigned to each team, as we do in the start of the loop, then ...
+            //    {
+            //        currentTargetSize = i; // ... increase our targeted size for our teams, so that they can accept more players
+            //        currentTargetRating = (int) (targetRating * ((double) i / teamCapacity)); // ... recalculate the expected rating of teams at this stage
+            //    }
+
+            //    foreach (Team team in teams) // for each team ...
+            //        if (i >= teamCapacity + 2)
+            //        {
+            //            if (TryFindEligiblePlayerGroup(team, playerGroups, currentTargetRating, currentTargetRating / 2, teamCapacity, out PlayerGroup eligiblePlayerGroup))
+            //            {
+            //                team.AddPlayerGroup(eligiblePlayerGroup);
+
+            //                playerGroups.Remove(eligiblePlayerGroup);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            // attempt to find and assign an eligible player amongst the players that haven't been assigned a team yet
+            //            if (TryFindEligiblePlayerGroup(team, playerGroups, currentTargetRating, allowedRatingDeviance, currentTargetSize, out PlayerGroup eligiblePlayerGroup))
+            //            {
+            //                team.AddPlayerGroup(eligiblePlayerGroup);
+
+            //                playerGroups.Remove(eligiblePlayerGroup);
+            //            }
+            //        }
+            //}
+            #endregion
+
+            // TODO: Fool-proof this loop baby boi <3
+            for (int i = 0; i < multiplePlayerGroups.Count; i++)
             {
-                if (i == 1) // for the first iteration of the loop...
+                teams[i % teamCapacity].AddPlayerGroup(multiplePlayerGroups[i]);
+            }
+
+            foreach (Team team in teams)
+            {
+                if (team.Size == 0)
                 {
-                    foreach (Team team in teams) // ... naively assign the largest playerGroups to the teams
-                    {
-                        team.AddPlayerGroup(playerGroups[0]);
+                    PlayerGroup lowestAverageRatedPlayerGroup = singlePlayerGroups[singlePlayerGroups.Count - 1];
 
-                        playerGroups.RemoveAt(0);
-                    }
+                    team.AddPlayerGroup(lowestAverageRatedPlayerGroup);
 
-                    continue; // start second iteration
+                    singlePlayerGroups.Remove(lowestAverageRatedPlayerGroup);
                 }
+            }
 
-                if (i <= teamCapacity) // if we are still limiting the amount of players assigned to each team, as we do in the start of the loop, then ...
+            while (singlePlayerGroups.Count != 0)
+            {
+                // get team with lowest average
+                teams.Sort();
+
+                Team lowestAverageRatedTeam = teams[0];
+
+                if (TryFindEligiblePlayerGroup(lowestAverageRatedTeam, singlePlayerGroups, out PlayerGroup eligiblePlayerGroup))
                 {
-                    currentTargetSize = i; // ... increase our targeted size for our teams, so that they can accept more players
-                    currentTargetRating = (int) (targetRating * ((double) i / teamCapacity)); // ... recalculate the expected rating of teams at this stage
+                    lowestAverageRatedTeam.AddPlayerGroup(eligiblePlayerGroup);
+
+                    singlePlayerGroups.Remove(eligiblePlayerGroup);
+
+                    if (lowestAverageRatedTeam.Size == teamCapacity)
+                        teams.Remove(lowestAverageRatedTeam);
                 }
-
-                foreach (Team team in teams) // for each team ...
-                    // attempt to find and assign an eligible player amongst the players that haven't been assigned a team yet
-                    if (TryFindEligiblePlayerGroup(team, playerGroups, currentTargetRating, allowedRatingDeviance, currentTargetSize, out PlayerGroup eligiblePlayerGroup))
-                    {
-                        team.AddPlayerGroup(eligiblePlayerGroup);
-
-                        playerGroups.Remove(eligiblePlayerGroup);
-                    }
-
-                if (i >= teamCapacity + 3) // change 3 to a higher number to continue searching
-                    return false;
+                else if (lowestAverageRatedTeam.Size != lowestAverageRatedTeam.Capacity)
+                    throw new ArgumentException();
             }
 
             #region Analytics
             List<int> teamRatings = new List<int>();
 
-            foreach (Team team in teams)
+            foreach (Team team in finalTeams)
                 teamRatings.Add(team.Rating);
 
             int lowestTeamRating = teamRatings.Min();
@@ -141,15 +207,34 @@ namespace TeamGenerator.MVVM.Models
         {
             eligiblePlayerGroup = null;
 
+            List<PlayerGroup> eligiblePlayerGroups = new();
+
             foreach (PlayerGroup playerGroup in new List<PlayerGroup>(playerGroups))
             {
-                // check if the playerGroup satisfies all requirements
+                // if they satisfy all the requirements ...
                 if (CheckPlayerGroupEligibility(team, playerGroup, targetRating, allowedRatingDeviance, targetSize))
                 {
-                    // if they satisfy all the requirements, return them!
-                    eligiblePlayerGroup = playerGroup;
-                    return true;
+                    // ... then add them to our possiblePlayerGroups
+                    eligiblePlayerGroups.Add(playerGroup);
                 }
+            }
+
+            if (eligiblePlayerGroups.Count != 0)
+            {
+                int highestAcquaintenceCount = 0;
+
+                foreach (PlayerGroup playerGroup in eligiblePlayerGroups)
+                {
+                    int acquaintenceCount = GetAcquaintenceCount(team, playerGroup);
+
+                    if (acquaintenceCount > highestAcquaintenceCount || highestAcquaintenceCount == 0)
+                    {
+                        eligiblePlayerGroup = playerGroup;
+                        highestAcquaintenceCount = acquaintenceCount;
+                    }
+                }
+
+                return true;
             }
 
             // no eligible playerGroup found
@@ -178,6 +263,9 @@ namespace TeamGenerator.MVVM.Models
             if (team.Size + playerGroup.Size > team.Capacity)
                 return false;
 
+            if (team.Size + playerGroup.Size > targetSize)
+                return false;
+
             // can they communicate?
             if ((!team.SpeaksDanish && !playerGroup.SpeaksEnglish) 
                 || (!team.SpeaksEnglish && !playerGroup.SpeaksDanish))
@@ -193,6 +281,59 @@ namespace TeamGenerator.MVVM.Models
             if (team.Rating + playerGroup.Rating < targetRating - allowedRatingDeviance 
                 || team.Rating + playerGroup.Rating > targetRating + allowedRatingDeviance)
                 return false;
+
+            // all requirements are satisfied!
+            return true;
+        }
+
+        private int GetAcquaintenceCount(Team team, PlayerGroup playerGroup)
+        {
+            int acquaintenceCount = 0;
+
+            foreach (Player teamPlayer in team.Players)
+                foreach (Player groupPlayer in playerGroup.Players)
+                    if (teamPlayer.Acquaintences.Contains(groupPlayer))
+                        acquaintenceCount++;
+
+            return acquaintenceCount;
+        }
+
+        private bool TryFindEligiblePlayerGroup(Team team, List<PlayerGroup> playerGroups, out PlayerGroup eligiblePlayerGroup)
+        {
+            eligiblePlayerGroup = null;
+
+            foreach (PlayerGroup playerGroup in playerGroups)
+            {
+                if (CheckPlayerGroupEligibility(team, playerGroup))
+                {
+                    eligiblePlayerGroup = playerGroup;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool CheckPlayerGroupEligibility(Team team, PlayerGroup playerGroup)
+        {
+            // is there room for any more players?
+            if (team.Size >= team.Capacity)
+                return false;
+
+            // is there room for the playerGroup?
+            if (team.Size + playerGroup.Size > team.Capacity)
+                return false;
+
+            // can they communicate?
+            if ((!team.SpeaksDanish && !playerGroup.SpeaksEnglish)
+                || (!team.SpeaksEnglish && !playerGroup.SpeaksDanish))
+                return false;
+
+            // are any of the groupPlayers excluded by any of the teamPlayers?
+            foreach (Player teamPlayer in team.Players)
+                foreach (Player groupPlayer in playerGroup.Players)
+                    if (teamPlayer.Exclusions.Contains(groupPlayer))
+                        return false;
 
             // all requirements are satisfied!
             return true;

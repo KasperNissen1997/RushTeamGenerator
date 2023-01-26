@@ -185,7 +185,7 @@ namespace TeamGenerator.MVVM.Models
             Acquaintences.Remove(player);
 
             if (player.Acquaintences.Contains(this)) // does the player have "this" as an acquaintence?
-                player.RemoveInclusion(this);
+                player.RemoveAcquaintence(this);
         }
 
         /// <summary>
