@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.ViewModels;
 
 namespace TeamGenerator.MVVM.Views
 {
-    public partial class EditPlayersView : Window
+    public partial class EditPlayersView : Page
     {
         public EditPlayersView()
         {
@@ -14,7 +15,7 @@ namespace TeamGenerator.MVVM.Views
             DataContext = new EditPlayersViewModel();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closed(object sender, EventArgs e, EditPlayersViewModel DataContext)
         {
             if (DataContext is EditPlayersViewModel vm)
             {
@@ -24,6 +25,12 @@ namespace TeamGenerator.MVVM.Views
             }
 
             throw new InvalidOperationException("NO DATA CAN BE SAVED!");
+        }
+
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new MainMenu();
+            MasterGrid.Visibility = Visibility.Hidden;
         }
     }
 }

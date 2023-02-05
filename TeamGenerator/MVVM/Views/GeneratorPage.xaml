@@ -1,0 +1,23 @@
+﻿<Page x:Class="TeamGenerator.MVVM.Views.GeneratorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
+      mc:Ignorable="d" 
+      
+      Title="GeneratorPage" Width="1080" Height="720" MinWidth="1080" MinHeight="500">
+    <Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Grid x:Name="GenPage" Background="#FFF9F9F9">
+            <ListBox x:Name="Teams_Show" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,632,0" Background="#FFE86C6C"/>
+        <Button x:Name="GenTeam" Content="Generat" HorizontalAlignment="Left" Margin="723,643,0,0" VerticalAlignment="Top" Height="45" Width="142" Click="Gen_Team_Click"/>
+        <Grid>
+            <Border x:Name="Border_Frame" BorderBrush="#FF4365CC" BorderThickness="2,2,2,2" Margin="445,0,0,86">
+                <ListBox x:Name="Players_Show" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="131,167,131,167"/>
+            </Border>
+            <Button x:Name="Bnt_Gen_Back" Content="Back" HorizontalAlignment="Left" Margin="927,639,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.104,0.165" Height="45" Width="102" Click="Bnt_Gen_Back_Click"/>
+        </Grid>
+    </Grid>
+    </Grid>
+</Page>
