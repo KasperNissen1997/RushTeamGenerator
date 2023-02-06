@@ -24,6 +24,7 @@ namespace TeamGenerator.Commands
                 #region Testing
                 Generator teamGen = new();
                 teamGen.TryGenerateTeams(PlayerRepository.Instance.RetrieveAll(), 5, 5, out List<Team> teams);
+                TeamRepository.Instance.teams = teams;
                 #endregion
 
                 CreatePlayerView createPlayerView = new CreatePlayerView();

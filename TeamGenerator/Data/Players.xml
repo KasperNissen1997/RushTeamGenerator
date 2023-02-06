@@ -286,10 +286,12 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
       <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>28</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
       <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>28</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -310,10 +312,12 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
       <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
       <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>

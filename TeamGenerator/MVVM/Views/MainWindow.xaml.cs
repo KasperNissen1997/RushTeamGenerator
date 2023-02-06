@@ -1,34 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using TeamGenerator.MVVM.Models.Repositories;
+using TeamGenerator.MVVM.ViewModels;
 
 namespace TeamGenerator.MVVM.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private static MainWindow _instance;
+        public static MainWindow Instance
         {
-            InitializeComponent();
+            get
+            {
+                if (_instance == null)
+                    return new MainWindow();
+
+                return _instance;
+            }
+
+            private set
+            {
+                _instance = value;
+            }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new MainMenu();
+        public MainMenuView MainMenuView { get; set; }
+        public EditPlayersView EditPlayersView { get; set; }
+        public GenerateTeamsView GenerateTeamsView { get; set; }
 
+        public MainWindow()
+        {
+            Instance = this;
+
+            InitializeComponent();
+
+            MainMenuView = new MainMenuView();
+            EditPlayersView = new EditPlayersView();
+            GenerateTeamsView = new GenerateTeamsView();
+
+            MainFrame.Content = MainMenuView;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (EditPlayersView.DataContext is EditPlayersViewModel editPlayersVM) 
+                editPlayersVM.UpdatePlayerViewModelSources();
+
+            if (GenerateTeamsView.DataContext is GenerateTeamsViewModel generateTeamsVM)
+                generateTeamsVM.UpdateTeamViewModelSources();
+
+            PlayerRepository.Instance.Save();
+            TeamRepository.Instance.Save();
         }
     }
 }

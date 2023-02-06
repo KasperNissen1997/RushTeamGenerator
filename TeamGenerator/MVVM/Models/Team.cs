@@ -106,6 +106,19 @@ namespace TeamGenerator.MVVM.Models
         }
 
         /// <summary>
+        /// Creates a new instance of <see cref="Team"/>.
+        /// </summary>
+        /// <param name="capacity">The maximum amount of <see cref="Player"/>s that the team can have.</param>
+        /// <param name="players">The <see cref="Player"/>s that make up the team.</param>
+        public Team(int capacity, List<Player> players)
+        {
+            Identifier = identifierCount++;
+
+            Players = players;
+            Capacity = capacity;
+        }
+
+        /// <summary>
         /// Adds all the <see cref="Player"/>s in the <paramref name="playerGroup"/> to the team.
         /// </summary>
         /// <param name="playerGroup">The <see cref="PlayerGroup"/> with all the <see cref="Player"/>s that should be added to the team.</param>

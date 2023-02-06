@@ -5,6 +5,7 @@ using TeamGenerator.MVVM.Models.Repositories;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System;
+using System.Diagnostics;
 
 namespace TeamGenerator.MVVM.ViewModels
 {
@@ -92,6 +93,8 @@ namespace TeamGenerator.MVVM.ViewModels
         }
 
         #region Commands
+        public GoToMainMenuCommand GoToMainMenuCommand { get; set; } = new();
+
         public CreatePlayerCommand CreatePlayerCommand { get; set; } = new();
         public RemovePlayerCommand RemovePlayerCommand { get; set; } = new();
 
@@ -149,6 +152,8 @@ namespace TeamGenerator.MVVM.ViewModels
         {
             foreach (PlayerViewModel registeredPlayer in RegisteredPlayers)
                 registeredPlayer.Update();
+
+            Trace.WriteLine("PlayerViewModel sources updated!");
         }
     }
 }

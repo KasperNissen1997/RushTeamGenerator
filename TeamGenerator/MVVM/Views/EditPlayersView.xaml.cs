@@ -26,11 +26,5 @@ namespace TeamGenerator.MVVM.Views
 
             throw new InvalidOperationException("NO DATA CAN BE SAVED!");
         }
-
-        private void Back_Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new MainMenu();
-            MasterGrid.Visibility = Visibility.Hidden;
-        }
     }
 }

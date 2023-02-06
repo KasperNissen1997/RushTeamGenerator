@@ -12,30 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TeamGenerator.MVVM.Models;
 
 namespace TeamGenerator.MVVM.Views
 {
     /// <summary>
-    /// Interaction logic for GeneratorPage.xaml
+    /// Interaction logic for MainMenuView.xaml
     /// </summary>
-    public partial class GeneratorPage : Page
+    public partial class MainMenuView : Page
     {
-        public GeneratorPage()
+        public MainMenuView()
         {
             InitializeComponent();
         }
 
-        private void Gen_Team_Click(object sender, RoutedEventArgs e)
+        private void GenerateTeams_Click(object sender, RoutedEventArgs e)
         {
-            ChoosePlayers choosePlayers = new ChoosePlayers();
-            choosePlayers.Show();
+            MainWindow.Instance.MainFrame.Content = MainWindow.Instance.GenerateTeamsView;
         }
-
-        private void Bnt_Gen_Back_Click(object sender, RoutedEventArgs e)
+        private void EditPlayers_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new MainMenuView();
-            GenPage.Visibility = Visibility.Hidden;
+            MainWindow.Instance.MainFrame.Content = MainWindow.Instance.EditPlayersView;
         }
     }
 }

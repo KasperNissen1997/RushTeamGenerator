@@ -194,24 +194,22 @@ namespace TeamGenerator.MVVM.Models
         /// <returns>A <see cref="List{T}"/> of <see cref="Player"/> instances, which are all in <see cref="Inclusions"/>.</returns>
         public List<Player> GetPlayerInclusions()
         {
-            List<Player> inclusions = new(Inclusions);
+            List<Player> foundInclusions = new(Inclusions);
 
             foreach (Player includedPlayer in Inclusions)
-                inclusions.Union(includedPlayer.GetInclusionsRecursive(this));
+                foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions));
 
-            inclusions.Remove(this);
-            return inclusions;
+            foundInclusions.Remove(this);
+            return foundInclusions;
         }
 
-        private List<Player> GetInclusionsRecursive(Player sender)
+        private List<Player> GetInclusionsRecursive(Player sender, List<Player> foundInclusions)
         {
-            List<Player> inclusions = new(Inclusions);
-
             foreach (Player includedPlayer in Inclusions)
-                if (!includedPlayer.Equals(sender))
-                    inclusions = (List<Player>) inclusions.Union(includedPlayer.GetInclusionsRecursive(this));
+                if (!foundInclusions.Contains(includedPlayer) && includedPlayer != sender)
+                    foundInclusions = (List<Player>) foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions));
 
-            return inclusions;
+            return foundInclusions;
         }
         #endregion
 

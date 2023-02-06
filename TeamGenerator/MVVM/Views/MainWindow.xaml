@@ -5,9 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Width="1080" Height="720" MinWidth="1080" MinHeight="500" Loaded="Window_Loaded">
-    <Grid>
-        <Frame Name="Main" Background="White" NavigationUIVisibility="Hidden"/>
+        Title="MainWindow" Width="1120" Height="760" MinWidth="1080" MinHeight="500" Closed="Window_Closed">
 
-    </Grid>
+        <Frame Name="MainFrame" Background="Magenta" NavigationUIVisibility="Hidden"/>
 </Window>

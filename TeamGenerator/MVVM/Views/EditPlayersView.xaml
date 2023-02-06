@@ -5,11 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamGenerator" xmlns:viewmodels="clr-namespace:TeamGenerator.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EditPlayersViewModel}"
         mc:Ignorable="d"
-        Title="Edit players" Width="1080" Height="720" MinWidth="1080" MinHeight="500">
-    <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
-        <Grid Background="#FFFDFDFD" x:Name="MasterGrid">
-        
+        Title="Edit players" MinWidth="1080" MinHeight="500">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
@@ -233,10 +230,10 @@
                     <Button Content="Add Exclusion" Command="{Binding AddExclusionCommand}" CommandParameter="{Binding}" Background="LightGreen"/>
                     <Button Content="Remove Inclusion" Command="{Binding RemoveExclusionCommand}" CommandParameter="{Binding}" Background="IndianRed"/>
                     <Label Content="{Binding RelationActionLog}" VerticalAlignment="Center" d:Content="Performed actions are logged here."/>
-                    <Button x:Name="Back_Button" Content="Back" Width="65" Click="Back_Button_Click"/>
                 </StackPanel>
+
+                <Button x:Name="Back_Button" Grid.Row="3" Content="Back" Padding="10,0,10,0" HorizontalAlignment="Right" Command="{Binding GoToMainMenuCommand}" CommandParameter="{Binding}"/>
             </Grid>
         </Grid>
-    </Grid>
     </Grid>
 </Page>

@@ -1,0 +1,24 @@
+﻿<Page x:Class="TeamGenerator.MVVM.Views.MainMenuView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
+      mc:Ignorable="d" 
+      Title="MainMenu" MinWidth="1080" MinHeight="500">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        
+        <Label Content="Rush Copenhagen" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFF1914D" FontSize="36" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Margin="25" Source="/RushLogo.ico" Stretch="None"/>
+        <Button Grid.Row="1" Content="Generate Teams" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFED966D" Height="50" Width="124" Click="GenerateTeams_Click"/>
+        <Button Grid.Row="2" Content="Edit Players" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFED966D" Height="50" Width="124" Click="EditPlayers_Click"/>
+        
+    </Grid>
+</Page>
