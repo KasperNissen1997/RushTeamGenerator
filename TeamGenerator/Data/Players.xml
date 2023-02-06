@@ -117,7 +117,9 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
-    <Exclusions />
+    <Exclusions>
+      <PlayerIdentifier>24</PlayerIdentifier>
+    </Exclusions>
     <Acquaintences />
   </Player>
   <Player>
@@ -129,6 +131,20 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences />
+  </Player>
+  <Player>
+    <Name>Philip Kroer Færch</Name>
+    <Nickname>Tucan</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>16</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>16</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Robert Venningbo</Name>
@@ -147,34 +163,6 @@
     </Acquaintences>
   </Player>
   <Player>
-    <Name>Philip Kroer Færch</Name>
-    <Nickname>Tucan</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>15</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>15</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Asger Ravn Nissen</Name>
-    <Nickname>Ravne</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>14</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>14</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
     <Name>Sebastoam Niclasen</Name>
     <Nickname>SebNic</Nickname>
     <Rating>6</Rating>
@@ -183,6 +171,20 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences />
+  </Player>
+  <Player>
+    <Name>Asger Ravn Nissen</Name>
+    <Nickname>Ravne</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>13</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>13</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Theis Hollensberg Svendsen</Name>
@@ -261,7 +263,9 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
-    <Exclusions />
+    <Exclusions>
+      <PlayerIdentifier>11</PlayerIdentifier>
+    </Exclusions>
     <Acquaintences />
   </Player>
   <Player>
@@ -285,12 +289,12 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
       <PlayerIdentifier>28</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
       <PlayerIdentifier>28</PlayerIdentifier>
     </Acquaintences>
   </Player>
@@ -311,12 +315,12 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
       <PlayerIdentifier>26</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
       <PlayerIdentifier>26</PlayerIdentifier>
     </Acquaintences>
   </Player>
