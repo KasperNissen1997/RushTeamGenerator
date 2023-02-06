@@ -275,6 +275,7 @@ namespace TeamGenerator.MVVM.ViewModels
 
         public SelectAllPlayersInGeneratorViewCommand SelectAllPlayersInGeneratorViewCommand { get; set; } = new();
         public GenerateTeamsCommand GenerateTeamsCommand { get; set; } = new();
+        public ExportToCSVCommand ExportToCSVCommand { get; set; } = new();
 
         public ShowPreviousTeamPageCommmand ShowPreviousTeamPageCommmand { get; set; } = new();
         public ShowNextTeamPageCommand ShowNextTeamPageCommand { get; set; } = new();
