@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TeamGenerator.MVVM.ViewModels;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.EditPlayersViewCommands
 {
     public class RemoveExclusionCommand : ICommand
     {

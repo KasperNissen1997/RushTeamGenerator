@@ -19,15 +19,15 @@ namespace TeamGenerator.Commands
         {
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.MainMenuView;
 
-            if (parameter is EditPlayersViewModel vm)
+            if (parameter is EditPlayersViewModel editPlayersVM)
             {
-                vm.UpdatePlayerViewModelSources();
+                editPlayersVM.UpdatePlayerViewModelSources();
                 PlayerRepository.Instance.Save();
             }
 
-            if (parameter is GenerateTeamsViewModel)
+            if (parameter is GenerateTeamsViewModel generateTeamsVM)
             {
-                // TODO: Save teams or any other edits made while in the GenerateTeamsView
+                TeamRepository.Instance.Save();
             }
         }
     }

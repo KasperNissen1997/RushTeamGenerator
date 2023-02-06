@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.ViewModels;
@@ -35,19 +36,17 @@ namespace TeamGenerator.MVVM.Views
             InitializeComponent();
 
             MainMenuView = new MainMenuView();
-            EditPlayersView = new EditPlayersView();
-            GenerateTeamsView = new GenerateTeamsView();
 
             MainFrame.Content = MainMenuView;
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            if (EditPlayersView.DataContext is EditPlayersViewModel editPlayersVM) 
-                editPlayersVM.UpdatePlayerViewModelSources();
+            Trace.WriteLine("Closing window!");
 
-            if (GenerateTeamsView.DataContext is GenerateTeamsViewModel generateTeamsVM)
-                generateTeamsVM.UpdateTeamViewModelSources();
+            if (EditPlayersView != null)
+                if (EditPlayersView.DataContext is EditPlayersViewModel editPlayersVM) 
+                    editPlayersVM.UpdatePlayerViewModelSources();
 
             PlayerRepository.Instance.Save();
             TeamRepository.Instance.Save();

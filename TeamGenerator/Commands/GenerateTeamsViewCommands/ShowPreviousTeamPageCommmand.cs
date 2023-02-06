@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Input;
 using TeamGenerator.MVVM.ViewModels;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.GenerateTeamsViewCommands
 {
-    public class RemovePlayerCommand : ICommand
+    public class ShowPreviousTeamPageCommmand : ICommand
     {
         public event EventHandler? CanExecuteChanged
         {
@@ -15,9 +14,9 @@ namespace TeamGenerator.Commands
 
         public bool CanExecute(object? parameter)
         {
-            if (parameter is EditPlayersViewModel vm)
+            if (parameter is GenerateTeamsViewModel vm)
             {
-                if (vm.SelectedPlayer is not null)
+                if (vm.PageNumber > 0)
                     return true;
 
                 return false;
@@ -31,20 +30,10 @@ namespace TeamGenerator.Commands
 
         public void Execute(object? parameter)
         {
-            if (parameter is EditPlayersViewModel vm)
+            if (parameter is GenerateTeamsViewModel vm)
             {
-                foreach (PlayerViewModel includedPlayerVM in vm.RegisteredPlayers) // remove relations before deletion
-                    vm.SelectedPlayer.TryRemoveRelation(includedPlayerVM);
-
-                vm.SelectedPlayer.Delete();
-
-                vm.RegisteredPlayers.Remove(vm.SelectedPlayer);
-                vm.SelectedPlayer = null;
-
-                return;
+                vm.PageNumber--;
             }
-
-            throw new InvalidOperationException("Something went horribly wrong!");
         }
     }
 }

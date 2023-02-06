@@ -2,9 +2,9 @@
 using System.Windows.Input;
 using TeamGenerator.MVVM.ViewModels;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.EditPlayersViewCommands
 {
-    public class RemoveInclusionCommand : ICommand
+    public class AddExclusionCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged
         {
@@ -17,7 +17,7 @@ namespace TeamGenerator.Commands
             if (parameter is EditPlayersViewModel vm)
             {
                 if (vm.SelectedRelatedPlayer is not null)
-                    if (vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer
+                    if (!vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer
                         && !vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer
                         && !vm.SelectedPlayer.Equals(vm.SelectedRelatedPlayer))
                         return true;
@@ -35,12 +35,12 @@ namespace TeamGenerator.Commands
         {
             if (parameter is EditPlayersViewModel vm)
             {
-                vm.SelectedPlayer.RemoveInclusion(vm.SelectedRelatedPlayer);
+                vm.SelectedPlayer.AddExclusion(vm.SelectedRelatedPlayer);
 
-                vm.SelectedRelatedPlayer.IsRelationOfSelectedPlayer = false;
-                vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer = false;
+                vm.SelectedRelatedPlayer.IsRelationOfSelectedPlayer = true;
+                vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer = true;
 
-                vm.RelationActionLog = "Exclusion removed succesfully.";
+                vm.RelationActionLog = "Exclusion created succesfully.";
 
                 return;
             }

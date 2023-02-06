@@ -8,7 +8,7 @@ using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.ViewModels;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.GenerateTeamsViewCommands
 {
     public class GenerateTeamsCommand : ICommand
     {
@@ -30,7 +30,7 @@ namespace TeamGenerator.Commands
                         break;
                     }
 
-                if (vm.TeamCapacity > 0 && vm.TeamCapacity < vm.RegisteredPlayers.Count
+                if (vm.TeamCapacity > 1 && vm.TeamCapacity < vm.RegisteredPlayers.Count
                     && vm.AllowedRatingDeviance >= 0
                     && atleastOnePlayerSelected)
                     return true;
@@ -48,8 +48,6 @@ namespace TeamGenerator.Commands
         {
             if (parameter is GenerateTeamsViewModel vm)
             {
-                Generator teamGen = new();
-
                 List<Player> selectedPlayers = new();
                 foreach (PlayerViewModel playerVM in vm.RegisteredPlayers)
                 {
@@ -57,10 +55,25 @@ namespace TeamGenerator.Commands
                         selectedPlayers.Add(playerVM.source);
                 }
 
-                teamGen.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams);
+                foreach (Team team in new List<Team>(TeamRepository.Instance.RetrieveAll()))
+                    TeamRepository.Instance.Delete(team.Identifier);
 
+                vm.GeneratedTeams.Clear();
+                vm.LeftOverPlayers.Clear();
+
+                Generator.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams);
+
+                List<Player> playersCopy = new List<Player>(PlayerRepository.Instance.RetrieveAll());
                 foreach (Team team in teams)
+                {
                     vm.GeneratedTeams.Add(new TeamViewModel(team));
+
+                    foreach (Player player in team.Players)
+                        playersCopy.Remove(player);
+                }
+
+                foreach (Player leftOverPlayer in playersCopy)
+                    vm.LeftOverPlayers.Add(new PlayerViewModel(leftOverPlayer));
             }
         }
     }

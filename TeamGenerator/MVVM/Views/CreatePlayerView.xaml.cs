@@ -7,9 +7,9 @@ namespace TeamGenerator.MVVM.Views
     {
         public CreatePlayerView()
         {
-            DataContext = new CreatePlayerViewModel();
-
             InitializeComponent();
+
+            DataContext = new CreatePlayerViewModel();
         }
 
         private void CreatePlayerButton_Click(object sender, RoutedEventArgs e)

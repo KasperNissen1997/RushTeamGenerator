@@ -27,10 +27,12 @@ namespace TeamGenerator.MVVM.Views
 
         private void GenerateTeams_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.Instance.GenerateTeamsView = new GenerateTeamsView();
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.GenerateTeamsView;
         }
         private void EditPlayers_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.Instance.EditPlayersView = new EditPlayersView();
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.EditPlayersView;
         }
     }

@@ -50,7 +50,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                 Indent = true
             };
 
-            // players.Sort();
+            players.Sort();
 
             for (int i = 0; i < players.Count; i++)
                 players[i].Identifier = i;

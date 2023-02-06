@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System;
 using System.Diagnostics;
+using TeamGenerator.Commands.EditPlayersViewCommands;
 
 namespace TeamGenerator.MVVM.ViewModels
 {
@@ -119,7 +120,7 @@ namespace TeamGenerator.MVVM.ViewModels
             }
         }
 
-        #region Interface
+        #region OnChanged Events
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChanged(string propertyname)

@@ -50,7 +50,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                 Indent = true
             };
 
-            // teams.Sort();
+            teams.Sort();
 
             for (int i = 0; i < teams.Count; i++)
                 teams[i].Identifier = i;
@@ -131,7 +131,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
         #region CRUD
         public Team Create(int capacity)
         {
-            Team team= new Team(capacity);
+            Team team = new Team(capacity);
 
             teams.Add(team);
 

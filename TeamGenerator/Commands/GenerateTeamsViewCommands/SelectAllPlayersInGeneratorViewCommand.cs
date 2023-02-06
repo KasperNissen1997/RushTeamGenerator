@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TeamGenerator.MVVM.ViewModels;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.GenerateTeamsViewCommands
 {
     public class SelectAllPlayersInGeneratorViewCommand : ICommand
     {
@@ -23,7 +23,7 @@ namespace TeamGenerator.Commands
             {
                 foreach (PlayerViewModel playerVM in vm.RegisteredPlayers)
                     playerVM.IsSelectedInTeamGeneratorView = true;
-                
+
                 return;
             }
 

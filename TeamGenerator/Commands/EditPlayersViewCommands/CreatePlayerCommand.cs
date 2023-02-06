@@ -6,7 +6,7 @@ using TeamGenerator.MVVM.Models.Repositories;
 using TeamGenerator.MVVM.ViewModels;
 using TeamGenerator.MVVM.Views;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.EditPlayersViewCommands
 {
     public class CreatePlayerCommand : ICommand
     {
@@ -21,20 +21,17 @@ namespace TeamGenerator.Commands
         {
             if (parameter is EditPlayersViewModel vm)
             {
-                #region Testing
-                #endregion
-
                 CreatePlayerView createPlayerView = new CreatePlayerView();
                 if (createPlayerView.ShowDialog() == true)
                 {
-                    CreatePlayerViewModel? dataContext = createPlayerView.DataContext as CreatePlayerViewModel;
+                    CreatePlayerViewModel? createPlayerVM = createPlayerView.DataContext as CreatePlayerViewModel;
 
-                    string name = dataContext.Name;
-                    string nickname = dataContext.Nickname;
-                    int rating = dataContext.Rating;
+                    string name = createPlayerVM.Name;
+                    string nickname = createPlayerVM.Nickname;
+                    int rating = createPlayerVM.Rating;
 
-                    bool speaksDanish = dataContext.SpeaksDanish;
-                    bool speaksEnglish = dataContext.SpeaksEnglish;
+                    bool speaksDanish = createPlayerVM.SpeaksDanish;
+                    bool speaksEnglish = createPlayerVM.SpeaksEnglish;
 
                     Player player = PlayerRepository.Instance.Create(name, nickname, rating, speaksDanish, speaksEnglish);
                     PlayerViewModel playerVM = new PlayerViewModel(player);

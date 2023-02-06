@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TeamGenerator.MVVM.Models.Repositories;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -22,6 +23,7 @@ namespace TeamGenerator.MVVM.Models
         /// How many <see cref="Player"/>s there are room for in the team.
         /// </summary>
         public int Capacity { get; }
+
         /// <summary>
         /// The current amount of <see cref="Player"/>s that are in the team.
         /// </summary>
@@ -47,6 +49,9 @@ namespace TeamGenerator.MVVM.Models
                 return rating;
             }
         }
+        /// <summary>
+        /// The average rating of all <see cref="Player"/>s in the team.
+        /// </summary>
         public double AveragePlayerRating
         {
             get

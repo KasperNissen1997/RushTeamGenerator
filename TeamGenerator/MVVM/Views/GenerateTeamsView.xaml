@@ -23,7 +23,12 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="250"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
 
             <Label Content="Team Generation Parameters:"/>
@@ -64,20 +69,36 @@
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="IsSelected" Value="{Binding IsSelectedInTeamGeneratorView, Mode=TwoWay}" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsSelectedInGeneratorView, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                        <!--<Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelectedInTeamGeneratorView, UpdateSourceTrigger=PropertyChanged}" Value="True">
                                 <Setter Property="Background" Value="LightGreen"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding IsSelectedInGeneratorView, UpdateSourceTrigger=PropertyChanged}" Value="False">
-                                <!-- Set the background back to the default color -->
+                            <DataTrigger Binding="{Binding IsSelectedInTeamGeneratorView, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                --><!-- Set the background back to the default color --><!--
                                 <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
                             </DataTrigger>
-                        </Style.Triggers>
+                        </Style.Triggers>-->
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
 
-            <Button Grid.Row="6" Content="Generate Teams!" FontSize="18" Background="LightSteelBlue" Command="{Binding GenerateTeamsCommand}" CommandParameter="{Binding}"/>
+            <Button Grid.Row="6" Content="Generate Teams!" FontSize="18" FontWeight="SemiBold" Background="LightSteelBlue" Command="{Binding GenerateTeamsCommand}" CommandParameter="{Binding}"/>
+
+            <Label Grid.Row="8" Content="Leftover Players:"/>
+
+            <ListBox Grid.Row="9" SelectionMode="Multiple" ItemsSource="{Binding LeftOverPlayers}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                            <Label Content="{Binding Nickname}"/>
+                            <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Grid.Row="11" Content="Save Teams to .csv" />
         </Grid>
 
         <Grid Grid.Column="1" Margin="10">
@@ -98,15 +119,16 @@
             <Label Content="Generated Teams:"/>
 
             <!-- Upper Left Team -->
-            <Grid Grid.Row="1" Margin="0,0,0,10">
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Team 1:" FontSize="18" VerticalAlignment="Center"/>
+                <Label Content="{Binding UpperLeftTeamName}" FontSize="18" VerticalAlignment="Center" d:Content="Team 1"/>
 
-                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding UpperLeftTeam.Players}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -117,18 +139,43 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Cumulative Rating:"/>
+                    <Label Content="{Binding UpperLeftTeam.Rating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="10"/>
+
+                    <Label Grid.Row="1" Content="Average Rating:"/>
+                    <Label Grid.Row="1" Content="{Binding UpperLeftTeam.AveragePlayerRating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="2"/>
+
+                    <Label Grid.Column="2" Content="Speaks Danish:"/>
+                    <CheckBox Grid.Column="2" IsEnabled="False" IsChecked="{Binding UpperLeftTeam.SpeaksDanish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Speaks English:"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsEnabled="False" IsChecked="{Binding UpperLeftTeam.SpeaksEnglish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
             </Grid>
 
             <!-- Upper Right Team -->
-            <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,0,10">
+            <Grid Grid.Row="1" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Team 2:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Label Content="{Binding UpperRightTeamName}" FontSize="18" VerticalAlignment="Center" d:Content="Team 2"/>
 
-                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding UpperRightTeam.Players}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -139,18 +186,43 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Cumulative Rating:"/>
+                    <Label Content="{Binding UpperRightTeam.Rating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="10"/>
+
+                    <Label Grid.Row="1" Content="Average Rating:"/>
+                    <Label Grid.Row="1" Content="{Binding UpperRightTeam.AveragePlayerRating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="2"/>
+
+                    <Label Grid.Column="2" Content="Speaks Danish:"/>
+                    <CheckBox Grid.Column="2" IsEnabled="False" IsChecked="{Binding UpperRightTeam.SpeaksDanish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Speaks English:"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsEnabled="False" IsChecked="{Binding UpperRightTeam.SpeaksEnglish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
             </Grid>
 
             <!-- Lower Left Team -->
-            <Grid Grid.Row="3" Margin="0,10,0,0">
+            <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Team 3:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Label Content="{Binding LowerLeftTeamName}" FontSize="18" VerticalAlignment="Center" d:Content="Team 3"/>
 
-                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding LowerLeftTeam.Players}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -161,18 +233,43 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Cumulative Rating:"/>
+                    <Label Content="{Binding LowerLeftTeam.Rating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="10"/>
+
+                    <Label Grid.Row="1" Content="Average Rating:"/>
+                    <Label Grid.Row="1" Content="{Binding LowerLeftTeam.AveragePlayerRating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="2"/>
+
+                    <Label Grid.Column="2" Content="Speaks Danish:"/>
+                    <CheckBox Grid.Column="2" IsEnabled="False" IsChecked="{Binding LowerLeftTeam.SpeaksDanish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Speaks English:"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsEnabled="False" IsChecked="{Binding LowerLeftTeam.SpeaksEnglish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
             </Grid>
 
             <!-- Lower Right Team -->
-            <Grid Grid.Row="3" Grid.Column="2" Margin="0,10,0,0">
+            <Grid Grid.Row="3" Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Team 4:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <Label Content="{Binding LowerRightTeamName}" FontSize="18" VerticalAlignment="Center" d:Content="Team 4"/>
 
-                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding LowerRightTeam.Players}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -183,10 +280,34 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Content="Cumulative Rating:"/>
+                    <Label Content="{Binding LowerRightTeam.Rating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="10"/>
+
+                    <Label Grid.Row="1" Content="Average Rating:"/>
+                    <Label Grid.Row="1" Content="{Binding LowerRightTeam.AveragePlayerRating}" HorizontalAlignment="Right" FontWeight="SemiBold" d:Content="2"/>
+
+                    <Label Grid.Column="2" Content="Speaks Danish:"/>
+                    <CheckBox Grid.Column="2" IsEnabled="False" IsChecked="{Binding LowerRightTeam.SpeaksDanish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Speaks English:"/>
+                    <CheckBox Grid.Row="1" Grid.Column="2" IsEnabled="False" IsChecked="{Binding LowerRightTeam.SpeaksEnglish, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
             </Grid>
 
-            <Button Grid.Row="5" Content="Previous Page" HorizontalAlignment="Right" Padding="10,0,10,0"/>
-            <Button Grid.Row="5" Grid.Column="12" Content="Next Page" HorizontalAlignment="Left" Padding="10,0,10,0"/>
+            <Button Grid.Row="5" Content="Previous Page" HorizontalAlignment="Right" Padding="10,0,10,0" Command="{Binding ShowPreviousTeamPageCommmand}" CommandParameter="{Binding}"/>
+            <Button Grid.Row="5" Grid.Column="12" Content="Next Page" HorizontalAlignment="Left" Padding="10,0,10,0" Command="{Binding ShowNextTeamPageCommand}" CommandParameter="{Binding}"/>
 
             <Button Grid.Row="5" Grid.Column="2" Content="Back" Padding="10,0,10,0" HorizontalAlignment="Right" Command="{Binding GoToMainMenuCommand}" CommandParameter="{Binding}"/>
         </Grid>

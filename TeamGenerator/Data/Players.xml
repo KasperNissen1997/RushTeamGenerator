@@ -11,16 +11,6 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Ryan Bass</Name>
-    <Nickname>hectic</Nickname>
-    <Rating>8</Rating>
-    <SpeaksDanish>false</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
-  </Player>
-  <Player>
     <Name>Matthias Grundt Simonsen</Name>
     <Nickname>Grunk</Nickname>
     <Rating>10</Rating>
@@ -44,6 +34,16 @@
     <Name>Placeholder</Name>
     <Nickname>Placeholder</Nickname>
     <Rating>10</Rating>
+    <SpeaksDanish>false</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences />
+  </Player>
+  <Player>
+    <Name>Ryan Bass</Name>
+    <Nickname>hectic</Nickname>
+    <Rating>8</Rating>
     <SpeaksDanish>false</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
@@ -131,8 +131,18 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Philip Kroer Færch</Name>
-    <Nickname>Tucan</Nickname>
+    <Name>Sebastoam Niclasen</Name>
+    <Nickname>SebNic</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences />
+  </Player>
+  <Player>
+    <Name>Asger Ravn Nissen</Name>
+    <Nickname>Ravne</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
@@ -142,6 +152,20 @@
     <Exclusions />
     <Acquaintences>
       <PlayerIdentifier>15</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Philip Kroer Færch</Name>
+    <Nickname>Tucan</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>14</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -159,30 +183,6 @@
       <PlayerIdentifier>26</PlayerIdentifier>
       <PlayerIdentifier>28</PlayerIdentifier>
     </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Asger Ravn Nissen</Name>
-    <Nickname>Ravne</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>13</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>13</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Sebastoam Niclasen</Name>
-    <Nickname>SebNic</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
   </Player>
   <Player>
     <Name>Theis Hollensberg Svendsen</Name>
@@ -235,8 +235,8 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Steffen Andersen</Name>
-    <Nickname>Frank5</Nickname>
+    <Name>Philip Jacobsen</Name>
+    <Nickname>PhilministereN</Nickname>
     <Rating>4</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
@@ -245,8 +245,8 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Philip Jacobsen</Name>
-    <Nickname>PhilministereN</Nickname>
+    <Name>Steffen Andersen</Name>
+    <Nickname>Frank5</Nickname>
     <Rating>4</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
@@ -285,12 +285,12 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
       <PlayerIdentifier>28</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
       <PlayerIdentifier>28</PlayerIdentifier>
     </Acquaintences>
   </Player>
@@ -311,12 +311,12 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
       <PlayerIdentifier>26</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
       <PlayerIdentifier>26</PlayerIdentifier>
     </Acquaintences>
   </Player>

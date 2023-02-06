@@ -222,7 +222,7 @@ namespace TeamGenerator.MVVM.Models
         public int CompareTo(Player? other)
         {
             if (other is Player player)
-                return Identifier.CompareTo(player.Identifier);
+                return Rating.CompareTo(player.Rating) * -1;
 
             throw new NotImplementedException();
         }

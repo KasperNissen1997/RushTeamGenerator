@@ -1,4 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Xml.Linq;
 using TeamGenerator.MVVM.Models;
 
 namespace TeamGenerator.MVVM.ViewModels
@@ -8,11 +11,37 @@ namespace TeamGenerator.MVVM.ViewModels
         private Team source;
 
         public ObservableCollection<PlayerViewModel> Players { get; }
-        public bool SpeaksDanish { get; }
-        public bool SpeaksEnglish { get; }
-        public float Rating { get; }
+        public int Rating
+        {
+            get
+            {
+                return source.Rating;
+            }
+        }
+        public double AveragePlayerRating
+        {
+            get
+            {
+                return Math.Round(source.AveragePlayerRating, 1); 
+            }
+        }
 
-        public TeamViewModel (Team source)
+        public bool SpeaksDanish
+        {
+            get
+            {
+                return source.SpeaksDanish;
+            }
+        }
+        public bool SpeaksEnglish
+        {
+            get
+            {
+                return source.SpeaksEnglish;
+            }
+        }
+
+        public TeamViewModel(Team source)
         {
             this.source = source;
 
@@ -20,11 +49,6 @@ namespace TeamGenerator.MVVM.ViewModels
 
             foreach (Player player in source.Players)
                 Players.Add(new PlayerViewModel(player));
-
-            Rating = source.Rating;
-
-            SpeaksDanish = source.SpeaksDanish;
-            SpeaksEnglish = source.SpeaksEnglish;
         }
     }
 }

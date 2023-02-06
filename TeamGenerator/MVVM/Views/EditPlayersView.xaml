@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Registered players:"/>
-            <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
+            <ListBox x:Name="RegisteredPlayersListBox" Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

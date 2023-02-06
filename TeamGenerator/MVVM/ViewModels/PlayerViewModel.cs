@@ -338,7 +338,7 @@ namespace TeamGenerator.MVVM.ViewModels
             Acquaintences.Remove(playerVM);
 
             if (playerVM.Acquaintences.Contains(this)) // does the player have "this" as an acquaintence?
-                playerVM.RemoveInclusion(this);
+                playerVM.RemoveAcquaintence(this);
         }
         #endregion
 
@@ -382,6 +382,10 @@ namespace TeamGenerator.MVVM.ViewModels
 
         public void Delete ()
         {
+            foreach (Team team in new List<Team>(TeamRepository.Instance.RetrieveAll()))
+                if (team.Players.Contains(source))
+                    TeamRepository.Instance.Delete(team.Identifier);
+
             PlayerRepository.Instance.Delete(source.Identifier);
         }
 

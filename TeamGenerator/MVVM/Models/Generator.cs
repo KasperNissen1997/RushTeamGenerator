@@ -10,7 +10,7 @@ namespace TeamGenerator.MVVM.Models
     /// <summary>
     /// This class is used to generate groups of <see cref="Team"/>s, given a dataset of <see cref="Player"/>s.
     /// </summary>
-    public class Generator
+    public static class Generator
     {
         /// <summary>
         /// Attempts to generate a group of <see cref="Team"/>s from <paramref name="players"/>. <br/>
@@ -21,8 +21,18 @@ namespace TeamGenerator.MVVM.Models
         /// <param name="allowedRatingDeviance">How much difference in rating the lowest rated generated team is allowed to deviate from the highest rated generated team.</param>
         /// <param name="teams">The generated <see cref="Team"/>s if generation was succesfull; otherwise an incomplete list of <see cref="Team"/>s.</param>
         /// <returns><see langword="true"/> if the generation of teams succeeded; otherwise <see langword="false"/>.</returns>
-        public bool TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams)
+        public static bool TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams)
         {
+            if (players.Count < teamCapacity)
+            {
+                teams = new List<Team>()
+                {
+                    new Team(teamCapacity, players)
+                };
+
+                return true;
+            }
+
             // Initialize the playerGroups
             List<PlayerGroup> singlePlayerGroups = CreatePlayerGroups(players);
             singlePlayerGroups.Sort(); // sort players by rating, low to high
@@ -147,7 +157,7 @@ namespace TeamGenerator.MVVM.Models
         /// </summary>
         /// <param name="players">The list of players.</param>
         /// <returns>A <see cref="List{T}"/> with <see cref="PlayerGroup"/>s containing all provided <see cref="Player"/>s from <paramref name="players"/>.</returns>
-        private List<PlayerGroup> CreatePlayerGroups(List<Player> players)
+        private static List<PlayerGroup> CreatePlayerGroups(List<Player> players)
         {
             List<PlayerGroup> playerGroups = new();
 
@@ -175,7 +185,7 @@ namespace TeamGenerator.MVVM.Models
             return playerGroups;
         }
 
-        private int GetAcquaintenceCount(Team team, PlayerGroup playerGroup)
+        private static int GetAcquaintenceCount(Team team, PlayerGroup playerGroup)
         {
             int acquaintenceCount = 0;
 
@@ -194,7 +204,7 @@ namespace TeamGenerator.MVVM.Models
         /// <param name="playerGroups">The <see cref="PlayerGroup"/>s that will be checked for eligibility.</param>
         /// <param name="eligiblePlayerGroup">If an eligible <see cref="PlayerGroup"/> is found, then this will be it; otherwise, it will hold an invalid <see cref="PlayerGroup"/>.</param>
         /// <returns><see langword="true"/> if an eligible <see cref="PlayerGroup"/> was found; otherwise <see langword="false"/>.</returns>
-        private bool TryFindEligiblePlayerGroup(Team team, List<PlayerGroup> playerGroups, out PlayerGroup eligiblePlayerGroup)
+        private static bool TryFindEligiblePlayerGroup(Team team, List<PlayerGroup> playerGroups, out PlayerGroup eligiblePlayerGroup)
         {
             List<PlayerGroup> eligiblePlayerGroups = new List<PlayerGroup>();
 
@@ -232,7 +242,7 @@ namespace TeamGenerator.MVVM.Models
         /// <param name="team">The <see cref="Team"/> that <paramref name="playerGroup"/> should be checked for eligibility against.</param>
         /// <param name="playerGroup">The <see cref="PlayerGroup"/> that will be checked for eligibility.</param>
         /// <returns><see langword="true"/> if <paramref name="playerGroup"/> is eligible; otherwise <see langword="false"/>.</returns>
-        private bool CheckPlayerGroupEligibility(Team team, PlayerGroup playerGroup)
+        private static bool CheckPlayerGroupEligibility(Team team, PlayerGroup playerGroup)
         {
             // is there room for any more players?
             if (team.Size >= team.Capacity)
@@ -243,8 +253,8 @@ namespace TeamGenerator.MVVM.Models
                 return false;
 
             // can they communicate?
-            if ((!team.SpeaksDanish && !playerGroup.SpeaksEnglish)
-                || (!team.SpeaksEnglish && !playerGroup.SpeaksDanish))
+            if (!((team.SpeaksDanish && playerGroup.SpeaksDanish)
+                || (team.SpeaksEnglish && playerGroup.SpeaksEnglish)))
                 return false;
 
             // are any of the groupPlayers excluded by any of the teamPlayers?

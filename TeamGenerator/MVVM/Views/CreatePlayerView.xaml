@@ -64,7 +64,7 @@
             <Label Grid.Column="1" FontSize="18" Content="{Binding Rating}" HorizontalAlignment="Center" VerticalAlignment="Center" d:Content="1"/>
         </Grid>
 
-        <Button x:Name="CreatePlayerButton" Grid.Row="9" Grid.Column="1" Content="Create player" Padding="25,0,25,0" HorizontalAlignment="Center" Click="CreatePlayerButton_Click"/>
+        <Button x:Name="CreatePlayerButton" IsEnabled="{Binding SpeaksAnyLanguage}" Grid.Row="9" Grid.Column="1" Content="Create player" Padding="25,0,25,0" HorizontalAlignment="Center" Click="CreatePlayerButton_Click"/>
 
     </Grid>
 </Window>

@@ -43,7 +43,7 @@ namespace TeamGenerator.MVVM.Views
         public Team teamOut = new Team(30);
         private void Gen_Show_Click(object sender, RoutedEventArgs e)
         {
-            Generator generator = new Generator();
+            //Generator generator = new Generator();
             //generator.TryGenerateTeams();
 
         }

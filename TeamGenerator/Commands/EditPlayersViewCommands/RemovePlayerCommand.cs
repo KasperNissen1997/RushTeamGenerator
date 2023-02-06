@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using TeamGenerator.MVVM.ViewModels;
 
-namespace TeamGenerator.Commands
+namespace TeamGenerator.Commands.EditPlayersViewCommands
 {
-    public class AddExclusionCommand : ICommand
+    public class RemovePlayerCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged
         {
@@ -16,11 +17,8 @@ namespace TeamGenerator.Commands
         {
             if (parameter is EditPlayersViewModel vm)
             {
-                if (vm.SelectedRelatedPlayer is not null)
-                    if (!vm.SelectedRelatedPlayer.IsInclusionOfSelectedPlayer
-                        && !vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer
-                        && !vm.SelectedPlayer.Equals(vm.SelectedRelatedPlayer))
-                        return true;
+                if (vm.SelectedPlayer is not null)
+                    return true;
 
                 return false;
             }
@@ -35,12 +33,13 @@ namespace TeamGenerator.Commands
         {
             if (parameter is EditPlayersViewModel vm)
             {
-                vm.SelectedPlayer.AddExclusion(vm.SelectedRelatedPlayer);
+                foreach (PlayerViewModel includedPlayerVM in vm.RegisteredPlayers) // remove relations before deletion
+                    vm.SelectedPlayer.TryRemoveRelation(includedPlayerVM);
 
-                vm.SelectedRelatedPlayer.IsRelationOfSelectedPlayer = true;
-                vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer = true;
+                vm.SelectedPlayer.Delete();
 
-                vm.RelationActionLog = "Exclusion created succesfully.";
+                vm.RegisteredPlayers.Remove(vm.SelectedPlayer);
+                vm.SelectedPlayer = null;
 
                 return;
             }
