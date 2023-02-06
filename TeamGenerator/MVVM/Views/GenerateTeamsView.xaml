@@ -2,13 +2,193 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="GenerateTeamsView">
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:viewmodels="clr-namespace:TeamGenerator.MVVM.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:GenerateTeamsViewModel}"
+      mc:Ignorable="d"
+      d:DesignWidth="1080" d:DesignHeight="720"
+      Title="Generate Teams" MinWidth="1080" MinHeight="500">
 
-    <Grid>
-        
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="10,10,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Team Generation Parameters:"/>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Team Capacity -->
+                <Label Content="Team Capacity:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Grid.Column="1" Text="{Binding TeamCapacity, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
+
+                <!-- Allowed Rating Deviance -->
+                <Label Grid.Row="2" Content="Allowed Rating Deviance:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding AllowedRatingDeviance, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
+            </Grid>
+
+            <Button Grid.Row="2" Content="Select All Players" Command="{Binding SelectAllPlayersInGeneratorViewCommand}" CommandParameter="{Binding}" HorizontalAlignment="Stretch"/>
+
+            <ListBox Grid.Row="4" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" d:ItemsSource="{d:SampleData ItemCount=30}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                            <Label Content="{Binding Nickname}"/>
+                            <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelectedInTeamGeneratorView, Mode=TwoWay}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsSelectedInGeneratorView, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsSelectedInGeneratorView, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                <!-- Set the background back to the default color -->
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+            <Button Grid.Row="6" Content="Generate Teams!" FontSize="18" Background="LightSteelBlue" Command="{Binding GenerateTeamsCommand}" CommandParameter="{Binding}"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Generated Teams:"/>
+
+            <!-- Upper Left Team -->
+            <Grid Grid.Row="1" Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Team 1:" FontSize="18" VerticalAlignment="Center"/>
+
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                                <Label Content="{Binding Nickname}"/>
+                                <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <!-- Upper Right Team -->
+            <Grid Grid.Row="1" Grid.Column="2" Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Team 2:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                                <Label Content="{Binding Nickname}"/>
+                                <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <!-- Lower Left Team -->
+            <Grid Grid.Row="3" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Team 3:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                                <Label Content="{Binding Nickname}"/>
+                                <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <!-- Lower Right Team -->
+            <Grid Grid.Row="3" Grid.Column="2" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Team 4:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+
+                <ListBox Grid.Row="1" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                                <Label Content="{Binding Nickname}"/>
+                                <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <Button Grid.Row="5" Content="Previous Page" HorizontalAlignment="Right" Padding="10,0,10,0"/>
+            <Button Grid.Row="5" Grid.Column="12" Content="Next Page" HorizontalAlignment="Left" Padding="10,0,10,0"/>
+
+            <Button Grid.Row="5" Grid.Column="2" Content="Back" Padding="10,0,10,0" HorizontalAlignment="Right" Command="{Binding GoToMainMenuCommand}" CommandParameter="{Binding}"/>
+        </Grid>
     </Grid>
 </Page>

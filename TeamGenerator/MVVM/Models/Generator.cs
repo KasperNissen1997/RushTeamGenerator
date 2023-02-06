@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System;
 using TeamGenerator.MVVM.ViewModels;
+using TeamGenerator.MVVM.Models.Repositories;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -42,72 +43,14 @@ namespace TeamGenerator.MVVM.Models
             teams = new List<Team>();
 
             for (int i = 0; i < teamCount; i++)
-                teams.Add(new Team(teamCapacity));
+                teams.Add(TeamRepository.Instance.Create(teamCapacity));
 
             List<Team> finalTeams = new(teams); // Save a copy of the teams list
-
-            #region Old Algorithm
-            //// Calculate the targeted rating
-            //int ratingSum = 0;
-
-            //for (int i = 0; i < teamCount * teamCapacity; i++) // use a for-loop to only count the amount of players that are going to be part of teams
-            //    ratingSum += players[i].Rating;
-
-            //int targetRating = ratingSum / teamCount; // the targeted rating that each team will want to have
-
-            //int currentTargetSize = 1; // the expected starting size of teams at this stage
-            //int currentTargetRating = targetRating / teamCapacity; // the expected starting rating of teams at this stage
-
-            //for (int i = 1; playerGroups.Count > 0; i++) // start with i = 1, and increment it for each loop, untill all playerGroups have been assigned a team
-            //{
-            //    if (i == teamCapacity + 3) // change 3 to a higher number to continue searching
-            //        return false;
-
-            //    if (i == 1) // for the first iteration of the loop...
-            //    {
-            //        foreach (Team team in teams) // ... naively assign the largest playerGroups to the teams
-            //        {
-            //            team.AddPlayerGroup(playerGroups[0]);
-
-            //            playerGroups.RemoveAt(0);
-            //        }
-
-            //        continue; // start second iteration
-            //    }
-
-            //    if (i <= teamCapacity) // if we are still limiting the amount of players assigned to each team, as we do in the start of the loop, then ...
-            //    {
-            //        currentTargetSize = i; // ... increase our targeted size for our teams, so that they can accept more players
-            //        currentTargetRating = (int) (targetRating * ((double) i / teamCapacity)); // ... recalculate the expected rating of teams at this stage
-            //    }
-
-            //    foreach (Team team in teams) // for each team ...
-            //        if (i >= teamCapacity + 2)
-            //        {
-            //            if (TryFindEligiblePlayerGroup(team, playerGroups, currentTargetRating, currentTargetRating / 2, teamCapacity, out PlayerGroup eligiblePlayerGroup))
-            //            {
-            //                team.AddPlayerGroup(eligiblePlayerGroup);
-
-            //                playerGroups.Remove(eligiblePlayerGroup);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            // attempt to find and assign an eligible player amongst the players that haven't been assigned a team yet
-            //            if (TryFindEligiblePlayerGroup(team, playerGroups, currentTargetRating, allowedRatingDeviance, currentTargetSize, out PlayerGroup eligiblePlayerGroup))
-            //            {
-            //                team.AddPlayerGroup(eligiblePlayerGroup);
-
-            //                playerGroups.Remove(eligiblePlayerGroup);
-            //            }
-            //        }
-            //}
-            #endregion
 
             // TODO: Check to see if multiple bad playerGroups are teamed together
             foreach (PlayerGroup multiplePlayerGroup in multiplePlayerGroups)
             {
-                // get worst team
+                // get worst team by average player rating
                 teams.Sort();
 
                 if (teams[0].Size + multiplePlayerGroup.Size <= teamCapacity)
@@ -127,6 +70,8 @@ namespace TeamGenerator.MVVM.Models
                     singlePlayerGroups.Remove(lowestAverageRatedPlayerGroup);
                 }
             }
+
+            bool succes = true;
 
             while (singlePlayerGroups.Count != 0)
             {
@@ -149,6 +94,11 @@ namespace TeamGenerator.MVVM.Models
                     if (lowestAverageRatedTeam.Size == teamCapacity)
                         teams.Remove(lowestAverageRatedTeam);
                 }
+                else
+                {
+                    succes = false;
+                    teams.Remove(lowestAverageRatedTeam);
+                }
             }
 
             teams = finalTeams;
@@ -163,18 +113,33 @@ namespace TeamGenerator.MVVM.Models
             double averageTeamRating = teamRatings.Average();
             int highestTeamRating = teamRatings.Max();
 
+            int largestTeamSize = int.MinValue;
+            int smallestTeamSize = int.MaxValue;
+            foreach (Team team in teams)
+            {
+                if (team.Size > largestTeamSize)
+                    largestTeamSize = team.Size;
+
+                if (team.Size < smallestTeamSize)
+                    smallestTeamSize = team.Size;
+            }
+
             // TODO: Calculate in-team player rating deviation as int and percentage
 
-            Trace.WriteLine("Teams generated succesfully! Analytics below:\n\n" +
+            Trace.WriteLine("\nTeams generated! Analytics below:\n\n" +
                 $"Lowest team rating: {lowestTeamRating}\n" +
                 $"Average team rating: {averageTeamRating}\n" +
-                $"Highest team rating: {highestTeamRating}");
+                $"Highest team rating: {highestTeamRating}\n" +
+                $"Smallest team size: {smallestTeamSize}\n" +
+                $"Largest team size: {largestTeamSize}\n");
             #endregion
 
             if (lowestTeamRating + allowedRatingDeviance < highestTeamRating)
-                return false;
+                succes = false;
 
-            return true;
+            Trace.WriteLine("Team generation was a " + (succes ? "SUCCES!" : "FAILURE!"));
+
+            return succes;
         }
 
         /// <summary>

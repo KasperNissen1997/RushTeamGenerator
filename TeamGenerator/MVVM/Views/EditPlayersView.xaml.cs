@@ -14,17 +14,5 @@ namespace TeamGenerator.MVVM.Views
 
             DataContext = new EditPlayersViewModel();
         }
-
-        private void Window_Closed(object sender, EventArgs e, EditPlayersViewModel DataContext)
-        {
-            if (DataContext is EditPlayersViewModel vm)
-            {
-                vm.UpdatePlayerViewModelSources();
-                PlayerRepository.Instance.Save();
-                return;
-            }
-
-            throw new InvalidOperationException("NO DATA CAN BE SAVED!");
-        }
     }
 }

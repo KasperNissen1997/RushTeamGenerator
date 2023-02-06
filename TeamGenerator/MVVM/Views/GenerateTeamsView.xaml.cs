@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TeamGenerator.MVVM.ViewModels;
 
 namespace TeamGenerator.MVVM.Views
 {
@@ -23,6 +24,8 @@ namespace TeamGenerator.MVVM.Views
         public GenerateTeamsView()
         {
             InitializeComponent();
+
+            DataContext = new GenerateTeamsViewModel();
         }
     }
 }

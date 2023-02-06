@@ -50,7 +50,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                 Indent = true
             };
 
-            players.Sort();
+            // players.Sort();
 
             for (int i = 0; i < players.Count; i++)
                 players[i].Identifier = i;
@@ -108,6 +108,10 @@ namespace TeamGenerator.MVVM.Models.Repositories
             using (XmlReader reader = XmlReader.Create(filePath, settings))
             {
                 reader.ReadToFollowing("Player");
+
+                if (reader.EOF)
+                    return;
+
                 do
                 {
                     reader.ReadToFollowing("Name");

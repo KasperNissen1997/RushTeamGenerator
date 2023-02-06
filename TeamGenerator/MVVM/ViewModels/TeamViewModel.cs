@@ -7,10 +7,10 @@ namespace TeamGenerator.MVVM.ViewModels
     {
         private Team source;
 
-        public ObservableCollection<PlayerViewModel> Players { get; set; }
-        public bool SpeaksDanish { get; set; }
-        public bool SpeaksEnglish { get; set; }
-        public float Rating { get; set; }
+        public ObservableCollection<PlayerViewModel> Players { get; }
+        public bool SpeaksDanish { get; }
+        public bool SpeaksEnglish { get; }
+        public float Rating { get; }
 
         public TeamViewModel (Team source)
         {

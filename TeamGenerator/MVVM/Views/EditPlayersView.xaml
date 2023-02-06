@@ -1,11 +1,14 @@
 ﻿<Page x:Class="TeamGenerator.MVVM.Views.EditPlayersView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TeamGenerator" xmlns:viewmodels="clr-namespace:TeamGenerator.MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EditPlayersViewModel}"
-        mc:Ignorable="d"
-        Title="Edit players" MinWidth="1080" MinHeight="500">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewmodels="clr-namespace:TeamGenerator.MVVM.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:EditPlayersViewModel}"
+      mc:Ignorable="d"
+      d:DesignWidth="1080" d:DesignHeight="720"
+      Title="Edit Players" MinWidth="1080" MinHeight="500">
+
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -21,7 +24,7 @@
             </Grid.RowDefinitions>
 
             <Label Content="Registered players:"/>
-            <ListBox Grid.Row="1" x:Name="RegisteredPlayersListBox" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
+            <ListBox Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

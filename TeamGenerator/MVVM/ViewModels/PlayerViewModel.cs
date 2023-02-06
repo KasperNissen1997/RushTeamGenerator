@@ -10,7 +10,8 @@ namespace TeamGenerator.MVVM.ViewModels
 {
     public class PlayerViewModel : INotifyPropertyChanged
     {
-        private Player source;
+        // TODO: FIX THIS ACCESS MODIFIER BREACH 
+        public Player source;
 
         private string _name;
         public string Name
@@ -161,6 +162,21 @@ namespace TeamGenerator.MVVM.ViewModels
                 OnPropertyChanged(nameof(IsAcquaintenceOfSelectedPlayer));
             }
         }
+
+        private bool _isSelectedInTeamGeneratorView;
+        public bool IsSelectedInTeamGeneratorView
+        {
+            get
+            {
+                return _isSelectedInTeamGeneratorView;
+            }
+
+            set
+            {
+                _isSelectedInTeamGeneratorView = value;
+                OnPropertyChanged(nameof(IsSelectedInTeamGeneratorView));
+            }
+        }
         #endregion
 
         #region Interface
@@ -199,6 +215,8 @@ namespace TeamGenerator.MVVM.ViewModels
             IsInclusionOfSelectedPlayer = false;
             IsExclusionOfSelectedPlayer = false;
             IsAcquaintenceOfSelectedPlayer = false;
+
+            IsSelectedInTeamGeneratorView = false;
         }
 
         #region Relation logic

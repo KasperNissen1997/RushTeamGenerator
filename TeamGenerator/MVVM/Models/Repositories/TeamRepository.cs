@@ -37,7 +37,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
         private string filePath = Path.GetFullPath(@"..\..\..\Data\Teams.xml");
 
-        public List<Team> teams;
+        private List<Team> teams;
 
         #region Persistance
         public void Save()
@@ -50,7 +50,7 @@ namespace TeamGenerator.MVVM.Models.Repositories
                 Indent = true
             };
 
-            teams.Sort();
+            // teams.Sort();
 
             for (int i = 0; i < teams.Count; i++)
                 teams[i].Identifier = i;
@@ -81,9 +81,6 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
         public void Load()
         {
-            if (!File.Exists(filePath))
-                File.Create(filePath).Close();
-
             XmlReaderSettings settings = new()
             {
                 IgnoreWhitespace = true,
@@ -93,15 +90,19 @@ namespace TeamGenerator.MVVM.Models.Repositories
             using (XmlReader reader = XmlReader.Create(filePath, settings))
             {
                 reader.ReadToFollowing("Team");
+
+                if (reader.EOF)
+                    return;
+
                 do
                 {
                     reader.ReadToFollowing("Capacity");
 
                     int capacity = reader.ReadElementContentAsInt(); // Capacity
 
-                    reader.ReadToFollowing("Players"); // Players preparation
+                    // reader.ReadToFollowing("Players"); 
 
-                    List<Player> players = new();
+                    List<Player> players = new(); // Players preparation
                     XmlReader subtreeReader = reader.ReadSubtree();
 
                     subtreeReader.ReadToFollowing("PlayerIdentifier");
