@@ -16,8 +16,8 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Rush Copenhagen" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFF1914D" FontSize="64" FontWeight="Bold"/>
         <Image HorizontalAlignment="Left" Source="/Images/RushLogo.png" Stretch="Uniform" Grid.RowSpan="4" Opacity="0.2"/>
+        <Label Content="Rush Copenhagen" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFF1914D" FontSize="64" FontWeight="Bold"/>
         <Button Grid.Row="1" Content="Generate Teams" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Background="#FFED966D" Height="100" Width="300" Click="GenerateTeams_Click"/>
         <Button Grid.Row="2" Content="Edit Players" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="28" Background="#FFED966D" Height="100" Width="300" Click="EditPlayers_Click"/>
 
