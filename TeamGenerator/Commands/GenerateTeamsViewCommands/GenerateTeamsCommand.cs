@@ -63,7 +63,7 @@ namespace TeamGenerator.Commands.GenerateTeamsViewCommands
                 vm.GeneratedTeams.Clear();
                 vm.LeftOverPlayers.Clear();
 
-                Generator.GenerationResults results = Generator.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams, 10);
+                Generator.GenerationResults results = Generator.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams, vm.OptimizationIterations);
 
                 if (results.success)
                     MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);

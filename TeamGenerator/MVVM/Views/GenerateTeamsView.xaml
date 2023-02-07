@@ -18,7 +18,7 @@
         <Grid Margin="10,10,0,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="250"/>
@@ -39,6 +39,8 @@
                     <RowDefinition Height="10"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="10"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -52,9 +54,14 @@
                 <!-- Allowed Rating Deviance -->
                 <Label Grid.Row="2" Content="Allowed Rating Deviance:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding AllowedRatingDeviance, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
+
+                <!-- Optimization Iterations -->
+                <Label Grid.Row="4" Content="Optimization Iterations:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding OptimizationIterations, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
             </Grid>
 
-            <Button Grid.Row="2" Content="Select All Players" Command="{Binding SelectAllPlayersInGeneratorViewCommand}" CommandParameter="{Binding}" HorizontalAlignment="Stretch"/>
+            <Button Grid.Row="2" Content="Select All Players" Padding="10,0,10,0" Command="{Binding SelectAllPlayersInGeneratorViewCommand}" CommandParameter="{Binding}" HorizontalAlignment="Left"/>
+            <Button Grid.Row="2" Content="Unselect All Players" Padding="10,0,10,0" Command="{Binding UnselectAllPlayersInGeneratorViewCommand}" CommandParameter="{Binding}" HorizontalAlignment="Right"/>
 
             <ListBox Grid.Row="4" SelectionMode="Multiple" ItemsSource="{Binding RegisteredPlayers}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>

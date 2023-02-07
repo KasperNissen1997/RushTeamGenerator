@@ -99,9 +99,9 @@ namespace TeamGenerator.MVVM.Models
         /// <param name="teamCapacity">The capacity, aka maximum size, of each <see cref="Team"/>.</param>
         /// <param name="allowedRatingDeviance">How much difference in rating the lowest rated generated team is allowed to deviate from the highest rated generated team.</param>
         /// <param name="teams">The generated <see cref="Team"/>s if generation was succesfull; otherwise an incomplete list of <see cref="Team"/>s.</param>
-        /// <param name="optimizationDepth">The amount of attempts to optimizie teams the algorithm should perform. The higher the number, the longer it takes to run, but the more 'even' teams become.</param>
+        /// <param name="optimizationIterations">The amount of attempts to optimizie teams the algorithm should perform. The higher the number, the longer it takes to run, but the more 'even' teams become.</param>
         /// <returns>A struct of type <see cref="GenerationResults"/>, which will hold various analytical analysis performed on the resulting generated teams.</returns>
-        public static GenerationResults TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams, int optimizationDepth)
+        public static GenerationResults TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams, int optimizationIterations)
         {
             if (players.Count < teamCapacity)
             {
@@ -190,7 +190,7 @@ namespace TeamGenerator.MVVM.Models
 
             teams = finalTeams;
 
-            for (int n = 0; n < optimizationDepth; n++)
+            for (int n = 0; n < optimizationIterations; n++)
                 if (!OptimizeTeams(teams))
                     break;
 

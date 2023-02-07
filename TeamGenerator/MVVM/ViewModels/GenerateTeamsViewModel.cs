@@ -55,6 +55,20 @@ namespace TeamGenerator.MVVM.ViewModels
                 OnPropertyChanged(nameof(AllowedRatingDeviance));
             }
         }
+        private int _optimizationIterations = 10;
+        public int OptimizationIterations
+        {
+            get
+            {
+                return _optimizationIterations;
+            }
+
+            set
+            {
+                _optimizationIterations = value;
+                OnPropertyChanged(nameof(OptimizationIterations));
+            }
+        }
 
         private ObservableCollection<PlayerViewModel> _registeredPlayers;
         public ObservableCollection<PlayerViewModel> RegisteredPlayers
@@ -274,6 +288,7 @@ namespace TeamGenerator.MVVM.ViewModels
         public GoToMainMenuCommand GoToMainMenuCommand { get; set; } = new();
 
         public SelectAllPlayersInGeneratorViewCommand SelectAllPlayersInGeneratorViewCommand { get; set; } = new();
+        public UnselectAllPlayersInGeneratorViewCommand UnselectAllPlayersInGeneratorViewCommand { get; set; } = new();
         public GenerateTeamsCommand GenerateTeamsCommand { get; set; } = new();
         public ExportToCSVCommand ExportToCSVCommand { get; set; } = new();
 
