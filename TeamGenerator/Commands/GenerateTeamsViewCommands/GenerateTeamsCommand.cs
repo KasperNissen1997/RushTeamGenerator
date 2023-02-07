@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
@@ -61,7 +63,13 @@ namespace TeamGenerator.Commands.GenerateTeamsViewCommands
                 vm.GeneratedTeams.Clear();
                 vm.LeftOverPlayers.Clear();
 
-                Generator.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams);
+                Generator.GenerationResults results = Generator.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams, 10);
+
+                if (results.success)
+                    MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+                else
+                    MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+
 
                 List<Player> playersCopy = new List<Player>(PlayerRepository.Instance.RetrieveAll());
                 foreach (Team team in teams)

@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using TeamGenerator.MVVM.ViewModels;
 using TeamGenerator.MVVM.Models.Repositories;
+using System.Text;
 
 namespace TeamGenerator.MVVM.Models
 {
@@ -12,6 +13,84 @@ namespace TeamGenerator.MVVM.Models
     /// </summary>
     public static class Generator
     {
+        public struct GenerationResults
+        {
+            public bool success;
+            public bool partialTeams;
+
+            public int lowestTeamRating;
+            public double averageTeamRating;
+            public int highestTeamRating;
+
+            public int largestTeamSize;
+            public int smallestTeamSize;
+
+            public GenerationResults(List<Team> teams, int allowedRatingDeviance)
+            {
+                partialTeams = false;
+                int teamSize = teams[0].Size;
+
+                List<int> teamRatings = new();
+
+                largestTeamSize = int.MinValue;
+                smallestTeamSize = int.MaxValue;
+
+                foreach (Team team in teams)
+                {
+                    if (team.Size != teamSize)
+                        partialTeams = true;
+
+                    teamRatings.Add(team.Rating);
+
+                    if (team.Size > largestTeamSize)
+                        largestTeamSize = team.Size;
+
+                    if (team.Size < smallestTeamSize)
+                        smallestTeamSize = team.Size;
+                }
+
+                lowestTeamRating = teamRatings.Min();
+                averageTeamRating = teamRatings.Average();
+                highestTeamRating = teamRatings.Max();
+
+                if (lowestTeamRating + allowedRatingDeviance >= highestTeamRating)
+                    success = true;
+                else
+                    success = false;
+            }
+
+            public override string ToString()
+            {
+                StringBuilder sb = new();
+
+                if (success)
+                {
+                    sb.AppendLine($"The team generation was a success!");
+                    sb.AppendLine();
+                }
+                else
+                {
+                    sb.AppendLine($"The team generation was unfortunately unsuccessful!");
+                    sb.AppendLine();
+                }
+
+                sb.AppendLine($"Lowest Team Rating: {lowestTeamRating}");
+                sb.AppendLine($"Average Team Rating: {Math.Round(averageTeamRating, 2)}");
+                sb.AppendLine($"Highest Team Rating: {highestTeamRating}");
+                sb.AppendLine();
+
+                if (partialTeams)
+                {
+                    sb.AppendLine("Be aware that not all teams generated are of equal size.");
+                    sb.AppendLine();
+                    sb.AppendLine($"Smallest Team Size: {smallestTeamSize}");
+                    sb.AppendLine($"Largest Team Size: {largestTeamSize}");
+                }
+
+                return sb.ToString();
+            }
+        }
+
         /// <summary>
         /// Attempts to generate a group of <see cref="Team"/>s from <paramref name="players"/>. <br/>
         /// If succesfull, the new teams are stored in <paramref name="teams"/>, and this returns <see langword="true"/>.
@@ -20,8 +99,9 @@ namespace TeamGenerator.MVVM.Models
         /// <param name="teamCapacity">The capacity, aka maximum size, of each <see cref="Team"/>.</param>
         /// <param name="allowedRatingDeviance">How much difference in rating the lowest rated generated team is allowed to deviate from the highest rated generated team.</param>
         /// <param name="teams">The generated <see cref="Team"/>s if generation was succesfull; otherwise an incomplete list of <see cref="Team"/>s.</param>
-        /// <returns><see langword="true"/> if the generation of teams succeeded; otherwise <see langword="false"/>.</returns>
-        public static bool TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams)
+        /// <param name="optimizationDepth">The amount of attempts to optimizie teams the algorithm should perform. The higher the number, the longer it takes to run, but the more 'even' teams become.</param>
+        /// <returns>A struct of type <see cref="GenerationResults"/>, which will hold various analytical analysis performed on the resulting generated teams.</returns>
+        public static GenerationResults TryGenerateTeams(List<Player> players, int teamCapacity, int allowedRatingDeviance, out List<Team> teams, int optimizationDepth)
         {
             if (players.Count < teamCapacity)
             {
@@ -30,7 +110,7 @@ namespace TeamGenerator.MVVM.Models
                     new Team(teamCapacity, players)
                 };
 
-                return true;
+                return new GenerationResults(teams, allowedRatingDeviance);
             }
 
             // Initialize the playerGroups
@@ -81,8 +161,8 @@ namespace TeamGenerator.MVVM.Models
                 }
             }
 
-            bool succes = true;
-
+            Team lowestAverageRatedTeam;
+            Team highestAverageRatedTeam;
             while (singlePlayerGroups.Count != 0)
             {
                 if (teams.Count == 0)
@@ -92,8 +172,8 @@ namespace TeamGenerator.MVVM.Models
 
                 // get team with lowest average
                 teams.Sort();
-                
-                Team lowestAverageRatedTeam = teams[0];
+
+                lowestAverageRatedTeam = teams[0];
 
                 if (TryFindEligiblePlayerGroup(lowestAverageRatedTeam, singlePlayerGroups, out PlayerGroup eligiblePlayerGroup))
                 {
@@ -105,51 +185,16 @@ namespace TeamGenerator.MVVM.Models
                         teams.Remove(lowestAverageRatedTeam);
                 }
                 else
-                {
-                    succes = false;
                     teams.Remove(lowestAverageRatedTeam);
-                }
             }
 
             teams = finalTeams;
 
-            #region Analytics
-            List<int> teamRatings = new List<int>();
+            for (int n = 0; n < optimizationDepth; n++)
+                if (!OptimizeTeams(teams))
+                    break;
 
-            foreach (Team team in teams)
-                teamRatings.Add(team.Rating);
-
-            int lowestTeamRating = teamRatings.Min();
-            double averageTeamRating = teamRatings.Average();
-            int highestTeamRating = teamRatings.Max();
-
-            int largestTeamSize = int.MinValue;
-            int smallestTeamSize = int.MaxValue;
-            foreach (Team team in teams)
-            {
-                if (team.Size > largestTeamSize)
-                    largestTeamSize = team.Size;
-
-                if (team.Size < smallestTeamSize)
-                    smallestTeamSize = team.Size;
-            }
-
-            // TODO: Calculate in-team player rating deviation as int and percentage
-
-            Trace.WriteLine("\nTeams generated! Analytics below:\n\n" +
-                $"Lowest team rating: {lowestTeamRating}\n" +
-                $"Average team rating: {averageTeamRating}\n" +
-                $"Highest team rating: {highestTeamRating}\n" +
-                $"Smallest team size: {smallestTeamSize}\n" +
-                $"Largest team size: {largestTeamSize}\n");
-            #endregion
-
-            if (lowestTeamRating + allowedRatingDeviance < highestTeamRating)
-                succes = false;
-
-            Trace.WriteLine("Team generation was a " + (succes ? "SUCCES!" : "FAILURE!"));
-
-            return succes;
+            return new GenerationResults(teams, allowedRatingDeviance);
         }
 
         /// <summary>
@@ -264,6 +309,95 @@ namespace TeamGenerator.MVVM.Models
                         return false;
 
             // all requirements are satisfied!
+            return true;
+        }
+
+        private static bool OptimizeTeams(List<Team> teams)
+        {
+            for (int i = 0; i < teams.Count / 2; i++)
+            {
+                for (int j = 0; j < teams.Count - 1 - i; j++)
+                {
+                    teams.Sort();
+
+                    Team worseTeam = teams[i];
+                    Team betterTeam = teams[teams.Count - 1 - j];
+
+                    int currentRatingDeviance = Math.Abs(betterTeam.Rating - worseTeam.Rating);
+
+                    List<Player> availableWorsePlayers = new();
+                    List<Player> availableBetterPlayers = new();
+
+                    foreach (Player player in worseTeam.Players)
+                        if (CanRemovePlayer(worseTeam, player))
+                            availableWorsePlayers.Add(player);
+
+                    foreach (Player player in betterTeam.Players)
+                        if (CanRemovePlayer(betterTeam, player))
+                            availableBetterPlayers.Add(player);
+
+                    if (availableWorsePlayers.Count == 0 || availableBetterPlayers.Count == 0)
+                        continue;
+
+                    Player worstPlayer = availableWorsePlayers[0];
+                    Player bestPlayer = availableBetterPlayers[0];
+
+                    foreach (Player player in availableWorsePlayers)
+                        if (player.Rating < worstPlayer.Rating)
+                            worstPlayer = player;
+
+                    foreach (Player player in availableBetterPlayers)
+                        if (player.Rating > bestPlayer.Rating)
+                            bestPlayer = player;
+
+                    Team worseTeamCopy = new(worseTeam.Capacity, new(worseTeam.Players));
+                    Team betterTeamCopy = new(betterTeam.Capacity, new(betterTeam.Players));
+                    worseTeamCopy.Players.Remove(worstPlayer);
+                    betterTeamCopy.Players.Remove(bestPlayer);
+
+                    PlayerGroup worstSinglePlayerGroup = new();
+                    PlayerGroup bestSinglePlayerGroup = new();
+                    worstSinglePlayerGroup.Players.Add(worstPlayer);
+                    bestSinglePlayerGroup.Players.Add(bestPlayer);
+
+                    if (CheckPlayerGroupEligibility(worseTeamCopy, bestSinglePlayerGroup) && CheckPlayerGroupEligibility(betterTeamCopy, worstSinglePlayerGroup))
+                    {
+                        worseTeamCopy.AddPlayerGroup(bestSinglePlayerGroup);
+                        betterTeamCopy.AddPlayerGroup(worstSinglePlayerGroup);
+
+                        int possibleRatingDeviance = Math.Abs(betterTeamCopy.Rating - worseTeamCopy.Rating);
+                        if (possibleRatingDeviance < currentRatingDeviance)
+                        {
+                            Trace.WriteLine("Improved rating deviance by " + (currentRatingDeviance - possibleRatingDeviance) + "!");
+
+                            worseTeam.Players.Remove(worstPlayer);
+                            betterTeam.Players.Remove(bestPlayer);
+
+                            worseTeam.AddPlayerGroup(bestSinglePlayerGroup);
+                            betterTeam.AddPlayerGroup(worstSinglePlayerGroup);
+
+                            return true;
+                        }
+                    }
+
+                }
+            }
+
+            return false;
+        }
+
+        private static bool CanRemovePlayer(Team team, Player player)
+        {
+            if (player.Inclusions.Count > 0)
+                return false;
+            
+            Team teamCopy = new Team(team.Capacity, new(team.Players));
+
+            teamCopy.Players.Remove(player);
+
+            if (!teamCopy.SpeaksDanish && !teamCopy.SpeaksEnglish)
+                return false;
+
             return true;
         }
     }

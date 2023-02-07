@@ -6,7 +6,17 @@ namespace TeamGenerator.MVVM.ViewModels
     {
         public string Name { get; set; }
         public string Nickname { get; set; }
-        public int Rating { get; set; } = 1;
+
+        private int _rating = 1;
+        public int Rating
+        {
+            get { return _rating; }
+            set 
+            { 
+                _rating = value;
+                OnPropertyChanged(nameof(Rating));
+            }
+        }
 
         private bool _speaksDanish;
         public bool SpeaksDanish

@@ -44,6 +44,8 @@ namespace TeamGenerator.Commands.EditPlayersViewCommands
                 vm.SelectedRelatedPlayer.IsRelationOfSelectedPlayer = false;
                 vm.SelectedRelatedPlayer.IsExclusionOfSelectedPlayer = false;
 
+                vm.SelectedRelatedPlayer = null;
+
                 vm.RelationActionLog = "Exclusion removed succesfully.";
 
                 return;

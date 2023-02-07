@@ -98,7 +98,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Grid.Row="11" Content="Save Teams to .csv" Command="{Binding ExportToCSVCommand}" CommandParameter="{Binding}"/>
+            <Button Grid.Row="11" Content="Export to .csv" Command="{Binding ExportToCSVCommand}" CommandParameter="{Binding}"/>
         </Grid>
 
         <Grid Grid.Column="1" Margin="10">
