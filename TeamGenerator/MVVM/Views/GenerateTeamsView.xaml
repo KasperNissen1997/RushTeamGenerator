@@ -11,8 +11,8 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid Margin="10,10,0,10">

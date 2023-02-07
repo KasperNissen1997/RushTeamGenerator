@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Collections.Specialized;
 using TeamGenerator.MVVM.Models;
 using TeamGenerator.MVVM.Models.Repositories;
 
@@ -85,11 +86,39 @@ namespace TeamGenerator.MVVM.ViewModels
             }
         }
 
-        public ObservableCollection<PlayerViewModel> Inclusions { get; }
+        private ObservableCollection<PlayerViewModel> _inclusions;
+        public ObservableCollection<PlayerViewModel> Inclusions
+        {
+            get
+            {
+                return _inclusions;
+            }
+
+            set
+            {
+                _inclusions = value;
+                OnPropertyChanged(nameof(Inclusions));
+            }
+        }
         public ObservableCollection<PlayerViewModel> Exclusions { get; }
         public ObservableCollection<PlayerViewModel> Acquaintences { get; }
 
         #region View related properties
+        public bool HasInclusions
+        {
+            get
+            {
+                return Inclusions.Count > 0;
+            }
+        }
+        public bool HasExclusions
+        {
+            get
+            {
+                return Exclusions.Count > 0;
+            }
+        }
+
         private bool _isSelectedPlayer;
         public bool IsSelectedPlayer
         {
@@ -211,12 +240,25 @@ namespace TeamGenerator.MVVM.ViewModels
             Exclusions = new();
             Acquaintences = new();
 
+            Inclusions.CollectionChanged += InclusionsChanged;
+            Exclusions.CollectionChanged += ExclusionsChanged;
+
             IsSelectedPlayer = false;
             IsInclusionOfSelectedPlayer = false;
             IsExclusionOfSelectedPlayer = false;
             IsAcquaintenceOfSelectedPlayer = false;
 
             IsSelectedInTeamGeneratorView = false;
+        }
+
+        private void ExclusionsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(HasExclusions));
+        }
+
+        private void InclusionsChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(HasInclusions));
         }
 
         #region Relation logic

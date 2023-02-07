@@ -11,8 +11,8 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid Margin="10,10,0,10">
@@ -27,11 +27,48 @@
             <ListBox x:Name="RegisteredPlayersListBox" Grid.Row="1" ItemsSource="{Binding RegisteredPlayers}" SelectedItem="{Binding SelectedPlayer}" d:ItemsSource="{d:SampleData ItemCount=30}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
-                            <Label Content="{Binding Nickname}"/>
-                            <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
-                        </StackPanel>
+                        <Grid Width="260">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="15"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Rating}" FontWeight="SemiBold"/>
+                                <Label Content="{Binding Nickname}"/>
+                                <Label Content="{Binding Name}" ContentStringFormat="({0})"/>
+                            </StackPanel>
+
+                            <Label Grid.Column="1">
+                                <Label.Resources>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding HasInclusions}" Value="True">
+                                                <Setter Property="Content" Value="I" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding HasInclusions}" Value="False">
+                                                <Setter Property="Content" Value="" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Resources>
+                            </Label>
+                            <Label Grid.Column="2">
+                                <Label.Resources>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding HasExclusions}" Value="True">
+                                                <Setter Property="Content" Value="E" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding HasExclusions}" Value="False">
+                                                <Setter Property="Content" Value="" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Resources>
+                            </Label>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
