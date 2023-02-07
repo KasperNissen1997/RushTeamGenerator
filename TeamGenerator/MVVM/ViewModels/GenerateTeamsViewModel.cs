@@ -41,7 +41,7 @@ namespace TeamGenerator.MVVM.ViewModels
                 OnPropertyChanged(nameof(TeamCapacity));
             }
         }
-        private int _allowedRatingDeviance = 5;
+        private int _allowedRatingDeviance = 1;
         public int AllowedRatingDeviance
         {
             get

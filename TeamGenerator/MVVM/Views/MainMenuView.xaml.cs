@@ -29,11 +29,13 @@ namespace TeamGenerator.MVVM.Views
         {
             MainWindow.Instance.GenerateTeamsView = new GenerateTeamsView();
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.GenerateTeamsView;
+            MainWindow.Instance.Title = MainWindow.Instance.GenerateTeamsView.Title;
         }
         private void EditPlayers_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.EditPlayersView = new EditPlayersView();
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.EditPlayersView;
+            MainWindow.Instance.Title = MainWindow.Instance.EditPlayersView.Title;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace TeamGenerator.Commands
         public void Execute(object? parameter)
         {
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.MainMenuView;
+            MainWindow.Instance.Title = MainWindow.Instance.MainMenuView.Title;
 
             if (parameter is EditPlayersViewModel editPlayersVM)
             {

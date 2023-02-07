@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
       mc:Ignorable="d" 
       d:DesignWidth="1080" d:DesignHeight="720"
-      Title="MainMenu" MinWidth="1080" MinHeight="720">
+      Title="Main Menu" MinWidth="1080" MinHeight="720">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
