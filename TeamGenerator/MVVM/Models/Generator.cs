@@ -17,6 +17,7 @@ namespace TeamGenerator.MVVM.Models
         {
             public bool success;
             public bool partialTeams;
+            public int optimizationIterationsPerformed;
 
             public int lowestTeamRating;
             public double averageTeamRating;
@@ -25,9 +26,11 @@ namespace TeamGenerator.MVVM.Models
             public int largestTeamSize;
             public int smallestTeamSize;
 
-            public GenerationResults(List<Team> teams, int allowedRatingDeviance)
+            public GenerationResults(List<Team> teams, int allowedRatingDeviance, int optimizationIterationsPerformed)
             {
                 partialTeams = false;
+                this.optimizationIterationsPerformed = optimizationIterationsPerformed;
+
                 int teamSize = teams[0].Size;
 
                 List<int> teamRatings = new();
@@ -74,6 +77,9 @@ namespace TeamGenerator.MVVM.Models
                     sb.AppendLine();
                 }
 
+                sb.AppendLine($"A total of {optimizationIterationsPerformed} optimization iterations were performed, before this result was reached.");
+                sb.AppendLine();
+
                 sb.AppendLine($"Lowest Team Rating: {lowestTeamRating}");
                 sb.AppendLine($"Average Team Rating: {Math.Round(averageTeamRating, 2)}");
                 sb.AppendLine($"Highest Team Rating: {highestTeamRating}");
@@ -110,7 +116,7 @@ namespace TeamGenerator.MVVM.Models
                     new Team(teamCapacity, players)
                 };
 
-                return new GenerationResults(teams, allowedRatingDeviance);
+                return new GenerationResults(teams, allowedRatingDeviance, 0);
             }
 
             // Initialize the playerGroups
@@ -189,12 +195,12 @@ namespace TeamGenerator.MVVM.Models
             }
 
             teams = finalTeams;
-
-            for (int n = 0; n < optimizationIterations; n++)
+            int optimizationsPerformed = 0;
+            for (; optimizationsPerformed < optimizationIterations; optimizationsPerformed++)
                 if (!OptimizeTeams(teams))
                     break;
 
-            return new GenerationResults(teams, allowedRatingDeviance);
+            return new GenerationResults(teams, allowedRatingDeviance, optimizationsPerformed);
         }
 
         /// <summary>
