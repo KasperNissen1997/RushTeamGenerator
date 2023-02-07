@@ -48,7 +48,9 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>7</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Peter Haslund</Name>
@@ -80,7 +82,9 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>4</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Theis Simonsen</Name>
@@ -137,8 +141,8 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Philip Kroer Færch</Name>
-    <Nickname>Tucan</Nickname>
+    <Name>Asger Ravn Nissen</Name>
+    <Nickname>Ravne</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
@@ -148,7 +152,18 @@
     <Exclusions />
     <Acquaintences>
       <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>20</PlayerIdentifier>
     </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Sebastoam Niclasen</Name>
+    <Nickname>SebNic</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Robert Venningbo</Name>
@@ -167,18 +182,8 @@
     </Acquaintences>
   </Player>
   <Player>
-    <Name>Sebastoam Niclasen</Name>
-    <Nickname>SebNic</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
-  </Player>
-  <Player>
-    <Name>Asger Ravn Nissen</Name>
-    <Nickname>Ravne</Nickname>
+    <Name>Philip Kroer Færch</Name>
+    <Nickname>Tucan</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
@@ -198,7 +203,9 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>20</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Mikkel Meldhedegaard</Name>
@@ -228,7 +235,10 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>17</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Alex Sychou</Name>
@@ -293,12 +303,11 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>14</PlayerIdentifier>
-      <PlayerIdentifier>28</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
       <PlayerIdentifier>28</PlayerIdentifier>
     </Acquaintences>
   </Player>
@@ -319,12 +328,11 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>14</PlayerIdentifier>
-      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
       <PlayerIdentifier>26</PlayerIdentifier>
     </Acquaintences>
   </Player>

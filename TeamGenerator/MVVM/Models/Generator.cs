@@ -345,47 +345,52 @@ namespace TeamGenerator.MVVM.Models
                     if (availableWorsePlayers.Count == 0 || availableBetterPlayers.Count == 0)
                         continue;
 
-                    Player worstPlayer = availableWorsePlayers[0];
-                    Player bestPlayer = availableBetterPlayers[0];
-
-                    foreach (Player player in availableWorsePlayers)
-                        if (player.Rating < worstPlayer.Rating)
-                            worstPlayer = player;
-
-                    foreach (Player player in availableBetterPlayers)
-                        if (player.Rating > bestPlayer.Rating)
-                            bestPlayer = player;
-
-                    Team worseTeamCopy = new(worseTeam.Capacity, new(worseTeam.Players));
-                    Team betterTeamCopy = new(betterTeam.Capacity, new(betterTeam.Players));
-                    worseTeamCopy.Players.Remove(worstPlayer);
-                    betterTeamCopy.Players.Remove(bestPlayer);
-
-                    PlayerGroup worstSinglePlayerGroup = new();
-                    PlayerGroup bestSinglePlayerGroup = new();
-                    worstSinglePlayerGroup.Players.Add(worstPlayer);
-                    bestSinglePlayerGroup.Players.Add(bestPlayer);
-
-                    if (CheckPlayerGroupEligibility(worseTeamCopy, bestSinglePlayerGroup) && CheckPlayerGroupEligibility(betterTeamCopy, worstSinglePlayerGroup))
+                    for (int k = 0; k < availableWorsePlayers.Count - 1; k++)
                     {
-                        worseTeamCopy.AddPlayerGroup(bestSinglePlayerGroup);
-                        betterTeamCopy.AddPlayerGroup(worstSinglePlayerGroup);
-
-                        int possibleRatingDeviance = Math.Abs(betterTeamCopy.Rating - worseTeamCopy.Rating);
-                        if (possibleRatingDeviance < currentRatingDeviance)
+                        for (int l = 0; l < availableBetterPlayers.Count - 1; l++)
                         {
-                            Trace.WriteLine("Improved rating deviance by " + (currentRatingDeviance - possibleRatingDeviance) + "!");
+                            Player worstPlayer = availableWorsePlayers[k];
+                            Player bestPlayer = availableBetterPlayers[l];
 
-                            worseTeam.Players.Remove(worstPlayer);
-                            betterTeam.Players.Remove(bestPlayer);
+                            //foreach (Player player in availableWorsePlayers)
+                            //    if (player.Rating < worstPlayer.Rating)
+                            //        worstPlayer = player;
 
-                            worseTeam.AddPlayerGroup(bestSinglePlayerGroup);
-                            betterTeam.AddPlayerGroup(worstSinglePlayerGroup);
+                            //foreach (Player player in availableBetterPlayers)
+                            //    if (player.Rating > bestPlayer.Rating)
+                            //        bestPlayer = player;
 
-                            return true;
+                            Team worseTeamCopy = new(worseTeam.Capacity, new(worseTeam.Players));
+                            Team betterTeamCopy = new(betterTeam.Capacity, new(betterTeam.Players));
+                            worseTeamCopy.Players.Remove(worstPlayer);
+                            betterTeamCopy.Players.Remove(bestPlayer);
+
+                            PlayerGroup worstSinglePlayerGroup = new();
+                            PlayerGroup bestSinglePlayerGroup = new();
+                            worstSinglePlayerGroup.Players.Add(worstPlayer);
+                            bestSinglePlayerGroup.Players.Add(bestPlayer);
+
+                            if (CheckPlayerGroupEligibility(worseTeamCopy, bestSinglePlayerGroup) && CheckPlayerGroupEligibility(betterTeamCopy, worstSinglePlayerGroup))
+                            {
+                                worseTeamCopy.AddPlayerGroup(bestSinglePlayerGroup);
+                                betterTeamCopy.AddPlayerGroup(worstSinglePlayerGroup);
+
+                                int possibleRatingDeviance = Math.Abs(betterTeamCopy.Rating - worseTeamCopy.Rating);
+                                if (possibleRatingDeviance < currentRatingDeviance)
+                                {
+                                    Trace.WriteLine("Improved rating deviance by " + (currentRatingDeviance - possibleRatingDeviance) + "!");
+
+                                    worseTeam.Players.Remove(worstPlayer);
+                                    betterTeam.Players.Remove(bestPlayer);
+
+                                    worseTeam.AddPlayerGroup(bestSinglePlayerGroup);
+                                    betterTeam.AddPlayerGroup(worstSinglePlayerGroup);
+
+                                    return true;
+                                }
+                            }
                         }
                     }
-
                 }
             }
 
