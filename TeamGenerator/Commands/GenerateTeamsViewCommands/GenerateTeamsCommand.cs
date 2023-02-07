@@ -62,14 +62,9 @@ namespace TeamGenerator.Commands.GenerateTeamsViewCommands
 
                 vm.GeneratedTeams.Clear();
                 vm.LeftOverPlayers.Clear();
+                vm.PageNumber = 0;
 
                 Generator.GenerationResults results = Generator.TryGenerateTeams(selectedPlayers, vm.TeamCapacity, vm.AllowedRatingDeviance, out List<Team> teams, vm.OptimizationIterations);
-
-                if (results.success)
-                    MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
-                else
-                    MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
-
 
                 List<Player> playersCopy = new List<Player>(PlayerRepository.Instance.RetrieveAll());
                 foreach (Team team in teams)
@@ -82,6 +77,11 @@ namespace TeamGenerator.Commands.GenerateTeamsViewCommands
 
                 foreach (Player leftOverPlayer in playersCopy)
                     vm.LeftOverPlayers.Add(new PlayerViewModel(leftOverPlayer));
+
+                if (results.success)
+                    MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+                else
+                    MessageBox.Show(results.ToString(), "Team Generation Result", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
             }
         }
     }

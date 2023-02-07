@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
       mc:Ignorable="d" 
-      Title="MainMenu" MinWidth="1080" MinHeight="500">
+      d:DesignWidth="1080" d:DesignHeight="720"
+      Title="MainMenu" MinWidth="1080" MinHeight="720">
 
     <Grid Background="White">
         <Grid.RowDefinitions>

@@ -7,7 +7,7 @@
       d:DataContext="{d:DesignInstance Type=viewmodels:EditPlayersViewModel}"
       mc:Ignorable="d"
       d:DesignWidth="1080" d:DesignHeight="720"
-      Title="Edit Players" MinWidth="1080" MinHeight="500">
+      Title="Edit Players" MinWidth="1080" MinHeight="720">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>

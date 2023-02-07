@@ -7,7 +7,7 @@
       d:DataContext="{d:DesignInstance Type=viewmodels:GenerateTeamsViewModel}"
       mc:Ignorable="d"
       d:DesignWidth="1080" d:DesignHeight="720"
-      Title="Generate Teams" MinWidth="1080" MinHeight="500">
+      Title="Generate Teams" MinWidth="1080" MinHeight="720">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="10"/>
-                <RowDefinition Height="250"/>
+                <RowDefinition Height="200"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
