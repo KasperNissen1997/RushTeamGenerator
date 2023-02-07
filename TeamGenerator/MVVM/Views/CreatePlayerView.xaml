@@ -25,7 +25,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Player details:"/>
+        <Label Content="Player Details:"/>
 
         <!-- Name -->
         <Label Grid.Row="1" Content="Name:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
@@ -35,8 +35,8 @@
         <Label Grid.Row="3" Content="Nickname:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Nickname, UpdateSourceTrigger=PropertyChanged}" FontSize="18" VerticalAlignment="center"/>
 
-        <!-- Known languages -->
-        <Label Grid.Row="5" Content="Known languages:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
+        <!-- Known Languages -->
+        <Label Grid.Row="5" Content="Known Languages:" FontSize="18" VerticalAlignment="Center" Margin="0,0,10,0"/>
         <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="80"/>
@@ -64,7 +64,7 @@
             <Label Grid.Column="1" FontSize="18" Content="{Binding Rating}" HorizontalAlignment="Center" VerticalAlignment="Center" d:Content="1"/>
         </Grid>
 
-        <Button x:Name="CreatePlayerButton" IsEnabled="{Binding SpeaksAnyLanguage}" Grid.Row="9" Grid.Column="1" Content="Create player" Padding="25,0,25,0" HorizontalAlignment="Center" Click="CreatePlayerButton_Click"/>
+        <Button x:Name="CreatePlayerButton" IsEnabled="{Binding SpeaksAnyLanguage}" Grid.Row="9" Grid.Column="1" Content="Create Player" Padding="25,0,25,0" HorizontalAlignment="Center" Click="CreatePlayerButton_Click"/>
 
     </Grid>
 </Window>
