@@ -6,11 +6,16 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject>TeamGenerator.App</StartupObject>
-    <ApplicationIcon>RushLogo.ico</ApplicationIcon>
+    <ApplicationIcon>Images\RushLogo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="RushLogo.ico" />
+    <None Remove="Images\RushLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\RushLogo.ico" />
+    <Resource Include="Images\RushLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
