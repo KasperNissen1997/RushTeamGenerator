@@ -167,8 +167,6 @@ namespace TeamGenerator.MVVM.Models
                 }
             }
 
-            Team lowestAverageRatedTeam;
-            Team highestAverageRatedTeam;
             while (singlePlayerGroups.Count != 0)
             {
                 if (teams.Count == 0)
@@ -179,7 +177,7 @@ namespace TeamGenerator.MVVM.Models
                 // get team with lowest average
                 teams.Sort();
 
-                lowestAverageRatedTeam = teams[0];
+                Team lowestAverageRatedTeam = teams[0];
 
                 if (TryFindEligiblePlayerGroup(lowestAverageRatedTeam, singlePlayerGroups, out PlayerGroup eligiblePlayerGroup))
                 {

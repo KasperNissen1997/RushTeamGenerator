@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace TeamGenerator.MVVM.Models
@@ -197,17 +198,23 @@ namespace TeamGenerator.MVVM.Models
             List<Player> foundInclusions = new(Inclusions);
 
             foreach (Player includedPlayer in Inclusions)
-                foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions));
+                foundInclusions = foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions)).ToList();
 
             foundInclusions.Remove(this);
+
+            if (foundInclusions.Count > 1)
+                Trace.Write("");
+
             return foundInclusions;
         }
 
         private List<Player> GetInclusionsRecursive(Player sender, List<Player> foundInclusions)
         {
+            foundInclusions = foundInclusions.Union(Inclusions).ToList();
+
             foreach (Player includedPlayer in Inclusions)
-                if (!foundInclusions.Contains(includedPlayer) && includedPlayer != sender)
-                    foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions));
+                if (!sender.Inclusions.Contains(includedPlayer) && includedPlayer != sender)
+                    foundInclusions = foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions)).ToList();
 
             return foundInclusions;
         }

@@ -159,27 +159,18 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Sebastoam Niclasen</Name>
-    <Nickname>SebNic</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
-  </Player>
-  <Player>
-    <Name>Philip Kroer Færch</Name>
-    <Nickname>Tucan</Nickname>
+    <Name>Asger Ravn Nissen</Name>
+    <Nickname>Ravne</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>17</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>17</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>20</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -196,19 +187,28 @@
     </Acquaintences>
   </Player>
   <Player>
-    <Name>Asger Ravn Nissen</Name>
-    <Nickname>Ravne</Nickname>
+    <Name>Philip Kroer Færch</Name>
+    <Nickname>Tucan</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>15</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>15</PlayerIdentifier>
-      <PlayerIdentifier>20</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Sebastoam Niclasen</Name>
+    <Nickname>SebNic</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Theis Hollensberg Svendsen</Name>
@@ -241,7 +241,7 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>17</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
       <PlayerIdentifier>18</PlayerIdentifier>
     </Acquaintences>
   </Player>
@@ -322,7 +322,7 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
       <PlayerIdentifier>29</PlayerIdentifier>
     </Acquaintences>
   </Player>
@@ -348,7 +348,7 @@
     <Exclusions />
     <Acquaintences>
       <PlayerIdentifier>6</PlayerIdentifier>
-      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
       <PlayerIdentifier>27</PlayerIdentifier>
     </Acquaintences>
   </Player>
@@ -359,14 +359,14 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>26</PlayerIdentifier>
       <PlayerIdentifier>1</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>26</PlayerIdentifier>
       <PlayerIdentifier>1</PlayerIdentifier>
       <PlayerIdentifier>21</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
     </Acquaintences>
   </Player>
 </Players>
