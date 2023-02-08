@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeamGenerator.MVVM.Views"
         mc:Ignorable="d"
-        Title="Create Player" Height="Auto" Width="500" ResizeMode="NoResize">
+        Title="Create Player" Height="310" Width="500" ResizeMode="NoResize">
     <Grid Margin="10">
 
         <Grid.RowDefinitions>

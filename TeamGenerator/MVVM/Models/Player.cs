@@ -207,7 +207,7 @@ namespace TeamGenerator.MVVM.Models
         {
             foreach (Player includedPlayer in Inclusions)
                 if (!foundInclusions.Contains(includedPlayer) && includedPlayer != sender)
-                    foundInclusions = (List<Player>) foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions));
+                    foundInclusions.Union(includedPlayer.GetInclusionsRecursive(this, foundInclusions));
 
             return foundInclusions;
         }
