@@ -10,10 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Players.xml" />
+    <None Remove="Data\Teams.xml" />
     <None Remove="Images\RushLogo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Data\Players.xml" />
+    <Resource Include="Data\Teams.xml">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\RushLogo.ico" />
     <Resource Include="Images\RushLogo.png" />
   </ItemGroup>
