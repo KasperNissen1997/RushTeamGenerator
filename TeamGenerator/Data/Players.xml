@@ -16,9 +16,13 @@
     <Rating>10</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
+    <Inclusions>
+      <PlayerIdentifier>30</PlayerIdentifier>
+    </Inclusions>
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>30</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Laurits Frimann</Name>
@@ -31,25 +35,51 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Placeholder</Name>
-    <Nickname>Placeholder</Nickname>
+    <Name>Ryan Bass</Name>
+    <Nickname>hectic</Nickname>
     <Rating>10</Rating>
     <SpeaksDanish>false</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>5</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Kim Flindt</Name>
+    <Nickname>Virusy</Nickname>
+    <Rating>9</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Ryan Bass</Name>
-    <Nickname>hectic</Nickname>
+    <Name>Alexander Egidius</Name>
+    <Nickname>Zee</Nickname>
     <Rating>8</Rating>
-    <SpeaksDanish>false</SpeaksDanish>
+    <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>7</PlayerIdentifier>
+      <PlayerIdentifier>3</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Philippe Mølgaard Ouabaid</Name>
+    <Nickname>Winspai</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>29</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>29</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -71,19 +101,7 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>10</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Alexander Egidius</Name>
-    <Nickname>Zee</Nickname>
-    <Rating>8</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>4</PlayerIdentifier>
+      <PlayerIdentifier>11</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -115,7 +133,7 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>6</PlayerIdentifier>
+      <PlayerIdentifier>8</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -126,7 +144,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions>
-      <PlayerIdentifier>24</PlayerIdentifier>
+      <PlayerIdentifier>25</PlayerIdentifier>
     </Exclusions>
     <Acquaintences />
   </Player>
@@ -141,21 +159,6 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Asger Ravn Nissen</Name>
-    <Nickname>Ravne</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>16</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>16</PlayerIdentifier>
-      <PlayerIdentifier>20</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
     <Name>Sebastoam Niclasen</Name>
     <Nickname>SebNic</Nickname>
     <Rating>6</Rating>
@@ -166,33 +169,45 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Robert Venningbo</Name>
-    <Nickname>Rob</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>26</PlayerIdentifier>
-      <PlayerIdentifier>28</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>26</PlayerIdentifier>
-      <PlayerIdentifier>28</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
     <Name>Philip Kroer Færch</Name>
     <Nickname>Tucan</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>17</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>17</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Robert Venningbo</Name>
+    <Nickname>Rob</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>27</PlayerIdentifier>
+      <PlayerIdentifier>29</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Asger Ravn Nissen</Name>
+    <Nickname>Ravne</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>15</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>15</PlayerIdentifier>
+      <PlayerIdentifier>20</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -218,16 +233,6 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Jonas pedersen</Name>
-    <Nickname>Junz</Nickname>
-    <Rating>5</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
-  </Player>
-  <Player>
     <Name>Daniel Roald Andersen</Name>
     <Nickname>Daniqq</Nickname>
     <Rating>5</Rating>
@@ -236,13 +241,25 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>13</PlayerIdentifier>
       <PlayerIdentifier>17</PlayerIdentifier>
+      <PlayerIdentifier>18</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
     <Name>Alex Sychou</Name>
     <Nickname>Maestrobaiter</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>30</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Jonas pedersen</Name>
+    <Nickname>Junz</Nickname>
     <Rating>5</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
@@ -278,7 +295,7 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions>
-      <PlayerIdentifier>11</PlayerIdentifier>
+      <PlayerIdentifier>12</PlayerIdentifier>
     </Exclusions>
     <Acquaintences />
   </Player>
@@ -289,11 +306,11 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>29</PlayerIdentifier>
+      <PlayerIdentifier>30</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>29</PlayerIdentifier>
+      <PlayerIdentifier>30</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -302,13 +319,11 @@
     <Rating>3</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>15</PlayerIdentifier>
-    </Inclusions>
+    <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>15</PlayerIdentifier>
-      <PlayerIdentifier>28</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>29</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -328,12 +343,13 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>15</PlayerIdentifier>
+      <PlayerIdentifier>6</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>15</PlayerIdentifier>
-      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>6</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>27</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -343,11 +359,14 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>25</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>1</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>25</PlayerIdentifier>
+      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>1</PlayerIdentifier>
+      <PlayerIdentifier>21</PlayerIdentifier>
     </Acquaintences>
   </Player>
 </Players>
