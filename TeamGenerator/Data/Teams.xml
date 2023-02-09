@@ -6,15 +6,15 @@
       <PlayerIdentifier>1</PlayerIdentifier>
       <PlayerIdentifier>30</PlayerIdentifier>
       <PlayerIdentifier>26</PlayerIdentifier>
-      <PlayerIdentifier>15</PlayerIdentifier>
-      <PlayerIdentifier>3</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>2</PlayerIdentifier>
     </Players>
   </Team>
   <Team>
     <Capacity>5</Capacity>
     <Players>
-      <PlayerIdentifier>16</PlayerIdentifier>
-      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>17</PlayerIdentifier>
+      <PlayerIdentifier>15</PlayerIdentifier>
       <PlayerIdentifier>20</PlayerIdentifier>
       <PlayerIdentifier>18</PlayerIdentifier>
       <PlayerIdentifier>7</PlayerIdentifier>
@@ -23,41 +23,41 @@
   <Team>
     <Capacity>5</Capacity>
     <Players>
-      <PlayerIdentifier>6</PlayerIdentifier>
-      <PlayerIdentifier>29</PlayerIdentifier>
-      <PlayerIdentifier>13</PlayerIdentifier>
-      <PlayerIdentifier>28</PlayerIdentifier>
-      <PlayerIdentifier>2</PlayerIdentifier>
-    </Players>
-  </Team>
-  <Team>
-    <Capacity>5</Capacity>
-    <Players>
       <PlayerIdentifier>0</PlayerIdentifier>
+      <PlayerIdentifier>8</PlayerIdentifier>
       <PlayerIdentifier>23</PlayerIdentifier>
       <PlayerIdentifier>24</PlayerIdentifier>
-      <PlayerIdentifier>5</PlayerIdentifier>
       <PlayerIdentifier>25</PlayerIdentifier>
     </Players>
   </Team>
   <Team>
     <Capacity>5</Capacity>
     <Players>
-      <PlayerIdentifier>27</PlayerIdentifier>
-      <PlayerIdentifier>12</PlayerIdentifier>
+      <PlayerIdentifier>6</PlayerIdentifier>
+      <PlayerIdentifier>29</PlayerIdentifier>
       <PlayerIdentifier>9</PlayerIdentifier>
-      <PlayerIdentifier>21</PlayerIdentifier>
-      <PlayerIdentifier>4</PlayerIdentifier>
+      <PlayerIdentifier>13</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Players>
   </Team>
   <Team>
     <Capacity>5</Capacity>
     <Players>
-      <PlayerIdentifier>10</PlayerIdentifier>
-      <PlayerIdentifier>17</PlayerIdentifier>
+      <PlayerIdentifier>28</PlayerIdentifier>
+      <PlayerIdentifier>3</PlayerIdentifier>
       <PlayerIdentifier>19</PlayerIdentifier>
-      <PlayerIdentifier>8</PlayerIdentifier>
       <PlayerIdentifier>22</PlayerIdentifier>
+      <PlayerIdentifier>5</PlayerIdentifier>
+    </Players>
+  </Team>
+  <Team>
+    <Capacity>5</Capacity>
+    <Players>
+      <PlayerIdentifier>27</PlayerIdentifier>
+      <PlayerIdentifier>10</PlayerIdentifier>
+      <PlayerIdentifier>12</PlayerIdentifier>
+      <PlayerIdentifier>21</PlayerIdentifier>
+      <PlayerIdentifier>4</PlayerIdentifier>
     </Players>
   </Team>
 </Teams>

@@ -16,9 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Data\Players.xml" />
+    <Resource Include="Data\Players.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Data\Teams.xml">
-      <CopyToOutputDirectory></CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\RushLogo.ico" />
     <Resource Include="Images\RushLogo.png" />
