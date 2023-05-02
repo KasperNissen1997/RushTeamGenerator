@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace TeamGenerator.MVVM.Views
 {
@@ -23,6 +23,8 @@ namespace TeamGenerator.MVVM.Views
         public MainMenuView()
         {
             InitializeComponent();
+
+            pathLabel.Content = Path.GetFullPath(@"Data\Players.xml");
         }
 
         private void GenerateTeams_Click(object sender, RoutedEventArgs e)
@@ -31,6 +33,7 @@ namespace TeamGenerator.MVVM.Views
             MainWindow.Instance.MainFrame.Content = MainWindow.Instance.GenerateTeamsView;
             MainWindow.Instance.Title = MainWindow.Instance.GenerateTeamsView.Title;
         }
+
         private void EditPlayers_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.Instance.EditPlayersView = new EditPlayersView();

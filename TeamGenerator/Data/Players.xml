@@ -6,12 +6,10 @@
     <Rating>11</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>8</PlayerIdentifier>
-    </Inclusions>
+    <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>8</PlayerIdentifier>
+      <PlayerIdentifier>5</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -20,12 +18,10 @@
     <Rating>10</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>30</PlayerIdentifier>
-    </Inclusions>
+    <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>30</PlayerIdentifier>
+      <PlayerIdentifier>29</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -47,7 +43,7 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>5</PlayerIdentifier>
+      <PlayerIdentifier>8</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -58,7 +54,47 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>11</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Casper Jensen</Name>
+    <Nickname>Stokn9x</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>0</PlayerIdentifier>
+      <PlayerIdentifier>20</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Peter Haslund</Name>
+    <Nickname>Fr4nksito</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
     <Acquaintences />
+  </Player>
+  <Player>
+    <Name>Robert Venningbo</Name>
+    <Nickname>Rob</Nickname>
+    <Rating>8</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>25</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>27</PlayerIdentifier>
+      <PlayerIdentifier>25</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Alexander Egidius</Name>
@@ -79,36 +115,11 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>29</PlayerIdentifier>
+      <PlayerIdentifier>27</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>29</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Peter Haslund</Name>
-    <Nickname>Fr4nksito</Nickname>
-    <Rating>8</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
-  </Player>
-  <Player>
-    <Name>Casper Jensen</Name>
-    <Nickname>Stokn9x</Nickname>
-    <Rating>8</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>0</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>0</PlayerIdentifier>
-      <PlayerIdentifier>11</PlayerIdentifier>
+      <PlayerIdentifier>27</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -129,18 +140,8 @@
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
-    <Acquaintences />
-  </Player>
-  <Player>
-    <Name>Niki Tamjidi</Name>
-    <Nickname>nikiodoz</Nickname>
-    <Rating>7</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>8</PlayerIdentifier>
+      <PlayerIdentifier>4</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -150,10 +151,10 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
-    <Exclusions>
-      <PlayerIdentifier>25</PlayerIdentifier>
-    </Exclusions>
-    <Acquaintences />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>13</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Niclas Ejlsborg</Name>
@@ -163,7 +164,23 @@
     <SpeaksEnglish>false</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
-    <Acquaintences />
+    <Acquaintences>
+      <PlayerIdentifier>12</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Philip Kroer Færch</Name>
+    <Nickname>Tucan</Nickname>
+    <Rating>6</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>16</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>16</PlayerIdentifier>
+    </Acquaintences>
   </Player>
   <Player>
     <Name>Sebastoam Niclasen</Name>
@@ -176,57 +193,42 @@
     <Acquaintences />
   </Player>
   <Player>
-    <Name>Philip Kroer Færch</Name>
-    <Nickname>Tucan</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>17</PlayerIdentifier>
-    </Inclusions>
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>17</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Robert Venningbo</Name>
-    <Nickname>Rob</Nickname>
-    <Rating>6</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>27</PlayerIdentifier>
-      <PlayerIdentifier>29</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
     <Name>Asger Ravn Nissen</Name>
     <Nickname>Ravne</Nickname>
     <Rating>6</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>15</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>15</PlayerIdentifier>
-      <PlayerIdentifier>20</PlayerIdentifier>
+      <PlayerIdentifier>14</PlayerIdentifier>
+      <PlayerIdentifier>21</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
-    <Name>Theis Hollensberg Svendsen</Name>
-    <Nickname>Sprout</Nickname>
+    <Name>Jonas pedersen</Name>
+    <Nickname>Junz</Nickname>
     <Rating>5</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
     <Exclusions />
+    <Acquaintences />
+  </Player>
+  <Player>
+    <Name>Alex Sychou</Name>
+    <Nickname>Maestrobaiter</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions>
+      <PlayerIdentifier>29</PlayerIdentifier>
+    </Inclusions>
+    <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>20</PlayerIdentifier>
+      <PlayerIdentifier>29</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -240,6 +242,19 @@
     <Acquaintences />
   </Player>
   <Player>
+    <Name>Theis Hollensberg Svendsen</Name>
+    <Nickname>Sprout</Nickname>
+    <Rating>5</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>5</PlayerIdentifier>
+      <PlayerIdentifier>21</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
     <Name>Daniel Roald Andersen</Name>
     <Nickname>Daniqq</Nickname>
     <Rating>5</Rating>
@@ -248,31 +263,9 @@
     <Inclusions />
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>17</PlayerIdentifier>
-      <PlayerIdentifier>18</PlayerIdentifier>
+      <PlayerIdentifier>16</PlayerIdentifier>
+      <PlayerIdentifier>20</PlayerIdentifier>
     </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Alex Sychou</Name>
-    <Nickname>Maestrobaiter</Nickname>
-    <Rating>5</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>30</PlayerIdentifier>
-    </Acquaintences>
-  </Player>
-  <Player>
-    <Name>Jonas pedersen</Name>
-    <Nickname>Junz</Nickname>
-    <Rating>5</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
-    <Exclusions />
-    <Acquaintences />
   </Player>
   <Player>
     <Name>Philip Jacobsen</Name>
@@ -301,24 +294,8 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions />
-    <Exclusions>
-      <PlayerIdentifier>12</PlayerIdentifier>
-    </Exclusions>
-    <Acquaintences />
-  </Player>
-  <Player>
-    <Name>Nicolai A.V. Højlund</Name>
-    <Nickname>A1mbassador</Nickname>
-    <Rating>3</Rating>
-    <SpeaksDanish>true</SpeaksDanish>
-    <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions>
-      <PlayerIdentifier>30</PlayerIdentifier>
-    </Inclusions>
     <Exclusions />
-    <Acquaintences>
-      <PlayerIdentifier>30</PlayerIdentifier>
-    </Acquaintences>
+    <Acquaintences />
   </Player>
   <Player>
     <Name>Michael Groth</Name>
@@ -326,11 +303,13 @@
     <Rating>3</Rating>
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
-    <Inclusions />
+    <Inclusions>
+      <PlayerIdentifier>7</PlayerIdentifier>
+    </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>16</PlayerIdentifier>
-      <PlayerIdentifier>29</PlayerIdentifier>
+      <PlayerIdentifier>7</PlayerIdentifier>
+      <PlayerIdentifier>27</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -350,13 +329,25 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>6</PlayerIdentifier>
+      <PlayerIdentifier>9</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
-      <PlayerIdentifier>6</PlayerIdentifier>
-      <PlayerIdentifier>16</PlayerIdentifier>
-      <PlayerIdentifier>27</PlayerIdentifier>
+      <PlayerIdentifier>9</PlayerIdentifier>
+      <PlayerIdentifier>7</PlayerIdentifier>
+      <PlayerIdentifier>25</PlayerIdentifier>
+    </Acquaintences>
+  </Player>
+  <Player>
+    <Name>Nicolai A.V. Højlund</Name>
+    <Nickname>A1mbassador</Nickname>
+    <Rating>3</Rating>
+    <SpeaksDanish>true</SpeaksDanish>
+    <SpeaksEnglish>true</SpeaksEnglish>
+    <Inclusions />
+    <Exclusions />
+    <Acquaintences>
+      <PlayerIdentifier>29</PlayerIdentifier>
     </Acquaintences>
   </Player>
   <Player>
@@ -366,14 +357,13 @@
     <SpeaksDanish>true</SpeaksDanish>
     <SpeaksEnglish>true</SpeaksEnglish>
     <Inclusions>
-      <PlayerIdentifier>1</PlayerIdentifier>
-      <PlayerIdentifier>26</PlayerIdentifier>
+      <PlayerIdentifier>18</PlayerIdentifier>
     </Inclusions>
     <Exclusions />
     <Acquaintences>
+      <PlayerIdentifier>18</PlayerIdentifier>
       <PlayerIdentifier>1</PlayerIdentifier>
-      <PlayerIdentifier>26</PlayerIdentifier>
-      <PlayerIdentifier>21</PlayerIdentifier>
+      <PlayerIdentifier>28</PlayerIdentifier>
     </Acquaintences>
   </Player>
 </Players>

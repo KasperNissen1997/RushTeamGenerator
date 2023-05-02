@@ -22,8 +22,12 @@
     <Resource Include="Data\Teams.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\RushLogo.ico" />
-    <Resource Include="Images\RushLogo.png" />
+    <Resource Include="Images\RushLogo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\RushLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

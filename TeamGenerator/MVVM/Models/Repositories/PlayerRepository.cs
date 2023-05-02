@@ -35,13 +35,16 @@ namespace TeamGenerator.MVVM.Models.Repositories
         }
         #endregion
 
-        private string filePath = Path.GetFullPath(@"..\..\..\Data\Players.xml");
+        // private string filePath = Path.GetFullPath(@"..\..\..\Data\Players.xml");
+        private string filePath = Path.GetFullPath(@"Data\Players.xml");
 
         private List<Player> players;
 
         #region Persistance
         public void Save()
         {
+            Console.Beep(3000, 1000);
+
             if (!File.Exists(filePath))
                 File.Create(filePath).Close();
 
@@ -57,6 +60,8 @@ namespace TeamGenerator.MVVM.Models.Repositories
 
             using (XmlWriter writer = XmlWriter.Create(filePath, settings))
             {
+                Console.Beep(1000, 1000);
+
                 writer.WriteStartDocument();
                 writer.WriteStartElement("Players");
                 foreach (Player player in players)

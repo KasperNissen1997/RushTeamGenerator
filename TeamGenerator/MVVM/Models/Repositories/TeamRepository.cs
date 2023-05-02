@@ -35,7 +35,8 @@ namespace TeamGenerator.MVVM.Models.Repositories
         }
         #endregion
 
-        private string filePath = Path.GetFullPath(@"..\..\..\Data\Teams.xml");
+        // private string filePath = Path.GetFullPath(@"..\..\..\Data\Teams.xml");
+        private string filePath = Path.GetFullPath(@"Data\Teams.xml");
 
         private List<Team> teams;
 
