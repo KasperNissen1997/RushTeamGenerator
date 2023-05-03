@@ -24,7 +24,7 @@ namespace TeamGenerator.MVVM.Views
         {
             InitializeComponent();
 
-            pathLabel.Content = Path.GetFullPath(@"Data\Players.xml");
+            // pathLabel.Content = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"TeamGenerator\Data\Players.xml";
         }
 
         private void GenerateTeams_Click(object sender, RoutedEventArgs e)

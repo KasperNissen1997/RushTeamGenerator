@@ -55,6 +55,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -71,6 +87,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -107,7 +131,7 @@
             "SourcePath" = "8:..\\TeamGenerator\\Data\\Teams.xml"
             "TargetName" = "8:Teams.xml"
             "Tag" = "8:"
-            "Folder" = "8:_32F1AEF4EB82407D8B8D07FDF2A8AAF1"
+            "Folder" = "8:_C71CBFADDDE049C2ACD470832F6DBC52"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -127,7 +151,7 @@
             "SourcePath" = "8:..\\TeamGenerator\\Data\\Players.xml"
             "TargetName" = "8:Players.xml"
             "Tag" = "8:"
-            "Folder" = "8:_32F1AEF4EB82407D8B8D07FDF2A8AAF1"
+            "Folder" = "8:_C71CBFADDDE049C2ACD470832F6DBC52"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -168,6 +192,39 @@
         }
         "Folder"
         {
+            "{1525181F-901A-416C-8A58-119130FE478E}:_6C3E0695689B42D79393F98C764B321B"
+            {
+            "Name" = "8:#1915"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:AppDataFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_8EBE2CDC867F426D9DDD036D03AAF78A"
+                    {
+                    "Name" = "8:TeamGenerator"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_0F0D0976C4D94881A6524FB28A0F53BA"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_C71CBFADDDE049C2ACD470832F6DBC52"
+                            {
+                            "Name" = "8:Data"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_71479D41D4BF4930BA9E9082D07777A0"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_821088B23FBE43E9A1CF5D7C418216D9"
             {
             "Name" = "8:#1916"
@@ -189,17 +246,6 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_32F1AEF4EB82407D8B8D07FDF2A8AAF1"
-                    {
-                    "Name" = "8:Data"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_71479D41D4BF4930BA9E9082D07777A0"
-                        "Folders"
-                        {
-                        }
-                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D217FB29D5C848E1B7219B2663D8330D"
@@ -230,7 +276,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RushTeamGeneratorSetup"
         "ProductCode" = "8:{F2C14167-688E-432D-BFA3-C1ACA353E254}"
-        "PackageCode" = "8:{4C1FCB09-3616-46BD-A3E5-32C82AD3774B}"
+        "PackageCode" = "8:{5477C484-91A4-457E-9418-328946EDBB3B}"
         "UpgradeCode" = "8:{1D15955D-D766-4A2B-BC4B-9B7E1E76D57C}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
